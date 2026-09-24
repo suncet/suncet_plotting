@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10151d">
+  <link rel="icon" type="image/png" href="./assets/suncet-logo.png">
+  <title>SunCET · Telemetry explorer</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body data-mode="public">
+  <aside class="sidebar">
+    <a class="brand" href="./" aria-label="SunCET telemetry explorer"><img class="brand-logo" src="./assets/suncet-logo.png" width="681" height="662" alt="SunCET — Sun Coronal Ejection Tracker"></a>
+    <div class="sidebar-label">WORKSPACE</div>
+    <nav id="navigation" aria-label="Telemetry groups"></nav>
+    <div class="sidebar-bottom"><span class="local-dot"></span> Local analysis<small>Your selected file stays in this browser.</small><a href="https://github.com/suncet/suncet_plotting" target="_blank" rel="noreferrer">suncet / suncet_plotting ↗</a></div>
+  </aside>
+  <main>
+    <header class="topbar"><span>MISSION DATA <span class="slash">/</span> BEACON</span></header>
+    <div class="page-heading"><div><div class="eyebrow">SPACECRAFT TELEMETRY</div><h1 id="page-title">Beacon overview</h1><p id="page-description">Open a capture. Explore the spacecraft.</p></div><div class="heading-actions"><button id="export" class="secondary" disabled>↓ Export view CSV</button><button id="open-file" class="primary">＋ Open database</button><input id="file-input" type="file" accept=".duckdb,.db,.ddb" hidden></div></div>
+    <div id="message" role="status" aria-live="polite" hidden></div>
+    <div id="archive-picker" class="archive-picker" hidden><label for="capture">PUBLISHED CAPTURE</label><select id="capture"></select><span>Telemetry archive</span></div>
+    <section id="welcome" class="welcome">
+      <div class="welcome-orbit" aria-hidden="true"><span>☀</span><i></i></div>
+      <div class="eyebrow">YOUR CAPTURE, IN CONTEXT</div><h2>A closer look at every orbit.</h2>
+      <p>Drop a SunCET DuckDB file here to explore temperatures, paired electrical measurements, operating modes, and beacon health.</p>
+      <button id="welcome-open" class="primary">Choose a DuckDB file <span>↗</span></button>
+      <p class="welcome-detail">Read directly in your browser · No database upload · No account needed</p>
+      <div class="welcome-features"><div><b>12</b><span>temperature channels</span></div><div><b>V × I</b><span>same-packet power</span></div><div><b>All together</b><span>synchronized plot zoom</span></div></div>
+    </section>
+    <section id="workspace" hidden>
+      <div class="source-strip"><span class="file-icon">▤</span><div class="source-name"><strong id="filename"></strong><span id="source-detail"></span></div><span class="pill">READ ONLY</span></div>
+      <div class="metrics" id="metrics"></div>
+      <div class="controls">
+        <label>Spacecraft reset<select id="reset-filter"><option value="all">All resets</option></select></label>
+        <label>Horizontal axis<select id="axis"><option value="record">Packet order</option><option value="boot">Time since boot (s)</option><option value="header">CCSDS onboard time (s)</option></select></label>
+        <label>Vertical scale<select id="y-scale"><option value="engineering">Engineering range</option><option value="typical">Typical range (1–99%)</option><option value="full">Full measured range</option></select></label>
+        <label class="search-label">Find a telemetry point<input id="search" type="search" placeholder="Temperature, X-band, beac_…"></label>
+        <label class="check-label"><input id="duplicates" type="checkbox" checked> Hide duplicate packets</label>
+        <button id="reset-zoom" class="secondary small">Reset zoom</button>
+      </div>
+      <div class="view-note"><span id="time-note"></span><span id="range-note">Drag a plot to zoom every panel.</span></div>
+      <div id="plots" aria-busy="false"></div>
+      <footer><span>Display limits are adjustable</span><span>SunCET / mission telemetry</span></footer>
+    </section>
+  </main>
+  <div id="drop-overlay" hidden>Drop your DuckDB capture to open it</div>
+  <script type="module" src="./app.mjs"></script>
+</body>
+</html>

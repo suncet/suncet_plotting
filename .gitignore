@@ -127,3 +127,11 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Telemetry stays outside the source repository.
+*.duckdb
+*.duckdb.wal
+*.json.gz
+_site/
+.wrangler/
+node_modules/

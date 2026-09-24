@@ -1,0 +1,11 @@
+[
+  {
+    "AllowedOrigins": [
+      "https://suncet.github.io",
+      "http://127.0.0.1:8051",
+      "http://localhost:8051"
+    ],
+    "AllowedMethods": ["GET", "HEAD"],
+    "AllowedHeaders": []
+  }
+]

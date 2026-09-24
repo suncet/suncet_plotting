@@ -1,0 +1,56 @@
+name: Publish telemetry dashboard
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: telemetry-dashboard-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+      - name: Prepare dashboard assets
+        env:
+          TELEMETRY_CATALOG_URL: ${{ vars.TELEMETRY_CATALOG_URL }}
+        run: |
+          mkdir -p _site/assets
+          cp dashboard/index.html dashboard/app.mjs dashboard/data.mjs dashboard/signals.mjs dashboard/plot-policy.mjs dashboard/style.css _site/
+          cp dashboard/assets/suncet-logo.png _site/assets/
+          touch _site/.nojekyll
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          from urllib.parse import urlsplit
+
+          config = json.loads(Path("dashboard/site-config.json").read_text(encoding="utf-8"))
+          catalog_url = os.environ.get("TELEMETRY_CATALOG_URL", "").strip() or config.get("catalogUrl", "").strip()
+          parsed = urlsplit(catalog_url)
+          if parsed.scheme != "https" or not parsed.netloc or parsed.username or parsed.password:
+              raise SystemExit("Set catalogUrl in dashboard/site-config.json or the repository variable TELEMETRY_CATALOG_URL to a public HTTPS catalog URL before publishing.")
+          Path("_site/site-config.json").write_text(
+              json.dumps({"mode": "public", "catalogUrl": catalog_url}, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          PY
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+      - name: Deploy website
+        id: deployment
+        uses: actions/deploy-pages@v4
