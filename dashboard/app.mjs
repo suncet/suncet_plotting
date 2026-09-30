@@ -1,5 +1,5 @@
 import { GROUPS, SIGNALS, POWER_PAIRS } from './signals.mjs';
-import { loadDatabase, loadSnapshot, numericValue, stateLabel, sampleSeries, powerValue } from './data.mjs';
+import { loadDatabase, loadSnapshot, numericValue, stateLabel, sampleTelemetry, timeEntries, axisRangeValue, powerValue } from './data.mjs';
 import { selectRange, panelGroups, derivePowerSignal } from './plot-policy.mjs';
 
 const $ = id => document.getElementById(id);
@@ -18,7 +18,7 @@ const value = (row, signal) => {
   if(raw===null || raw===undefined || raw==='')return null;
   return signal.kind === 'state' ? stateLabel(signal,raw) : numericValue(raw);
 };
-const axisTitle = () => ({record:'Beacon sample · acquisition order',boot:'Time since boot (s)',header:'CCSDS onboard seconds · coarse + milliseconds'})[$('axis').value];
+const axisTitle = () => ({record:'Beacon sample · acquisition order',boot:'Time since boot (s)',alive:'Time alive (s)',utc:'UTC',header:'CCSDS onboard seconds · coarse + milliseconds'})[$('axis').value];
 
 function element(tag, className, text) {
   const result = document.createElement(tag);
@@ -56,20 +56,7 @@ function navigation() {
 }
 
 function getEntries() {
-  const reset = $('reset-filter').value, axis=$('axis').value;
-  const result = entries.filter(e => (reset==='all'||String(e.row.beac_num_sc_resets)===reset) && (!$('duplicates').checked || !e.row.is_duplicate_packet))
-    .map(e => {
-      let x=e.index;
-      if(axis==='boot') x=numericValue(e.row.beac_time_since_boot);
-      if(axis==='header') {
-        const sec=numericValue(e.row.ccsdsSecHeader2_sec_beacon), sub=numericValue(e.row.ccsdsSecHeader2_sub_beacon);
-        // A bad fine field is missing time, never silently zero milliseconds.
-        x=sec !== null && sec>=0 && sub !== null && Number.isInteger(sub) && sub>=0 && sub<1000 ? sec+sub/1000 : null;
-      }
-      return {...e,x};
-    }).filter(e=>e.x!==null);
-  if(axis!=='record') result.sort((a,b)=>a.x-b.x || a.index-b.index);
-  return result;
+  return timeEntries(entries,{axis:$('axis').value,reset:$('reset-filter').value,hideDuplicates:$('duplicates').checked});
 }
 function selectedSignals(group) { return SIGNALS.filter(s => available(s) && (!group || s.group===group) && matches(s)); }
 function section(title, detail='') {
@@ -87,26 +74,37 @@ function panel(grid,title,subtitle,unit='',wide=false) {
 function baseLayout(height=310) {
   return {height,autosize:true,paper_bgcolor:'transparent',plot_bgcolor:'transparent',font:{family:'DM Sans, system-ui, sans-serif',color:'#94a5bc',size:10},
     margin:{l:55,r:25,t:18,b:70},colorway:colors,dragmode:'zoom',hovermode:'x unified',
-    xaxis:{title:{text:axisTitle(),font:{size:9},standoff:12},gridcolor:'#283440',zeroline:false,showline:true,linecolor:'#344150',range:zoom || undefined,autorange:!zoom},
+    xaxis:{type:$('axis').value==='utc'?'date':'linear',...($('axis').value==='utc'?{tickformat:'%H:%M:%S\n%Y-%m-%d',hoverformat:'%Y-%m-%d %H:%M:%S.%L UTC'}:{}),title:{text:axisTitle(),font:{size:9},standoff:12},gridcolor:'#283440',zeroline:false,showline:true,linecolor:'#344150',range:zoom || undefined,autorange:!zoom},
     yaxis:{gridcolor:'#283440',zeroline:false,tickfont:{size:9},automargin:true},
     legend:{orientation:'h',y:-.28,x:0,font:{size:9},bgcolor:'transparent'},hoverlabel:{bgcolor:'#233245',font:{size:11,color:'#e9f1fa'}},uirevision:`${activeGroup}-${$('axis').value}-${$('reset-filter').value}`};
 }
 async function plot(chart,traces,layout,version) {
   if(version!==renderVersion) return;
+  if($('axis').value==='utc'){
+    // Explicit UTC strings prevent Plotly from interpreting numeric dates in
+    // the browser's local timezone. Bar lengths remain millisecond durations.
+    const utc=x=>new Date(x).toISOString();
+    for(const trace of traces){
+      if(trace.type==='bar')trace.base=trace.base.map(utc);
+      else trace.x=trace.x.map(utc);
+    }
+    if(layout.xaxis.range)layout.xaxis.range=layout.xaxis.range.map(utc);
+  }
   await window.Plotly.newPlot(chart,traces,layout,{responsive:true,displaylogo:false,scrollZoom:false,modeBarButtonsToRemove:['select2d','lasso2d','autoScale2d','resetScale2d'],toImageButtonOptions:{format:'png',scale:2}});
   if(version!==renderVersion){window.Plotly.purge(chart);return;}
   plots.push(chart);
   chart.on('plotly_relayout',event=> {
     if(syncing) return;
     if(event['xaxis.autorange']) setZoom(null);
-    else if(event['xaxis.range[0]']!==undefined && event['xaxis.range[1]']!==undefined) setZoom([Number(event['xaxis.range[0]']),Number(event['xaxis.range[1]'])]);
-    else if(event['xaxis.range']) setZoom(event['xaxis.range'].map(Number));
+    else if(event['xaxis.range[0]']!==undefined && event['xaxis.range[1]']!==undefined) setZoom([axisRangeValue(event['xaxis.range[0]'],$('axis').value),axisRangeValue(event['xaxis.range[1]'],$('axis').value)]);
+    else if(event['xaxis.range']) setZoom(event['xaxis.range'].map(v=>axisRangeValue(v,$('axis').value)));
   });
   chart.on('plotly_doubleclick',()=>{setZoom(null);return false;});
 }
 async function setZoom(range) {
+  if(range?.some(v=>v===null||!Number.isFinite(v)))return;
   zoom=range;syncing=true;
-  $('range-note').textContent=range ? `Selected: ${fmt(range[0])} → ${fmt(range[1])} · CSV uses this range` : 'Drag a plot to zoom every panel.';
+  $('range-note').textContent=range ? `Selected: ${$('axis').value==='utc'?new Date(range[0]).toISOString():fmt(range[0])} → ${$('axis').value==='utc'?new Date(range[1]).toISOString():fmt(range[1])} · CSV uses this range` : 'Drag a plot to zoom every panel.';
   // Resample the underlying records after every zoom, so fine structure returns.
   try { await render(); }
   finally {syncing=false;}
@@ -138,10 +136,9 @@ async function numericPanel(grid,title,signals,view,version,{wide=false,subtitle
     if(badge){badge.textContent=`${fmt(lastValue)} ${signal.unit || ''}`;badge.classList.add('panel-reading');badge.title='Last sample in the selected interval, before display limits';}
     p.container.querySelector('.panel-title').title=signal.field || signal.label;
   }
-  const xs=view.map(e=>e.x);
   const traces=signals.map((signal,i)=>{
-    const series=sampleSeries(xs,view.map(e=>numericValue(signal.derive?signal.derive(e.row):e.row[signal.field])),1800,'number');
-    return {x:series.x,y:series.y,type:'scatter',mode:'lines',name:signal.label,line:{color:colors[i%colors.length],width:1.5,shape:signal.step?'hv':'linear'},connectgaps:false,hovertemplate:`%{y:.5g} ${signal.unit || ''}<extra>%{fullData.name}</extra>`};
+    const series=sampleTelemetry(view,view.map(e=>numericValue(signal.derive?signal.derive(e.row):e.row[signal.field])),1800);
+    return {x:series.x,y:series.y,type:'scatter',mode:'lines',name:signal.label,line:{color:colors[i%colors.length],width:1.5,shape:signal.step?'hv':'linear'},connectgaps:false,hovertemplate:`${$('axis').value==='utc'?'%{x|%Y-%m-%d %H:%M:%S.%L} UTC<br>':''}%{y:.5g} ${signal.unit || ''}<extra>%{fullData.name}</extra>`};
   });
   const layout=baseLayout(height);layout.yaxis.title={text:units.join(' / '),font:{size:9}};
   const rawValues=signals.flatMap(s=>view.map(e=>s.derive?s.derive(e.row):e.row[s.field]));
@@ -175,19 +172,20 @@ async function statePanel(grid,title,signals,view,version) {
       if(previous===null || previous===undefined || end<=start) return;
       const state=String(previous);
       const color=stateColor(state,signal), key=`${state}\0${color}`;
-      if(!byState.has(key)) byState.set(key,{x:[],base:[],y:[],text:[],name:state,type:'bar',orientation:'h',textposition:'none',marker:{color},hovertemplate:'%{y}: <b>%{text}</b><extra></extra>'});
-      const trace=byState.get(key);trace.x.push(end-start);trace.base.push(start);trace.y.push(signal.label);trace.text.push(state);
+      if(!byState.has(key)) byState.set(key,{x:[],base:[],y:[],text:[],customdata:[],name:state,type:'bar',orientation:'h',textposition:'none',marker:{color},hovertemplate:`%{y}: <b>%{text}</b>${$('axis').value==='utc'?'<br>%{customdata[0]} → %{customdata[1]}':''}<extra></extra>`});
+      const trace=byState.get(key);trace.x.push(end-start);trace.base.push(start);trace.y.push(signal.label);trace.text.push(state);trace.customdata.push($('axis').value==='utc'?[new Date(start).toISOString(),new Date(end).toISOString()]:[]);
     };
     for(let i=1;i<view.length;i++) {
       const next=value(view[i].row,signal);
-      if(next!==previous){add(view[i].x);start=view[i].x;previous=next;}
+      if(view[i].segment!==view[i-1].segment){add(Math.min(view[i].x,view[i-1].x+endStep));start=view[i].x;previous=next;}
+      else if(next!==previous){add(view[i].x);start=view[i].x;previous=next;}
     }
     add(view.at(-1).x+endStep);
   });
   const layout=baseLayout(Math.max(280,signals.length*31+150));
   layout.barmode='overlay';layout.bargap=.32;layout.hovermode='closest';layout.margin={l:155,r:25,t:15,b:100};
   layout.yaxis={type:'category',autorange:'reversed',categoryorder:'array',categoryarray:signals.map(s=>s.label),tickfont:{size:10},automargin:true};
-  layout.legend.y=-.22;layout.xaxis.type='linear';p.chart.style.height=`${layout.height}px`;
+  layout.legend.y=-.22;p.chart.style.height=`${layout.height}px`;
   await plot(p.chart,[...byState.values()],layout,version);
 }
 
@@ -205,8 +203,7 @@ async function electrical(view,version) {
     const last=view.filter(e=>!zoom||e.x>=zoom[0]&&e.x<=zoom[1]).at(-1);
     definitions.forEach(d=>{const item=element('div','rail-reading');item.style.color=d.color;item.append(element('small','',d.label),document.createTextNode(fmt(last?(d.derive?d.derive(last.row):numericValue(last.row[d.field])):null)),element('span','',` ${d.unit}`));readings.append(item);});
     p.container.insertBefore(readings,p.chart);
-    const xs=view.map(e=>e.x);
-    const traces=definitions.map((d,i)=>{const s=sampleSeries(xs,view.map(e=>d.derive?d.derive(e.row):numericValue(e.row[d.field])),1400);return {x:s.x,y:s.y,name:d.label,type:'scatter',mode:'lines',line:{color:d.color,width:1.5},yaxis:i===0?'y':`y${i+1}`,connectgaps:false,hovertemplate:`%{y:.5g} ${d.unit}<extra>%{fullData.name}</extra>`};});
+    const traces=definitions.map((d,i)=>{const s=sampleTelemetry(view,view.map(e=>d.derive?d.derive(e.row):numericValue(e.row[d.field])),1400);return {x:s.x,y:s.y,name:d.label,type:'scatter',mode:'lines',line:{color:d.color,width:1.5},yaxis:i===0?'y':`y${i+1}`,connectgaps:false,hovertemplate:`${$('axis').value==='utc'?'%{x|%Y-%m-%d %H:%M:%S.%L} UTC<br>':''}%{y:.5g} ${d.unit}<extra>%{fullData.name}</extra>`};});
     const layout=baseLayout(370);layout.showlegend=false;layout.margin.b=50;
     layout.yaxis={...layout.yaxis,domain:[.73,1],title:{text:'V',font:{color:colors[2],size:10}}};
     layout.yaxis2={...layout.yaxis,domain:[.37,.64],title:{text:'A',font:{color:colors[1],size:10}}};
@@ -249,7 +246,10 @@ async function render() {
     const card=element('div','metric');card.append(element('div','label',label),element('strong','',count),element('small','',note));$('metrics').append(card);
   });
   const axis=$('axis').value;
-  $('time-note').textContent=axis==='record'?'Packet order keeps resets and clock jumps visible. Select a reset and time axis for time-based plots.':`${axis==='boot'?'Boot time may restart':'Onboard time is shown as raw seconds, without assuming UTC'}.${resetCount>1?' Multiple resets selected: equal times can overlap.':''} Rows with missing or invalid time are omitted.`;
+  const timeNotes={record:'Packet order keeps resets and clock jumps visible.',boot:'Time since boot restarts on reboot.',alive:'Time alive is the beacon’s cumulative counter; no reboot stitching is applied.',header:'Stored CCSDS seconds, including unset clocks and clock-setting jumps.',utc:'Onboard UTC uses the realtime display convention (J2000 + leap seconds). Clock values outside 2020–2099 are omitted; use packet order or CCSDS seconds to see them.'};
+  const omitted=axis==='utc'?timeEntries(entries,{axis:'record',reset:$('reset-filter').value,hideDuplicates:$('duplicates').checked}).length-fullView.length:0;
+  $('time-note').textContent=timeNotes[axis]+(omitted?` ${number(omitted)} samples omitted.`:'')+(axis!=='record'?' Lines break at reboot or clock discontinuities. Missing/invalid times are omitted.':'');
+  if(['utc','header'].includes(axis)){const count=fullView.filter(e=>e.row.analysis_time_reconstructed).length;if(count)$('time-note').textContent+=` ${number(count)} samples use reconstructed onboard times.`;}
   if(!view.length){$('plots').append(element('div','empty','No samples have a valid value for this selection and horizontal axis.'));$('plots').setAttribute('aria-busy','false');return;}
   const search=$('search').value.trim();
   if(activeGroup==='electrical') await electrical(view,version);
@@ -298,7 +298,7 @@ async function displayDataset(loaded,source) {
   $('reset-filter').replaceChildren(new Option('All resets','all'));
   [...resets].sort((a,b)=>Number(a[0])-Number(b[0])).forEach(([key,count])=>$('reset-filter').add(new Option(`Reset ${key} · ${number(count)} samples`,key)));
   $('reset-filter').disabled=!resets.size;$('axis').value='record';
-  [...$('axis').options].forEach(o=>{o.disabled=o.value==='boot'?!loaded.columns.includes('beac_time_since_boot'):o.value==='header'?!loaded.columns.includes('ccsdsSecHeader2_sec_beacon')||!loaded.columns.includes('ccsdsSecHeader2_sub_beacon'):false;});
+  [...$('axis').options].forEach(o=>{o.disabled=o.value==='boot'?!loaded.columns.includes('beac_time_since_boot'):o.value==='alive'?!loaded.columns.includes('beac_time_alive'):['header','utc'].includes(o.value)?!loaded.columns.includes('ccsdsSecHeader2_sec_beacon')||!loaded.columns.includes('ccsdsSecHeader2_sub_beacon'):false;});
   $('filename').textContent=source.name;
   $('source-detail').textContent=mode==='local'?`${(source.size/1024/1024).toFixed(1)} MB · ${loaded.tableName} · ${loaded.catalog.length} packet types · DuckDB ${loaded.dbVersion}`:`${(source.size/1024/1024).toFixed(1)} MB download · curated beacon snapshot · ${number(loaded.rows.length)} samples`;
   document.querySelector('.source-strip .pill').textContent=mode==='local'?'READ ONLY':'PUBLIC SNAPSHOT';
@@ -331,7 +331,7 @@ function exportCSV() {
   // Spreadsheet-safe strings. Numeric negatives remain numbers, not formulas.
   const csvCell=v=>{if(v===null||v===undefined)return '';let s=String(v);if(typeof v==='string'&&/^[=+\-@\t\r]/.test(s))s=`'${s}`;return /[",\r\n]/.test(s)?`"${s.replaceAll('"','""')}"`:s;};
   const lines=[['beacon_sample',axisTitle(),...signals.map(s=>`${s.field}${s.unit?` [${s.unit}]`:''}`),...pairs.map(p=>`${p.id}_power [W]`)].map(csvCell).join(',')];
-  for(const entry of view){const derived=pairs.map(p=>powerValue(entry.row,p));lines.push([entry.index,entry.x,...signals.map(s=>value(entry.row,s)),...derived].map(csvCell).join(','));}
+  for(const entry of view){const derived=pairs.map(p=>powerValue(entry.row,p));lines.push([entry.index,$('axis').value==='utc'?new Date(entry.x).toISOString():entry.x,...signals.map(s=>value(entry.row,s)),...derived].map(csvCell).join(','));}
   const url=URL.createObjectURL(new Blob([lines.join('\r\n')],{type:'text/csv;charset=utf-8'}));const link=element('a');link.href=url;link.download=`${dataset.filename.replace(/\.[^.]+$/,'')}-${activeGroup}.csv`;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
 

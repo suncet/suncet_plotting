@@ -10,7 +10,7 @@ const CONTEXT_FIELDS = [
   'beac_num_sc_resets', 'beac_time_since_boot',
   'ccsdsSecHeader2_sec_beacon', 'ccsdsSecHeader2_sub_beacon',
   'combined_time_coarse', 'combined_time_fine',
-  'decode_status', 'is_duplicate_packet',
+  'decode_status', 'is_duplicate_packet', 'analysis_time_reconstructed',
 ];
 
 /** Missing telemetry is not zero. Numeric strings are accepted for older exports. */
@@ -20,6 +20,78 @@ export function numericValue(value) {
   if (!['number', 'bigint', 'boolean', 'string'].includes(typeof value)) return null;
   const number = Number(value);
   return Number.isFinite(number) ? number : null;
+}
+
+export function headerSeconds(row) {
+  const sec = numericValue(row.ccsdsSecHeader2_sec_beacon);
+  const sub = numericValue(row.ccsdsSecHeader2_sub_beacon);
+  return sec !== null && sec >= 0 && sub !== null && Number.isInteger(sub) && sub >= 0 && sub < 1000 ? sec + sub / 1000 : null;
+}
+
+// Match realtime_display's configured FSW convention: midnight J2000 plus
+// post-J2000 leap seconds. This is onboard time, not a reception timestamp.
+const SPACECRAFT_EPOCH = Date.UTC(2000, 0, 1);
+const LEAP_DATES = [Date.UTC(2006, 0, 1), Date.UTC(2009, 0, 1), Date.UTC(2012, 6, 1), Date.UTC(2015, 6, 1), Date.UTC(2017, 0, 1)];
+export function spacecraftUtcMs(seconds) {
+  if (seconds === null || !Number.isFinite(seconds) || seconds < 0) return null;
+  let count = 0;
+  for (let i = 0; i < LEAP_DATES.length; i++) {
+    const corrected = SPACECRAFT_EPOCH + (seconds + count) * 1000;
+    const next = LEAP_DATES.filter(date => corrected >= date).length;
+    if (next === count) break;
+    count = next;
+  }
+  return Math.round(SPACECRAFT_EPOCH + (seconds + count) * 1000);
+}
+
+export function axisValue(row, axis, index) {
+  if (axis === 'record') return index;
+  if (axis === 'boot' || axis === 'alive') {
+    const value = numericValue(row[axis === 'boot' ? 'beac_time_since_boot' : 'beac_time_alive']);
+    return value !== null && value >= 0 ? value : null;
+  }
+  const seconds = headerSeconds(row);
+  if (axis === 'header') return seconds;
+  const utc = spacecraftUtcMs(seconds);
+  // Do not let an unset clock near the epoch flatten a mission-era UTC plot.
+  // Raw header/packet-order axes retain these records without correction.
+  return utc !== null && utc >= Date.UTC(2020, 0, 1) && utc < Date.UTC(2100, 0, 1) ? utc : null;
+}
+
+export function axisRangeValue(value, axis) {
+  if (typeof value === 'number') return Number.isFinite(value) ? value : null;
+  if (axis !== 'utc' || !String(value).includes('-')) return numericValue(value);
+  const text = String(value).replace(' ', 'T');
+  const ms = Date.parse(/[zZ]$|[+-]\d{2}:\d{2}$/.test(text) ? text : `${text}Z`);
+  return Number.isFinite(ms) ? ms : null;
+}
+
+export function timeEntries(entries, { axis, reset = 'all', hideDuplicates = true }) {
+  const result = [];
+  let previous = null, segment = 0;
+  for (const entry of entries) {
+    if ((reset !== 'all' && String(entry.row.beac_num_sc_resets) !== reset) || (hideDuplicates && entry.row.is_duplicate_packet)) continue;
+    const x = axisValue(entry.row, axis, entry.index);
+    if (x === null) { previous = null; segment++; continue; }
+    if (previous && axis !== 'record') {
+      const alive = numericValue(entry.row.beac_time_alive), priorAlive = numericValue(previous.row.beac_time_alive);
+      const clockJump = ['utc', 'header'].includes(axis) && alive !== null && priorAlive !== null && Math.abs((x - previous.x) / (axis === 'utc' ? 1000 : 1) - (alive - priorAlive)) > 1;
+      if (x < previous.x || entry.row.beac_num_sc_resets !== previous.row.beac_num_sc_resets || clockJump) segment++;
+    }
+    previous = { ...entry, x, segment };
+    result.push(previous);
+  }
+  if (axis !== 'record') result.sort((a, b) => a.x - b.x || a.index - b.index);
+  return result;
+}
+
+export function sampleTelemetry(view, values, budget = 1800) {
+  const xs = [], ys = [];
+  view.forEach((entry, i) => {
+    if (i && entry.segment !== view[i - 1].segment) { xs.push(entry.x); ys.push(null); }
+    xs.push(entry.x); ys.push(values[i]);
+  });
+  return sampleSeries(xs, ys, budget);
 }
 
 /** Preserve decoded flight-software labels; only translate actual numeric codes. */

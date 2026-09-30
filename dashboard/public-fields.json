@@ -7,6 +7,7 @@
   "ccsdsSecHeader2_sub_beacon",
   "decode_status",
   "is_duplicate_packet",
+  "analysis_time_reconstructed",
   "beac_ana_sa_minus_y_temp",
   "beac_ana_sa_plus_y_temp",
   "beac_batt1_temp",
