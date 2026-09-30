@@ -153,6 +153,16 @@ async function numericPanel(grid,title,signals,view,version,{wide=false,subtitle
 }
 
 function stateColor(state,signal) {
+  if(['beac_adcs_att_vld','beac_adcs_time_vld','beac_adcs_ref_vld'].includes(signal.field)){
+    if(state==='YES')return '#36b879';
+    if(state==='NO')return '#ee6262';
+  }
+  if(signal.field==='beac_adcs_sun_point_state'){
+    // Match SatNOGS dashboard/preview_panels.py STATE_RULES and STATE_COLORS.
+    if(['FINE_REF_POINT','ON_SUN'].includes(state))return '#378343';
+    if(['SUN_POINT','CONVERGING','SEARCHING'].includes(state))return '#E6C84F';
+    if(['SEARCH_INIT','NOT_ACTV','WAITING'].includes(state))return '#C43B49';
+  }
   if(signal.field.startsWith('beac_eps_pwr_state_')){
     if(state==='ON')return '#36b879';
     if(state==='OFF')return '#ee6262';
