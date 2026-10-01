@@ -4,6 +4,7 @@ import { selectRange, panelGroups, derivePowerSignal } from './plot-policy.mjs';
 
 const $ = id => document.getElementById(id);
 const colors = ['#ffab69','#75d9c1','#81b6ff','#d6a2f5','#f7d275','#ed8199','#65c4da','#abb5fa','#bedc85','#dcab88','#c3d5e7','#f38dd7'];
+const NAND_BYTES_PER_PAGE = 6912;
 const icons = {overview:'◫',temperatures:'♨',electrical:'ϟ',modes:'◈',attitude:'⌖',timing:'◷',heaters:'≋',storage:'▤',science:'✧'};
 let dataset, entries = [], activeGroup = 'overview', plots = [], zoom = null, loading = false, syncing = false, renderVersion = 0, mode='public', archive=[], loadedCaptureId;
 let plotlyPromise;
@@ -83,7 +84,7 @@ async function plot(chart,traces,layout,version) {
   if($('axis').value==='utc'){
     // Explicit UTC strings prevent Plotly from interpreting numeric dates in
     // the browser's local timezone. Bar lengths remain millisecond durations.
-    const utc=x=>new Date(x).toISOString();
+    const utc=x=>x===null?null:new Date(x).toISOString();
     for(const trace of traces){
       if(trace.type==='bar')trace.base=trace.base.map(utc);
       else trace.x=trace.x.map(utc);
@@ -92,6 +93,24 @@ async function plot(chart,traces,layout,version) {
   }
   await window.Plotly.newPlot(chart,traces,layout,{responsive:true,displaylogo:false,scrollZoom:false,modeBarButtonsToRemove:['select2d','lasso2d','autoScale2d','resetScale2d'],toImageButtonOptions:{format:'png',scale:2}});
   if(version!==renderVersion){window.Plotly.purge(chart);return;}
+  if(layout.meta?.nandByteAxis){
+    // Both axes share page coordinates; only the right-hand labels convert to
+    // bytes. Refresh after zoom, autorange, legend changes, and resizing.
+    let lastRange='';
+    const refreshByteTicks=()=>{
+      const range=chart._fullLayout.yaxis.range;
+      const key=JSON.stringify(range);
+      if(key===lastRange || !range.every(Number.isFinite))return;
+      lastRange=key;
+      const ticks=Array.from({length:5},(_,i)=>range[0]+(range[1]-range[0])*i/4);
+      return window.Plotly.relayout(chart,{
+        'yaxis2.tickvals':ticks,
+        'yaxis2.ticktext':ticks.map(v=>(v*NAND_BYTES_PER_PAGE).toLocaleString('en-US',{maximumFractionDigits:0})),
+      });
+    };
+    chart.on('plotly_afterplot',refreshByteTicks);
+    await refreshByteTicks();
+  }
   plots.push(chart);
   chart.on('plotly_relayout',event=> {
     if(syncing) return;
@@ -128,6 +147,7 @@ async function numericPanel(grid,title,signals,view,version,{wide=false,subtitle
   if(!signals.length || version!==renderVersion) return;
   const units=[...new Set(signals.map(s=>s.unit).filter(Boolean))];
   const single=signals.length===1;
+  const nandPointers=signals.every(s=>s.group==='storage' && s.unit==='pages');
   const p=panel(grid,title,subtitle || (single?'Latest sample in selected interval':`${signals.length} channels · shared interval`),units.join(' / '),wide);
   if(single){
     const signal=signals[0];const latest=view.filter(e=>!zoom||e.x>=zoom[0]&&e.x<=zoom[1]).at(-1);
@@ -144,6 +164,19 @@ async function numericPanel(grid,title,signals,view,version,{wide=false,subtitle
   const rawValues=signals.flatMap(s=>view.map(e=>s.derive?s.derive(e.row):e.row[s.field]));
   const fitValues=signals.flatMap(s=>view.map(e=>s.rangeValue?s.rangeValue(e.row):s.derive?s.derive(e.row):e.row[s.field]));
   const range=applyDisplayRange(layout.yaxis,signals,rawValues,fitValues);
+  if(nandPointers){
+    layout.meta={nandByteAxis:true};
+    layout.margin.r=115;
+    layout.yaxis2={overlaying:'y',side:'right',matches:'y',showgrid:false,zeroline:false,
+      title:{text:'bytes',font:{size:9}},tickfont:{size:9},tickmode:'array',automargin:true};
+    // An empty trace activates the secondary axis without duplicating data.
+    traces.push({x:[null],y:[null],type:'scatter',yaxis:'y2',showlegend:false,hoverinfo:'skip'});
+    for(const trace of traces.slice(0,-1)){
+      trace.customdata=trace.y.map(v=>v===null?null:v*NAND_BYTES_PER_PAGE);
+      trace.hovertemplate=trace.hovertemplate.replace('<extra>', '<br>%{customdata:,.0f} bytes<extra>');
+    }
+    p.container.append(element('div','panel-footer','1 page = 6,912 bytes'));
+  }
   if(range.range)p.container.append(element('div','panel-footer',rangeCaption(range,units.join(' / '))));
   layout.showlegend=!single;
   layout.margin.b=single?50:signals.length>6?110:80;layout.legend.y=signals.length>6?-.29:-.35;

@@ -143,12 +143,12 @@ export const SIGNALS = [
   ...[
     ['hk', 'Housekeeping'], ['adcs', 'ADCS'], ['dsps', 'Dual-SPS'], ['sci', 'Science'],
   ].flatMap(([partition, label]) => [
-    number(`sw_store_partition_write_${partition}_beac`, `${label} write pointer`, 'address', 'storage'),
-    number(`sw_store_partition_read_${partition}_beac`, `${label} read pointer`, 'address', 'storage'),
+    number(`sw_store_partition_write_${partition}_beac`, `${label} write pointer`, 'pages', 'storage'),
+    number(`sw_store_partition_read_${partition}_beac`, `${label} read pointer`, 'pages', 'storage'),
   ]),
-  number('beac_store_partition_write_log', 'Log write pointer', 'address', 'storage'),
-  number('beac_csie_nand_sci_write_ptr', 'CSIE image write pointer', 'address', 'storage'),
-  number('beac_csie_meta_nand_sci_write_ptr', 'CSIE metadata write pointer', 'address', 'storage'),
+  number('beac_store_partition_write_log', 'Log write pointer', 'pages', 'storage'),
+  number('beac_csie_nand_sci_write_ptr', 'CSIE image write pointer', 'pages', 'storage'),
+  number('beac_csie_meta_nand_sci_write_ptr', 'CSIE metadata write pointer', 'pages', 'storage'),
 
   ...[0, 1, 2, 3, 4, 5].map(bin => number(
     `beac_csie_img_hist_${bin}`, `CSIE histogram bin ${bin}`, 'count', 'science',

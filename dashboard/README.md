@@ -42,6 +42,8 @@ Zooming resamples the original records within the visible interval, restoring de
 
 The display bounds are editable in [plot-policy.mjs](plot-policy.mjs). They guide plot scaling and are not operating limits or alarm thresholds.
 
+NAND read and write pointer plots show native pages on the left and equivalent bytes on the right, using **6,912 bytes per page**. The byte scale follows the page axis through zoom and scale changes; hover labels show both units. Stored values and CSV pointer values remain in pages.
+
 The browser supports up to **500,000 beacon rows** per file and rejects larger captures with a message to create a smaller snapshot. Memory use also depends on database size and channel count. This is a curated beacon viewer; it does not plot every table or field in the database.
 
 Published snapshots also have limits of 100 MiB compressed and 400 MiB expanded JSON; the exporter checks both before writing files. Split large captures by reset when needed.

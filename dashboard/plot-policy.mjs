@@ -67,9 +67,9 @@ export function powerRangeValue(row, pair) {
 const minimumSpans = {
   '°C': 5, V: 0.5, A: 0.1, W: 1, 'deg/s': 0.01 * 180 / Math.PI, rpm: 100,
   '°': 1, arcsec: 30, 'log10(XRS-B flux)': 0.2,
-  count: 1, address: 1, s: 1, h: 1,
+  count: 1, address: 1, pages: 1, s: 1, h: 1,
 };
-const nonnegativeUnits = new Set(['count', 'address', 's', 'h']);
+const nonnegativeUnits = new Set(['count', 'address', 'pages', 's', 'h']);
 
 function quantile(sorted, fraction) {
   const index = (sorted.length - 1) * fraction;
