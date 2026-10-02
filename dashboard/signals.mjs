@@ -63,12 +63,12 @@ export const POWER_PAIRS = [
   { id: 'sa_8_cell', label: 'Solar array · 8-cell string', voltage: 'beac_ana_sa_8_cell_str_v', current: 'beac_ana_sa_8_cell_str_i' },
   { id: 'sa_9_cell', label: 'Solar array · 9-cell string', voltage: 'beac_ana_sa_9_cell_str_v', current: 'beac_ana_sa_9_cell_str_i' },
   {
-    id: 'battery_1', label: 'Battery 1 · charging',
+    id: 'battery_1', label: 'Battery 1', chargingState: 'beac_batt1_charging_state',
     voltage: 'beac_ana_bat1_v', current: 'beac_batt1_charge_current',
     note: 'Voltage × charge current estimates charge power; this is not a measurement of net battery power or discharge power.',
   },
   {
-    id: 'battery_2', label: 'Battery 2 · charging',
+    id: 'battery_2', label: 'Battery 2', chargingState: 'beac_batt2_charging_state',
     voltage: 'beac_ana_bat2_v', current: 'beac_batt2_charge_current',
     note: 'Voltage × charge current estimates charge power; this is not a measurement of net battery power or discharge power.',
   },

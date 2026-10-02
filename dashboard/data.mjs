@@ -94,6 +94,38 @@ export function sampleTelemetry(view, values, budget = 1800) {
   return sampleSeries(xs, ys, budget);
 }
 
+export function batteryChargeState(raw) {
+  const label = stateLabel({ enums: { 0: 'DISCHARGING', 1: 'CHARGING' } }, raw);
+  return ['CHARGING', 'DISCHARGING'].includes(label) ? label : 'UNKNOWN';
+}
+
+/** Color intervals by the reported state, preserving brief changes and gaps. */
+export function batteryStateSeries(view, values, stateField, budget = 1400) {
+  if (view.length !== values.length) throw new Error('Mismatched battery samples');
+  const states = view.map(e => batteryChargeState(e.row[stateField]));
+  const series = new Map();
+  for (let start = 0; start < view.length;) {
+    let end = start + 1;
+    while (end < view.length && states[end] === states[start] && view[end].segment === view[start].segment) end++;
+    const state = states[start];
+    if (!series.has(state)) series.set(state, { x: [], y: [] });
+    const trace = series.get(state);
+    for (let i = start; i < end; i++) { trace.x.push(view[i].x); trace.y.push(numericValue(values[i])); }
+    // The old state applies until the next sample reports a change. Share that
+    // endpoint, but never connect across a reboot, missing value, or clock gap.
+    if (end < view.length && view[end].segment === view[start].segment &&
+        numericValue(values[end - 1]) !== null && numericValue(values[end]) !== null) {
+      trace.x.push(view[end].x); trace.y.push(numericValue(values[end]));
+    }
+    trace.x.push(trace.x.at(-1)); trace.y.push(null);
+    start = end;
+  }
+  return ['CHARGING', 'DISCHARGING', 'UNKNOWN'].filter(state => series.has(state)).map(state => {
+    const trace = series.get(state);
+    return { state, ...sampleSeries(trace.x, trace.y, budget) };
+  });
+}
+
 /** Preserve decoded flight-software labels; only translate actual numeric codes. */
 export function stateLabel(signal, value) {
   if (value === null || value === undefined || value === '') return 'No data';

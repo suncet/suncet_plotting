@@ -1,10 +1,11 @@
 import { GROUPS, SIGNALS, POWER_PAIRS } from './signals.mjs';
-import { loadDatabase, loadSnapshot, numericValue, stateLabel, sampleTelemetry, timeEntries, axisRangeValue, powerValue } from './data.mjs';
+import { loadDatabase, loadSnapshot, numericValue, stateLabel, sampleTelemetry, batteryChargeState, batteryStateSeries, timeEntries, axisRangeValue, powerValue } from './data.mjs';
 import { selectRange, panelGroups, derivePowerSignal } from './plot-policy.mjs';
 
 const $ = id => document.getElementById(id);
 const colors = ['#ffab69','#75d9c1','#81b6ff','#d6a2f5','#f7d275','#ed8199','#65c4da','#abb5fa','#bedc85','#dcab88','#c3d5e7','#f38dd7'];
 const NAND_BYTES_PER_PAGE = 6912;
+const batteryStyles = {CHARGING:{label:'Charging',color:'#36b879'},DISCHARGING:{label:'Discharging',color:'#ee6262'},UNKNOWN:{label:'Unknown state',color:'#94a5bc'}};
 const icons = {overview:'◫',temperatures:'♨',electrical:'ϟ',modes:'◈',attitude:'⌖',timing:'◷',heaters:'≋',storage:'▤',science:'✧'};
 let dataset, entries = [], activeGroup = 'overview', plots = [], zoom = null, loading = false, syncing = false, renderVersion = 0, mode='public', archive=[], loadedCaptureId;
 let plotlyPromise;
@@ -186,6 +187,10 @@ async function numericPanel(grid,title,signals,view,version,{wide=false,subtitle
 }
 
 function stateColor(state,signal) {
+  if(signal.group==='heaters'){
+    if(state==='NO')return '#36b879';
+    if(state==='YES')return '#ee6262';
+  }
   if(['beac_adcs_att_vld','beac_adcs_time_vld','beac_adcs_ref_vld'].includes(signal.field)){
     if(state==='YES')return '#36b879';
     if(state==='NO')return '#ee6262';
@@ -244,16 +249,30 @@ async function electrical(view,version) {
     const definitions=[{...signalsByField.get(pair.voltage),field:pair.voltage,label:'Voltage',unit:'V',color:colors[2]},{...signalsByField.get(pair.current),field:pair.current,label:'Current',unit:'A',color:colors[1]},{...derivePowerSignal(pair),label:pair.note?.toLowerCase().includes('charge')?'Charge power':'Power',derive:power,color:colors[0]}];
     const readings=element('div','rail-readings');
     const last=view.filter(e=>!zoom||e.x>=zoom[0]&&e.x<=zoom[1]).at(-1);
-    definitions.forEach(d=>{const item=element('div','rail-reading');item.style.color=d.color;item.append(element('small','',d.label),document.createTextNode(fmt(last?(d.derive?d.derive(last.row):numericValue(last.row[d.field])):null)),element('span','',` ${d.unit}`));readings.append(item);});
+    definitions.forEach((d,i)=>{const item=element('div','rail-reading');item.style.color=pair.chargingState&&i>0?batteryStyles[batteryChargeState(last?.row[pair.chargingState])].color:d.color;item.append(element('small','',d.label),document.createTextNode(fmt(last?(d.derive?d.derive(last.row):numericValue(last.row[d.field])):null)),element('span','',` ${d.unit}`));readings.append(item);});
     p.container.insertBefore(readings,p.chart);
-    const traces=definitions.map((d,i)=>{const s=sampleTelemetry(view,view.map(e=>d.derive?d.derive(e.row):numericValue(e.row[d.field])),1400);return {x:s.x,y:s.y,name:d.label,type:'scatter',mode:'lines',line:{color:d.color,width:1.5},yaxis:i===0?'y':`y${i+1}`,connectgaps:false,hovertemplate:`${$('axis').value==='utc'?'%{x|%Y-%m-%d %H:%M:%S.%L} UTC<br>':''}%{y:.5g} ${d.unit}<extra>%{fullData.name}</extra>`};});
-    const layout=baseLayout(370);layout.showlegend=false;layout.margin.b=50;
+    const traces=definitions.flatMap((d,i)=>{
+      const values=view.map(e=>d.derive?d.derive(e.row):numericValue(e.row[d.field]));
+      const base={name:d.label,type:'scatter',mode:'lines',line:{color:d.color,width:1.5},yaxis:i===0?'y':`y${i+1}`,connectgaps:false,showlegend:false,
+        hovertemplate:`${$('axis').value==='utc'?'%{x|%Y-%m-%d %H:%M:%S.%L} UTC<br>':''}%{y:.5g} ${d.unit}<extra>${d.label}</extra>`};
+      if(!pair.chargingState || i===0)return [{...base,...sampleTelemetry(view,values,1400)}];
+      return batteryStateSeries(view,values,pair.chargingState).map(({state,x,y})=>{
+        const style=batteryStyles[state];
+        return {...base,x,y,name:style.label,legendgroup:state,showlegend:i===1,mode:'lines+markers',
+          line:{color:style.color,width:1.5},marker:{color:style.color,size:2},
+          hovertemplate:base.hovertemplate.replace('</extra>',` · ${style.label}</extra>`)};
+      });
+    });
+    const layout=baseLayout(pair.chargingState?420:370);layout.showlegend=Boolean(pair.chargingState);layout.margin.b=pair.chargingState?100:50;
+    if(pair.chargingState)layout.legend={...layout.legend,y:-.25,groupclick:'togglegroup'};
     layout.yaxis={...layout.yaxis,domain:[.73,1],title:{text:'V',font:{color:colors[2],size:10}}};
     layout.yaxis2={...layout.yaxis,domain:[.37,.64],title:{text:'A',font:{color:colors[1],size:10}}};
     layout.yaxis3={...layout.yaxis,domain:[0,.27],title:{text:'W',font:{color:colors[0],size:10}}};layout.xaxis.anchor='y3';
+    if(pair.chargingState){layout.yaxis2.title.font.color='#94a5bc';layout.yaxis3.title.font.color='#94a5bc';}
     const ranges=definitions.map((d,i)=>applyDisplayRange(layout[i===0?'yaxis':`yaxis${i+1}`],[d],view.map(e=>d.derive?d.derive(e.row):e.row[d.field]),view.map(e=>d.rangeValue?d.rangeValue(e.row):d.derive?d.derive(e.row):e.row[d.field])));
     const outside=ranges.reduce((sum,result)=>sum+result.outside,0);
-    p.chart.style.height='370px';p.container.append(element('div','panel-footer',both?'Values above: last packet in selection · P = V × I':'A required channel is missing; derived power is unavailable.'));
+    p.chart.style.height=`${layout.height}px`;p.container.append(element('div','panel-footer',both?'Values above: last packet in selection · P = V × I':'A required channel is missing; derived power is unavailable.'));
+    if(pair.chargingState)p.container.append(element('div','panel-footer','Current and power colors follow this battery’s reported charging state.'));
     if(ranges.some(result=>result.range))p.container.append(element('div','panel-footer',`${$('y-scale').selectedOptions[0].textContent}${outside?` · ${number(outside)} values outside view`:''}`));
     await plot(p.chart,traces,layout,version);
   }
