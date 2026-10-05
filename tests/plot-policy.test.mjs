@@ -85,8 +85,8 @@ test('power-axis fitting checks source guards even when a corrupt measurement pr
   assert.equal(powerRangeValue({ [pair.voltage]: 15, [pair.current]: null }, pair), null);
 });
 
-test('counter, elapsed-time and pointer scales reject gross short-selection spikes without fixed mission maxima', () => {
-  for (const field of ['sequence_count', 'beac_time_since_boot', 'sw_store_partition_write_hk_beac']) {
+test('counter and elapsed-time scales reject gross short-selection spikes without fixed mission maxima', () => {
+  for (const field of ['sequence_count', 'beac_time_since_boot']) {
     const metadata = signal(field);
     assert.equal(engineeringBounds(metadata), null);
     const result = selectRange([metadata], [10, 11, 12, 1e9, -1e8]);
@@ -99,6 +99,23 @@ test('counter, elapsed-time and pointer scales reject gross short-selection spik
   const minimal = selectRange([signal('sequence_count')], [10, 11, 1e9]);
   assert.equal(minimal.outside, 1);
   assert.ok(minimal.range[1] < 100);
+});
+
+test('NAND engineering ranges show full partition capacities even for zero, missing, or sparse data', () => {
+  const capacities = {hk:388352,adcs:1087360,dsps:144640,sci:2485504};
+  for (const [partition, capacity] of Object.entries(capacities)) {
+    const pointers = ['read','write'].map(kind=>signal(`sw_store_partition_${kind}_${partition}_beac`));
+    for (const values of [[0,0,0],[null],[5,8],[capacity-1],[]]) {
+      assert.deepEqual(selectRange(pointers,values).range,[0,capacity]);
+    }
+    assert.equal(selectRange(pointers,[-1,0,capacity,capacity+1]).outside,2);
+    assert.equal(selectRange(pointers,[0,capacity+1],'full').range,null);
+    assert(selectRange(pointers,[0,0,0],'typical').range[1]<capacity);
+  }
+  assert.deepEqual(selectRange([signal('beac_store_partition_write_log')],[0]).range,[0,72320]);
+  for(const field of ['beac_csie_nand_sci_write_ptr','beac_csie_meta_nand_sci_write_ptr']){
+    assert.deepEqual(selectRange([signal(field)],[0]).range,[0,2485504]);
+  }
 });
 
 test('counter scaling handles zeros, small changes, empty sets and wholly negative corruption', () => {

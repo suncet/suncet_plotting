@@ -140,7 +140,8 @@ function applyDisplayRange(axis,signals,values,fitValues=values) {
 }
 function rangeCaption(result,unit='') {
   if(!result.range)return '';
-  const range=`${fmt(result.range[0])}–${fmt(result.range[1])}${unit?` ${unit}`:''}`;
+  const format=unit==='pages'?number:fmt;
+  const range=`${format(result.range[0])}–${format(result.range[1])}${unit?` ${unit}`:''}`;
   return `Display ${range}${result.outside?` · ${number(result.outside)} values outside view`:''}`;
 }
 

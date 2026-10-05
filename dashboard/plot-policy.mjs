@@ -28,8 +28,7 @@ export function engineeringBounds(signal) {
     case '°': return field.includes('sun_point_ang_err') ? [-1, 185] : [-360, 360];
     case 'arcsec': return [-36000, 36000];
     case 'log10(XRS-B flux)': return [-12, 1];
-    // Counts, elapsed times, and NAND addresses have no defensible fixed mission
-    // maximum. Their default display uses a robust fit instead of a made-up cap.
+    // Quantities without supplied physical bounds use a robust fit.
     default: return null;
   }
 }
@@ -113,7 +112,8 @@ function robustRange(sorted, minimumSpan, nonnegative) {
  * Choose an axis range without changing any samples.
  *
  * Engineering mode fits all in-guard values, preserving every plausible
- * transient. Unbounded quantities use the robust central fit. Typical mode
+ * transient. Fixed engineering ranges show the whole physical capacity.
+ * Unbounded quantities use the robust central fit. Typical mode
  * explicitly requests that robust fit for any quantity; full mode delegates to
  * Plotly's ordinary autorange. `outside` counts finite raw values beyond the
  * final displayed range, including values rejected only for scale selection.
@@ -127,7 +127,8 @@ export function selectRange(signals, values, mode = 'engineering') {
   if (mode === 'engineering' && bounds.length && bounds.every(Boolean)) {
     const guard = [Math.min(...bounds.map(b => b[0])), Math.max(...bounds.map(b => b[1]))];
     const candidates = sorted.filter(v => v >= guard[0] && v <= guard[1]);
-    range = candidates.length ? paddedRange(candidates[0], candidates.at(-1), minimumSpan, guard) : guard;
+    range = signals.every(s => s.fixedEngineeringRange) || !candidates.length
+      ? guard : paddedRange(candidates[0], candidates.at(-1), minimumSpan, guard);
     basis = 'engineering';
   } else {
     range = robustRange(sorted, minimumSpan, signals.length > 0 && signals.every(s => nonnegativeUnits.has(s.unit)));

@@ -37,6 +37,13 @@ const flarePhase = {
 const number = (field, label, unit, group, note) => ({
   field, label, unit, group, kind: 'number', ...(note ? { note } : {}),
 });
+// NAND partition capacities in pages, supplied from the flight configuration.
+export const NAND_PARTITION_PAGES = { hk: 388352, log: 72320, adcs: 1087360, dsps: 144640, sci: 2485504 };
+const nandPointer = (field, label, partition) => ({
+  ...number(field, label, 'pages', 'storage'),
+  displayRange: [0, NAND_PARTITION_PAGES[partition]],
+  fixedEngineeringRange: true,
+});
 const state = (field, label, group, enums, note) => ({
   field, label, unit: '', group, kind: 'state',
   ...(enums ? { enums } : {}), ...(note ? { note } : {}),
@@ -143,12 +150,12 @@ export const SIGNALS = [
   ...[
     ['hk', 'Housekeeping'], ['adcs', 'ADCS'], ['dsps', 'Dual-SPS'], ['sci', 'Science'],
   ].flatMap(([partition, label]) => [
-    number(`sw_store_partition_write_${partition}_beac`, `${label} write pointer`, 'pages', 'storage'),
-    number(`sw_store_partition_read_${partition}_beac`, `${label} read pointer`, 'pages', 'storage'),
+    nandPointer(`sw_store_partition_write_${partition}_beac`, `${label} write pointer`, partition),
+    nandPointer(`sw_store_partition_read_${partition}_beac`, `${label} read pointer`, partition),
   ]),
-  number('beac_store_partition_write_log', 'Log write pointer', 'pages', 'storage'),
-  number('beac_csie_nand_sci_write_ptr', 'CSIE image write pointer', 'pages', 'storage'),
-  number('beac_csie_meta_nand_sci_write_ptr', 'CSIE metadata write pointer', 'pages', 'storage'),
+  nandPointer('beac_store_partition_write_log', 'Log write pointer', 'log'),
+  nandPointer('beac_csie_nand_sci_write_ptr', 'CSIE image write pointer', 'sci'),
+  nandPointer('beac_csie_meta_nand_sci_write_ptr', 'CSIE metadata write pointer', 'sci'),
 
   ...[0, 1, 2, 3, 4, 5].map(bin => number(
     `beac_csie_img_hist_${bin}`, `CSIE histogram bin ${bin}`, 'count', 'science',
