@@ -360,8 +360,9 @@ async function displayDataset(loaded,source) {
   const resets=new Map();entries.forEach(e=>{const r=e.row.beac_num_sc_resets;if(r!==null&&r!==undefined)resets.set(String(r),(resets.get(String(r))||0)+1);});
   $('reset-filter').replaceChildren(new Option('All resets','all'));
   [...resets].sort((a,b)=>Number(a[0])-Number(b[0])).forEach(([key,count])=>$('reset-filter').add(new Option(`Reset ${key} · ${number(count)} samples`,key)));
-  $('reset-filter').disabled=!resets.size;$('axis').value='record';
+  $('reset-filter').disabled=!resets.size;
   [...$('axis').options].forEach(o=>{o.disabled=o.value==='boot'?!loaded.columns.includes('beac_time_since_boot'):o.value==='alive'?!loaded.columns.includes('beac_time_alive'):['header','utc'].includes(o.value)?!loaded.columns.includes('ccsdsSecHeader2_sec_beacon')||!loaded.columns.includes('ccsdsSecHeader2_sub_beacon'):false;});
+  $('axis').value=$('axis').querySelector('[value="utc"]').disabled?'record':'utc';
   $('filename').textContent=source.name;
   $('source-detail').textContent=mode==='local'?`${(source.size/1024/1024).toFixed(1)} MB · ${loaded.tableName} · ${loaded.catalog.length} packet types · DuckDB ${loaded.dbVersion}`:`${(source.size/1024/1024).toFixed(1)} MB download · curated beacon snapshot · ${number(loaded.rows.length)} samples`;
   document.querySelector('.source-strip .pill').textContent=mode==='local'?'READ ONLY':'PUBLIC SNAPSHOT';
