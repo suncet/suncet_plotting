@@ -38,9 +38,10 @@ test('all-invalid sensor values use known guards instead of auto-scaling to corr
   assert.deepEqual(selectRange([temperature], []), { range: [-20, 50], outside: 0, basis: 'engineering' });
 });
 
-test('solar arrays use their wider requested temperature limits', () => {
+test('solar arrays and CSIE detector use their requested temperature limits', () => {
   for (const temperature of SIGNALS.filter(s => s.group === 'temperatures')) {
-    const bounds = temperature.field.includes('_sa_') ? [-50, 100] : [-20, 50];
+    const bounds = temperature.field === 'beac_csie_temp' ? [-40, 40]
+      : temperature.field.includes('_sa_') ? [-50, 100] : [-20, 50];
     assert.deepEqual(engineeringBounds(temperature), bounds);
     const result = selectRange([temperature], [bounds[0], bounds[1], bounds[0] - 1, bounds[1] + 1]);
     assert.deepEqual(result.range, bounds);

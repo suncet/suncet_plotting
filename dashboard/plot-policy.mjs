@@ -16,7 +16,9 @@ export function engineeringBounds(signal) {
   }
   const field = String(signal.field || '').toLowerCase();
   switch (signal.unit) {
-    case '°C': return field.includes('_sa_') ? [-50, 100] : [-20, 50];
+    case '°C':
+      if (field === 'beac_csie_temp') return [-40, 40];
+      return field.includes('_sa_') ? [-50, 100] : [-20, 50];
     case 'V':
       if (field.includes('3p3')) return [-0.25, 5];
       if (/_(csie|dsps)_/.test(field)) return [-0.5, 15];
