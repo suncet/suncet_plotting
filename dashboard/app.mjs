@@ -1,5 +1,5 @@
 import { GROUPS as BEACON_GROUPS, SIGNALS as BEACON_SIGNALS, POWER_PAIRS } from './signals.mjs';
-import { loadDatabase, loadSnapshot, numericValue, stateLabel, sampleTelemetry, batteryChargeState, batteryStateSeries, timeEntries, axisRangeValue, powerValue } from './data.mjs';
+import { loadDatabase, loadSnapshot, numericValue, stateLabel, sampleTelemetry, batteryChargeState, batteryStateSeries, timeEntries, axisRangeValue, utcExtent, powerValue } from './data.mjs';
 import { selectRange, panelGroups, derivePowerSignal } from './plot-policy.mjs';
 
 const $ = id => document.getElementById(id);
@@ -317,18 +317,27 @@ async function render() {
     // Include neighbors to retain line/step continuity at the view boundary.
     view=start<0?fullView.slice(-1):fullView.slice(Math.max(0,start-1),stop<0?undefined:stop+1);
   }
-  const exactCount=zoom?fullView.filter(e=>e.x>=zoom[0]&&e.x<=zoom[1]).length:view.length;
+  const selection=zoom?fullView.filter(e=>e.x>=zoom[0]&&e.x<=zoom[1]):fullView;
+  const exactCount=selection.length;
   const resetCount=new Set(view.map(e=>e.row.beac_num_sc_resets).filter(v=>v!==null&&v!==undefined)).size;
-  const latest=view.filter(e=>!zoom||e.x>=zoom[0]&&e.x<=zoom[1]).at(-1);
+  const latest=selection.at(-1);
   const resetNumber=latest?numericValue(latest.row.beac_num_sc_resets):null;
   const signalCount=SIGNALS.filter(available).length;
-  const powerCount=POWER_PAIRS.filter(p=>dataset.columns.includes(p.voltage)&&dataset.columns.includes(p.current)).length;
   $('metrics').replaceChildren();
-  const metrics=[[dataset.packet?'PACKET SAMPLES':'BEACON SAMPLES',number(exactCount),`of ${number(dataset.rows.length)} loaded records`],['TELEMETRY POINTS',signalCount,'Available in this capture'],['RESET NUMBER',resetNumber===null?'—':number(resetNumber),`Latest sample · ${resetCount} distinct resets in view`],['DERIVED POWER CHANNELS',powerCount,'Matching V × I, in watts']];
-  if(dataset.packet){metrics[2]=['APID',dataset.packet.apid,dataset.packet.name];metrics[3]=['UTC SAMPLES',number(timeEntries(entries,{axis:'utc',hideDuplicates:$('duplicates').checked}).length),'Using this packet’s onboard clock'];}
+  const metrics=[[dataset.packet?'PACKET SAMPLES':'BEACON SAMPLES',number(exactCount),`of ${number(dataset.rows.length)} loaded records`],['TELEMETRY POINTS',signalCount,'Available in this capture'],['RESET NUMBER',resetNumber===null?'—':number(resetNumber),`Latest sample · ${resetCount} distinct resets in view`]];
+  if(dataset.packet)metrics[2]=['APID',dataset.packet.apid,dataset.packet.name];
   metrics.forEach(([label,count,note])=>{
     const card=element('div','metric');card.append(element('div','label',label),element('strong','',count),element('small','',note));$('metrics').append(card);
   });
+  const utc=utcExtent(selection),timeCard=element('div','metric utc-range');
+  timeCard.append(element('div','label','UTC RANGE'));
+  for(const [label,ms] of [['Start',utc.start],['End',utc.end]]){
+    const line=element('div','utc-bound'),stamp=element('time','',ms===null?'—':new Date(ms).toISOString().replace('T',' ').replace('Z',''));
+    if(ms!==null)stamp.dateTime=new Date(ms).toISOString();
+    line.append(element('span','',label),stamp);timeCard.append(line);
+  }
+  timeCard.append(element('small','',utc.start===null?'No valid UTC in selection':'Current selection · UTC'));
+  $('metrics').append(timeCard);
   const axis=$('axis').value;
   const timeNotes={record:'Packet order keeps resets and clock jumps visible.',boot:'Time since boot restarts on reboot.',alive:'Time alive is the beacon’s cumulative counter; no reboot stitching is applied.',header:'Stored CCSDS seconds, including unset clocks and clock-setting jumps.',utc:'Onboard UTC uses the realtime display convention (J2000 + leap seconds). Clock values outside 2020–2099 are omitted; use packet order or CCSDS seconds to see them.'};
   const omitted=axis==='utc'?timeEntries(entries,{axis:'record',reset:$('reset-filter').value,hideDuplicates:$('duplicates').checked}).length-fullView.length:0;

@@ -66,6 +66,18 @@ export function axisRangeValue(value, axis) {
   return Number.isFinite(ms) ? ms : null;
 }
 
+/** UTC extent of selected samples, independent of their plotting order. */
+export function utcExtent(entries) {
+  let start = null, end = null;
+  for (const entry of entries) {
+    const utc = axisValue(entry.row, 'utc', entry.index);
+    if (utc === null) continue;
+    if (start === null || utc < start) start = utc;
+    if (end === null || utc > end) end = utc;
+  }
+  return { start, end };
+}
+
 export function timeEntries(entries, { axis, reset = 'all', hideDuplicates = true }) {
   const result = [];
   let previous = null, segment = 0;

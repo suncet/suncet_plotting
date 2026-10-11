@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {headerSeconds,spacecraftUtcMs,axisValue,axisRangeValue,timeEntries,sampleTelemetry} from '../dashboard/data.mjs';
+import {headerSeconds,spacecraftUtcMs,axisValue,axisRangeValue,timeEntries,utcExtent,sampleTelemetry} from '../dashboard/data.mjs';
 const row=(sec=843505480,sub=371,alive=716123,reset=232)=>({ccsdsSecHeader2_sec_beacon:sec,ccsdsSecHeader2_sub_beacon:sub,beac_time_alive:alive,beac_time_since_boot:10,beac_num_sc_resets:reset});
 test('UTC matches realtime display reference and the CPT clock-setting sample',()=>{
  assert.equal(new Date(spacecraftUtcMs(833237728)).toISOString(),'2026-05-27T22:55:33.000Z');
@@ -36,4 +36,16 @@ test('clock setting within a reset breaks traces and duplicate filtering stays a
  const view=timeEntries(entries,{axis:'utc'});
  assert.equal(view.length,2);assert.notEqual(view[0].segment,view[1].segment);
  assert.equal(timeEntries(entries,{axis:'utc',hideDuplicates:false}).length,3);
+});
+test('UTC extent handles clock jumps, invalid clocks, and other APID timestamps',()=>{
+ const entries=[row(843505490),row(10),{packet_time_sec:843505480,packet_time_sub:371},{}].map((row,index)=>({row,index}));
+ assert.deepEqual(utcExtent(entries),{start:Date.parse('2026-09-23T19:04:45.371Z'),end:Date.parse('2026-09-23T19:04:55.371Z')});
+ assert.deepEqual(utcExtent(entries.slice(1,2)),{start:null,end:null});
+ assert.deepEqual(utcExtent([]),{start:null,end:null});
+});
+test('UTC extent follows reset, duplicate, and exact zoom selections without boundary neighbors',()=>{
+ const entries=[row(843505470),row(843505480),row(843505490),{...row(843505500),is_duplicate_packet:true},row(843505510,371,0,235)].map((row,index)=>({row,index}));
+ const view=timeEntries(entries,{axis:'record',reset:'232'});
+ const selected=view.filter(e=>e.x>=1&&e.x<=3);
+ assert.deepEqual(utcExtent(selected),{start:axisValue(entries[1].row,'utc'),end:axisValue(entries[2].row,'utc')});
 });
