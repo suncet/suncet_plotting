@@ -1,6 +1,6 @@
 # SunCET telemetry dashboard
 
-Explore SunCET beacon telemetry in an interactive browser dashboard. Locally, the app reads a selected DuckDB file using DuckDB-Wasm. The public site gives visitors a catalog of published captures to explore, with no file picker or database upload. Plotly draws the charts; no Grafana or database service is required. The browser needs internet access to load pinned JavaScript libraries from their CDNs.
+Explore SunCET beacon telemetry in an interactive browser dashboard. Locally, the app reads a selected DuckDB file using DuckDB-Wasm. The public site gives visitors a catalog of published captures and an APID packet selector, with no file picker or database upload. Plotly draws the charts; no Grafana or database service is required. The browser needs internet access to load pinned JavaScript libraries from their CDNs.
 
 ## Run locally
 
@@ -22,6 +22,8 @@ The server uses the Python standard library and binds to `127.0.0.1`. It serves 
 
 ## Explore the beacon
 
+Select a capture, then choose **APID number · packet name — description**. The selector lists the APIDs included in that capture; old exports remain beacon-only until re-prepared. Only the selected packet snapshot is downloaded. The left navigation changes to categories present in that APID, and non-beacon views show up to 12 separate plots per page with Previous/Next controls. Search covers all telemetry points in the selected APID. APID selection is included in shareable URLs as `apid=27`, for example.
+
 An overview and eight groups organize the recognized beacon fields: temperatures; power; modes and system states; attitude and pointing; timing and counters; heaters; NAND storage; and science. The app finds the beacon table from the APID catalog or its `beac_*` fields and displays the supported channels present in that file.
 
 The overview keeps overlaid comparisons. Dedicated pages give most telemetry points their own plots; the Temperatures page has one plot per available sensor, up to all 12 curated channels. Related comparisons stay together: body-rate axes, wheel speeds, Sun-position coordinates, histogram bins, and matching storage read/write pointers. Modes and other discrete states each have their own row. The Modes page separates subsystem power states from the other system states; power states use green for ON and red for OFF.
@@ -30,7 +32,7 @@ Electrical panels pair voltage and current for 11 supplies and calculate watts a
 
 In the paired battery plots, current and power lines use each battery's reported charging-state flag: green for charging, red for discharging, and gray for an unknown state. The legend controls both current and power traces together; the voltage line keeps its usual color. State coloring does not change measurement values or signs. Heater enable timelines use green for NO and red for YES.
 
-**Packet order** is the default horizontal axis. **Time alive (s)** uses the beacon’s cumulative lifetime counter across reboots; **Time since boot (s)** uses its resettable boot counter. **CCSDS onboard time (s)** shows raw coarse seconds plus integer milliseconds. **UTC** follows the realtime display’s configured FSW convention: midnight 2000-01-01 plus the five post-J2000 leap seconds through 2017 (update the shared convention if this changes). UTC is onboard time, not ground reception time. UTC omits clock values outside 2020–2099 so unset clocks do not flatten mission-era plots; the note counts omitted rows. Missing or invalid times are also omitted. Reboots and clock discontinuities break plotted lines and state intervals. UTC zoom is synchronized across panels, and UTC CSV coordinates are ISO 8601 strings ending in `Z`. A supplied `analysis_time_reconstructed` flag is carried into snapshots and identified in the time-axis note.
+**UTC** is the default horizontal axis; **Packet order** remains available. **Time alive (s)** uses the beacon’s cumulative lifetime counter across reboots; **Time since boot (s)** uses its resettable boot counter. **CCSDS onboard time (s)** shows raw coarse seconds plus integer milliseconds. **UTC** follows the realtime display’s configured FSW convention: midnight 2000-01-01 plus the five post-J2000 leap seconds through 2017 (update the shared convention if this changes). UTC is onboard time, not ground reception time. UTC omits clock values outside 2020–2099 so unset clocks do not flatten mission-era plots; the note counts omitted rows. Missing or invalid times are also omitted. Reboots and clock discontinuities break plotted lines and state intervals. UTC zoom is synchronized across panels, and UTC CSV coordinates are ISO 8601 strings ending in `Z`. A supplied `analysis_time_reconstructed` flag is carried into snapshots and identified in the time-axis note.
 
 Drag horizontally across a plot to synchronize the zoom across panels, or use **Reset zoom** to restore the full range. Click a numeric plot's legend to toggle a channel. Search by display name or telemetry field name. **Hide duplicate packets** is enabled by default when that metadata is available; uncheck it to include duplicates. Modes and other discrete states retain their transitions and decoded labels.
 
@@ -38,7 +40,7 @@ Body rates are displayed in **deg/s**, converted from the stored rad/s values by
 
 Numeric plots use min/max downsampling to retain spikes, endpoints, and missing-data boundaries. State sampling preserves every transition instead of averaging state codes. **Export view CSV** exports the current group's matching channels and available derived powers within the selected reset, duplicate filter, axis, and zoom range; its rows are not downsampled. From the overview, the export includes all matching curated channels.
 
-Zooming resamples the original records within the visible interval, restoring detail. The default **Engineering range** fits all physical measurements inside broad per-sensor display bounds, keeping extreme decoded outliers from flattening useful temperature, voltage, and current variations. Temperature fits stay within −20 to +50 °C, or −50 to +100 °C for solar arrays; electrical and attitude channels have their own bounds. Counters and clocks use a robust data-based range. NAND pointers use the full configured partition capacity in Engineering range.
+Zooming resamples the original records within the visible interval, restoring detail. The default **Engineering range** fits all physical measurements inside broad per-sensor display bounds, keeping extreme decoded outliers from flattening useful temperature, voltage, and current variations. Temperature fits stay within −20 to +50 °C, −40 to +40 °C for the CSIE detector, or −50 to +100 °C for solar arrays; electrical and attitude channels have their own bounds. Counters and clocks use a robust data-based range. NAND pointers use the full configured partition capacity in Engineering range.
 
 **Typical range (1–99%)** excludes gross outliers from the scale calculation before fitting the central values. **Full measured range** includes every finite reading on the vertical axis. Panel footers count readings outside the displayed vertical range. CSV retains those readings, with body rates converted to the displayed deg/s units; changing the scale never deletes readings.
 
@@ -46,9 +48,25 @@ The display bounds are editable in [plot-policy.mjs](plot-policy.mjs). They guid
 
 NAND read and write pointer plots show native pages on the left and equivalent bytes on the right, using **6,912 bytes per page**. The byte scale follows the page axis through zoom and scale changes; hover labels show both units. Stored values and CSV pointer values remain in pages. Engineering range is fixed at 0–388,352 pages for housekeeping, 0–72,320 for logs, 0–1,087,360 for ADCS, 0–144,640 for Dual-SPS, and 0–2,485,504 for science (also used for CSIE science-image and legacy metadata pointers). Typical range and Full measured range remain available for examining smaller changes or outliers.
 
-The browser supports up to **500,000 beacon rows** per file and rejects larger captures with a message to create a smaller snapshot. Memory use also depends on database size and channel count. This is a curated beacon viewer; it does not plot every table or field in the database.
+The browser supports up to **500,000 beacon rows** per file and rejects larger captures with a message to create a smaller snapshot. Memory use also depends on database size and channel count. The limit applies to each APID snapshot. Public APID fields are explicitly listed in `public-packets.json`, with names and enums derived from the bus 2.0.5 telemetry definitions. Commands (including ADCS command telemetry), fault protection, and sequence engines remain excluded. Packet headers, provenance, checksums, spare fields, and log-event parameter bytes are not plotted. Log events include header fields only. Some unsupported units are left blank rather than inferred.
 
 Published snapshots also have limits of 100 MiB compressed and 400 MiB expanded JSON; the exporter checks both before writing files. Split large captures by reset when needed.
+
+## Refresh TVAC2 upload files
+
+After adding data and completing the usual processing-pipeline run, run this from any Terminal directory on Mason’s Mac:
+
+```sh
+conda run --no-capture-output -n suncet python "/Users/masonjp2/Dropbox/suncet_dropbox/9000 Processing/code/suncet_plotting/dashboard/prepare_tvac2.py"
+```
+
+This uses the existing `suncet` environment (Python with `duckdb`). It finds the current TVAC2 beacon ingestion in the shared database, preserves valid UTC, and backfills only initial unset clocks with a later anchor in the same boot. Boots without an anchor remain available on the other time axes. Unexpected time regressions stop preparation for inspection; powered-off calendar gaps are never compressed.
+
+The command fetches the live catalog and replaces just the TVAC2 entry, including links to its available APIDs. It scopes every APID to the same capture folder in `_ingestions`, never the whole shared database. Additional APIDs retain their original CCSDS times; beacon corrections are not applied to other packets. Their unset clocks are omitted from UTC plots and remain available by packet order. Reset and time-alive controls are disabled when a packet does not report those values. It stages and validates the export before replacing the corrected database, audit report, and all packet snapshots plus the catalog in `2026-10-07_tvac2/public_dashboard`. Previous versions are saved under `previous_exports`. It checks processing manifests for new or changed raw inputs and stops if the pipeline needs to run first. The source database is opened read-only.
+
+Upload **all `.json.gz` files** from `public_dashboard` to the R2 bucket root, then upload **`catalog.json` last**, overwriting matching objects. There is now one snapshot per available APID, plus the catalog. Additional APID filenames contain a content hash; old R2 snapshots can remain until you choose to clean them up. The script backs up and removes obsolete generated APID files from the local upload folder. The command does not upload or rerun decoding. No website deployment is needed for a data update.
+
+Use `--database PATH` if the shared database moves, or `--folder PATH` if the TVAC2 folder moves. `--catalog-file PATH` explicitly supplies a catalog for offline preparation; otherwise a catalog download failure stops the command rather than risking a stale catalog. If TVAC2 exceeds the dashboard’s 500,000-row or download-size limits, preparation stops and the capture will need splitting.
 
 ## Publish captures for visitors
 

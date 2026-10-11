@@ -23,8 +23,8 @@ export function numericValue(value) {
 }
 
 export function headerSeconds(row) {
-  const sec = numericValue(row.ccsdsSecHeader2_sec_beacon);
-  const sub = numericValue(row.ccsdsSecHeader2_sub_beacon);
+  const sec = numericValue(row.packet_time_sec ?? row.ccsdsSecHeader2_sec_beacon);
+  const sub = numericValue(row.packet_time_sub ?? row.ccsdsSecHeader2_sub_beacon);
   return sec !== null && sec >= 0 && sub !== null && Number.isInteger(sub) && sub >= 0 && sub < 1000 ? sec + sub / 1000 : null;
 }
 
@@ -152,7 +152,7 @@ export function powerValue(row, pair) {
 
 /** Validate a compact public snapshot before turning positional rows into records. */
 export function parseSnapshot(payload) {
-  if (!payload || typeof payload !== 'object' || Array.isArray(payload) || payload.format !== 'suncet-beacon-v1') {
+  if (!payload || typeof payload !== 'object' || Array.isArray(payload) || !['suncet-beacon-v1','suncet-packet-v1'].includes(payload.format)) {
     throw new Error('Unsupported snapshot format. Use a suncet-beacon-v1 telemetry export.');
   }
   const { columns, rows, rowCount } = payload;
@@ -161,7 +161,22 @@ export function parseSnapshot(payload) {
   }
   const available = new Set(columns);
   if (available.size !== columns.length) throw new Error('Snapshot contains duplicate column names.');
-  if (!SIGNALS.some(signal => available.has(signal.field))) {
+  const packet = payload.format === 'suncet-packet-v1' ? payload.packet : null;
+  let signals;
+  if (payload.format === 'suncet-packet-v1') {
+    if (!packet || !Number.isInteger(packet.apid) || packet.apid < 0 || packet.apid > 2047 ||
+        typeof packet.name !== 'string' || typeof packet.title !== 'string') throw new Error('Invalid packet metadata.');
+    if (!Array.isArray(payload.signals) || !payload.signals.length || payload.signals.length > 1000) throw new Error('Invalid packet telemetry definitions.');
+    const seen = new Set();
+    signals = payload.signals.map(s => {
+      if (!s || !available.has(s.field) || seen.has(s.field) || typeof s.label !== 'string' || typeof s.unit !== 'string' ||
+          !['number','state'].includes(s.kind) || !['temperatures','electrical','modes','measurements'].includes(s.group)) throw new Error('Invalid packet telemetry definition.');
+      seen.add(s.field);
+      if (s.enums && (typeof s.enums !== 'object' || Array.isArray(s.enums) || Object.values(s.enums).some(v=>typeof v!=='string'))) throw new Error('Invalid packet enum labels.');
+      return {field:s.field,label:s.label,unit:s.unit,kind:s.kind,group:s.group,...(s.enums?{enums:{...s.enums}}:{})};
+    });
+  }
+  if (!packet && !SIGNALS.some(signal => available.has(signal.field))) {
     throw new Error('Snapshot contains no recognized SunCET beacon telemetry points.');
   }
   if (!Number.isSafeInteger(rowCount) || rowCount < 0) {
@@ -199,8 +214,9 @@ export function parseSnapshot(payload) {
   return {
     rows: records,
     columns: [...columns],
-    catalog: [{ apid: 1, packet_name: 'beacon', table_name: 'beacon' }],
-    tableName: 'beacon',
+    catalog: [{ apid: packet?.apid ?? 1, packet_name: packet?.name ?? 'beacon', table_name: packet?.name ?? 'beacon' }],
+    tableName: packet?.name ?? 'beacon',
+    ...(packet ? {packet, signals} : {}),
     filename: payload.title?.trim() || 'Telemetry snapshot',
     dbVersion: 'snapshot',
   };

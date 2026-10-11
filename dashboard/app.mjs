@@ -1,4 +1,4 @@
-import { GROUPS, SIGNALS, POWER_PAIRS } from './signals.mjs';
+import { GROUPS as BEACON_GROUPS, SIGNALS as BEACON_SIGNALS, POWER_PAIRS } from './signals.mjs';
 import { loadDatabase, loadSnapshot, numericValue, stateLabel, sampleTelemetry, batteryChargeState, batteryStateSeries, timeEntries, axisRangeValue, powerValue } from './data.mjs';
 import { selectRange, panelGroups, derivePowerSignal } from './plot-policy.mjs';
 
@@ -8,11 +8,12 @@ const NAND_BYTES_PER_PAGE = 6912;
 const batteryStyles = {CHARGING:{label:'Charging',color:'#36b879'},DISCHARGING:{label:'Discharging',color:'#ee6262'},UNKNOWN:{label:'Unknown state',color:'#94a5bc'}};
 const icons = {overview:'◫',temperatures:'♨',electrical:'ϟ',modes:'◈',attitude:'⌖',timing:'◷',heaters:'≋',storage:'▤',science:'✧'};
 let dataset, entries = [], activeGroup = 'overview', plots = [], zoom = null, loading = false, syncing = false, renderVersion = 0, mode='public', archive=[], loadedCaptureId;
-let plotlyPromise;
+let plotlyPromise, SIGNALS=BEACON_SIGNALS, GROUPS=BEACON_GROUPS, signalPage=0, loadedApid=1;
+const PAGE_SIZE=12;
 const number = value => Number(value).toLocaleString('en-US');
 const fmt = value => value === null || value === undefined ? '—' : Math.abs(value) >= 10000 ? Number(value).toPrecision(4) : Number(value).toLocaleString('en-US',{maximumFractionDigits:3});
 const available = signal => dataset?.columns.includes(signal.field);
-const signalsByField = new Map(SIGNALS.map(signal=>[signal.field,signal]));
+let signalsByField = new Map(SIGNALS.map(signal=>[signal.field,signal]));
 const matches = signal => `${signal.label} ${signal.field} ${signal.unit} ${signal.note || ''}`.toLowerCase().includes($('search').value.trim().toLowerCase());
 const pairMatches = pair => `${pair.label} ${pair.voltage} ${pair.current} power voltage current`.toLowerCase().includes($('search').value.trim().toLowerCase());
 const value = (row, signal) => {
@@ -20,7 +21,7 @@ const value = (row, signal) => {
   if(raw===null || raw===undefined || raw==='')return null;
   return signal.kind === 'state' ? stateLabel(signal,raw) : numericValue(raw);
 };
-const axisTitle = () => ({record:'Beacon sample · acquisition order',boot:'Time since boot (s)',alive:'Time alive (s)',utc:'UTC',header:'CCSDS onboard seconds · coarse + milliseconds'})[$('axis').value];
+const axisTitle = () => ({record:'Packet sample · acquisition order',boot:'Time since boot (s)',alive:'Time alive (s)',utc:'UTC',header:'CCSDS onboard seconds · coarse + milliseconds'})[$('axis').value];
 
 function element(tag, className, text) {
   const result = document.createElement(tag);
@@ -52,7 +53,7 @@ function navigation() {
     button.append(element('span','nav-icon',icons[group.id] || '◇'),element('span','',group.label));
     if(dataset && group.id !== 'overview') button.append(element('span','count',SIGNALS.filter(s=>s.group===group.id && available(s)).length));
     button.setAttribute('aria-current',activeGroup===group.id?'page':'false');
-    button.onclick = () => { activeGroup=group.id; navigation(); render().catch(showError); };
+    button.onclick = () => { activeGroup=group.id; signalPage=0; navigation(); render().catch(showError); };
     $('navigation').append(button);
   });
 }
@@ -196,13 +197,13 @@ function stateColor(state,signal) {
     if(state==='YES')return '#36b879';
     if(state==='NO')return '#ee6262';
   }
-  if(signal.field==='beac_adcs_sun_point_state'){
+  if(['beac_adcs_sun_point_state','adcs_att_ctrl_sun_point_state'].includes(signal.field)){
     // Match SatNOGS dashboard/preview_panels.py STATE_RULES and STATE_COLORS.
     if(['FINE_REF_POINT','ON_SUN'].includes(state))return '#378343';
     if(['SUN_POINT','CONVERGING','SEARCHING'].includes(state))return '#E6C84F';
     if(['SEARCH_INIT','NOT_ACTV','WAITING'].includes(state))return '#C43B49';
   }
-  if(signal.field.startsWith('beac_eps_pwr_state_')){
+  if(/^(beac_)?eps_pwr_state_/.test(signal.field)){
     if(state==='ON')return '#36b879';
     if(state==='OFF')return '#ee6262';
   }
@@ -283,10 +284,28 @@ async function electrical(view,version) {
   if(!pairs.length&&!extras.length)grid.append(element('div','empty','No electrical telemetry points match this search.'));
 }
 
+async function packetPanels(view,version) {
+  const signals=selectedSignals(activeGroup==='overview'?null:activeGroup);
+  signalPage=Math.min(signalPage,Math.max(0,Math.ceil(signals.length/PAGE_SIZE)-1));
+  const start=signalPage*PAGE_SIZE;
+  const controls=element('div','packet-pages');
+  const back=element('button','secondary small','← Previous'),next=element('button','secondary small','Next →');
+  back.disabled=signalPage===0;next.disabled=start+PAGE_SIZE>=signals.length;
+  back.onclick=()=>{signalPage--;render().catch(showError);};next.onclick=()=>{signalPage++;render().catch(showError);};
+  controls.append(back,element('span','',signals.length?`Telemetry points ${start+1}–${Math.min(start+PAGE_SIZE,signals.length)} of ${signals.length}`:'No matching telemetry points'),next);
+  $('plots').append(controls);
+  const grid=section(dataset.packet.title,`APID ${dataset.packet.apid}`);grid.classList.add('signal-grid');
+  for(const signal of signals.slice(start,start+PAGE_SIZE)){
+    if(version!==renderVersion)return;
+    if(signal.kind==='state')await statePanel(grid,signal.label,[signal],view,version);
+    else await numericPanel(grid,signal.label,[signal],view,version,{height:260,subtitle:signal.field});
+  }
+}
+
 async function render() {
   const group=GROUPS.find(g=>g.id===activeGroup);
-  $('page-title').textContent=group?.label || 'Beacon overview';
-  $('page-description').textContent=group?.description || (dataset?'An organized view of spacecraft health, power, and operating states.':'Open a capture. Explore the spacecraft.');
+  $('page-title').textContent=group?.label || (dataset?.packet?`${dataset.packet.title} overview`:'Beacon overview');
+  $('page-description').textContent=(dataset?.packet&&group?.id==='electrical'?'Voltage and current telemetry from the selected APID.':group?.description) || (dataset?'An organized view of spacecraft health, power, and operating states.':'Open a capture. Explore the spacecraft.');
   if(!dataset) return;
   const version=++renderVersion;
   plots.forEach(p=>window.Plotly.purge(p));plots=[];$('plots').replaceChildren();$('plots').setAttribute('aria-busy','true');
@@ -305,7 +324,9 @@ async function render() {
   const signalCount=SIGNALS.filter(available).length;
   const powerCount=POWER_PAIRS.filter(p=>dataset.columns.includes(p.voltage)&&dataset.columns.includes(p.current)).length;
   $('metrics').replaceChildren();
-  [['BEACON SAMPLES',number(exactCount),`of ${number(dataset.rows.length)} loaded records`],['TELEMETRY POINTS',signalCount,'Available in this capture'],['RESET NUMBER',resetNumber===null?'—':number(resetNumber),`Latest sample · ${resetCount} distinct resets in view`],['DERIVED POWER CHANNELS',powerCount,'Matching V × I, in watts']].forEach(([label,count,note])=>{
+  const metrics=[[dataset.packet?'PACKET SAMPLES':'BEACON SAMPLES',number(exactCount),`of ${number(dataset.rows.length)} loaded records`],['TELEMETRY POINTS',signalCount,'Available in this capture'],['RESET NUMBER',resetNumber===null?'—':number(resetNumber),`Latest sample · ${resetCount} distinct resets in view`],['DERIVED POWER CHANNELS',powerCount,'Matching V × I, in watts']];
+  if(dataset.packet){metrics[2]=['APID',dataset.packet.apid,dataset.packet.name];metrics[3]=['UTC SAMPLES',number(timeEntries(entries,{axis:'utc',hideDuplicates:$('duplicates').checked}).length),'Using this packet’s onboard clock'];}
+  metrics.forEach(([label,count,note])=>{
     const card=element('div','metric');card.append(element('div','label',label),element('strong','',count),element('small','',note));$('metrics').append(card);
   });
   const axis=$('axis').value;
@@ -315,7 +336,8 @@ async function render() {
   if(['utc','header'].includes(axis)){const count=fullView.filter(e=>e.row.analysis_time_reconstructed).length;if(count)$('time-note').textContent+=` ${number(count)} samples use reconstructed onboard times.`;}
   if(!view.length){$('plots').append(element('div','empty','No samples have a valid value for this selection and horizontal axis.'));$('plots').setAttribute('aria-busy','false');return;}
   const search=$('search').value.trim();
-  if(activeGroup==='electrical') await electrical(view,version);
+  if(dataset.packet) await packetPanels(view,version);
+  else if(activeGroup==='electrical') await electrical(view,version);
   else if(activeGroup==='overview'&&!search){
     let grid=section('Thermal & electrical trends','ALL CHANNELS, SHARED INTERVAL');
     await numericPanel(grid,'Spacecraft temperatures',selectedSignals('temperatures'),view,version,{wide:true,subtitle:'Solar arrays, batteries, avionics, instruments, ADCS, and radios'});
@@ -356,15 +378,24 @@ async function render() {
 
 function showError(error){message(error.message || String(error),true);$('plots').setAttribute('aria-busy','false');}
 async function displayDataset(loaded,source) {
-  dataset=loaded;entries=loaded.rows.map((row,i)=>({row,index:i+1}));zoom=null;
+  dataset=loaded;
+  const packetGroup=loaded.packet?.name.endsWith('_time') || loaded.packet?.name.startsWith('des_')?'timing'
+    : /^(storage|flash)_/.test(loaded.packet?.name || '')?'storage'
+    : loaded.packet?.name.startsWith('adcs_')?'attitude':'measurements';
+  SIGNALS=loaded.signals?.map(s=>s.group==='measurements'?{...s,group:packetGroup}:s) || BEACON_SIGNALS;
+  signalsByField=new Map(SIGNALS.map(s=>[s.field,s]));
+  GROUPS=loaded.packet?[...BEACON_GROUPS,{id:'measurements',label:'Measurements & counters',description:'Decoded telemetry from the selected APID.'}].filter(g=>SIGNALS.some(s=>s.group===g.id)):BEACON_GROUPS;
+  activeGroup='overview';signalPage=0;$('search').value='';
+  $('packet-heading').textContent=loaded.packet?`APID ${loaded.packet.apid} · ${loaded.packet.name}`:'BEACON';
+  entries=loaded.rows.map((row,i)=>({row,index:i+1}));zoom=null;
   const resets=new Map();entries.forEach(e=>{const r=e.row.beac_num_sc_resets;if(r!==null&&r!==undefined)resets.set(String(r),(resets.get(String(r))||0)+1);});
   $('reset-filter').replaceChildren(new Option('All resets','all'));
   [...resets].sort((a,b)=>Number(a[0])-Number(b[0])).forEach(([key,count])=>$('reset-filter').add(new Option(`Reset ${key} · ${number(count)} samples`,key)));
   $('reset-filter').disabled=!resets.size;
-  [...$('axis').options].forEach(o=>{o.disabled=o.value==='boot'?!loaded.columns.includes('beac_time_since_boot'):o.value==='alive'?!loaded.columns.includes('beac_time_alive'):['header','utc'].includes(o.value)?!loaded.columns.includes('ccsdsSecHeader2_sec_beacon')||!loaded.columns.includes('ccsdsSecHeader2_sub_beacon'):false;});
+  [...$('axis').options].forEach(o=>{o.disabled=o.value==='boot'?!loaded.columns.includes('beac_time_since_boot'):o.value==='alive'?!loaded.columns.includes('beac_time_alive'):['header','utc'].includes(o.value)?!(loaded.columns.includes('ccsdsSecHeader2_sec_beacon')&&loaded.columns.includes('ccsdsSecHeader2_sub_beacon')||loaded.columns.includes('packet_time_sec')&&loaded.columns.includes('packet_time_sub')):false;});
   $('axis').value=$('axis').querySelector('[value="utc"]').disabled?'record':'utc';
   $('filename').textContent=source.name;
-  $('source-detail').textContent=mode==='local'?`${(source.size/1024/1024).toFixed(1)} MB · ${loaded.tableName} · ${loaded.catalog.length} packet types · DuckDB ${loaded.dbVersion}`:`${(source.size/1024/1024).toFixed(1)} MB download · curated beacon snapshot · ${number(loaded.rows.length)} samples`;
+  $('source-detail').textContent=mode==='local'?`${(source.size/1024/1024).toFixed(1)} MB · ${loaded.tableName} · ${loaded.catalog.length} packet types · DuckDB ${loaded.dbVersion}`:`${(source.size/1024/1024).toFixed(1)} MB download · curated telemetry snapshot · ${number(loaded.rows.length)} samples`;
   document.querySelector('.source-strip .pill').textContent=mode==='local'?'READ ONLY':'PUBLIC SNAPSHOT';
   $('welcome').hidden=true;$('workspace').hidden=false;$('export').disabled=false;
   $('range-note').textContent='Drag a plot to zoom every panel.';
@@ -394,7 +425,7 @@ function exportCSV() {
   const view=getEntries().filter(e=>!zoom || e.x>=zoom[0]&&e.x<=zoom[1]);
   // Spreadsheet-safe strings. Numeric negatives remain numbers, not formulas.
   const csvCell=v=>{if(v===null||v===undefined)return '';let s=String(v);if(typeof v==='string'&&/^[=+\-@\t\r]/.test(s))s=`'${s}`;return /[",\r\n]/.test(s)?`"${s.replaceAll('"','""')}"`:s;};
-  const lines=[['beacon_sample',axisTitle(),...signals.map(s=>`${s.field}${s.unit?` [${s.unit}]`:''}`),...pairs.map(p=>`${p.id}_power [W]`)].map(csvCell).join(',')];
+  const lines=[['packet_sample',axisTitle(),...signals.map(s=>`${s.field}${s.unit?` [${s.unit}]`:''}`),...pairs.map(p=>`${p.id}_power [W]`)].map(csvCell).join(',')];
   for(const entry of view){const derived=pairs.map(p=>powerValue(entry.row,p));lines.push([entry.index,$('axis').value==='utc'?new Date(entry.x).toISOString():entry.x,...signals.map(s=>value(entry.row,s)),...derived].map(csvCell).join(','));}
   const url=URL.createObjectURL(new Blob([lines.join('\r\n')],{type:'text/csv;charset=utf-8'}));const link=element('a');link.href=url;link.download=`${dataset.filename.replace(/\.[^.]+$/,'')}-${activeGroup}.csv`;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
@@ -405,7 +436,7 @@ $('reset-zoom').onclick=()=>setZoom(null);
 $('export').onclick=exportCSV;
 for(const id of ['axis','reset-filter','duplicates'])$(id).onchange=()=>{zoom=null;$('range-note').textContent='Drag a plot to zoom every panel.';render().catch(showError);};
 $('y-scale').onchange=()=>render().catch(showError);
-let searchTimer;$('search').oninput=()=>{clearTimeout(searchTimer);searchTimer=setTimeout(()=>render().catch(showError),250);};
+let searchTimer;$('search').oninput=()=>{clearTimeout(searchTimer);searchTimer=setTimeout(()=>{signalPage=0;render().catch(showError);},250);};
 let dragDepth=0;
 window.addEventListener('dragenter',e=>{if(mode==='local'&&e.dataTransfer.types.includes('Files')){e.preventDefault();dragDepth++;$('drop-overlay').hidden=false;}});
 window.addEventListener('dragover',e=>{if(e.dataTransfer.types.includes('Files'))e.preventDefault();});
@@ -424,18 +455,34 @@ function setMode(nextMode) {
     $('page-description').textContent='Explore the published spacecraft telemetry archive.';
   }
 }
-async function openCapture(item) {
-  if(loading)return;
-  loading=true;$('capture').disabled=true;$('export').disabled=true;
-  try{
-    message(`Loading ${item.title}…`);await getPlotly();
-    const loaded=await loadSnapshot(item.url,status=>message(status));
-    await displayDataset(loaded,{name:item.title,size:loaded.byteSize || item.bytes || 0});
-    loadedCaptureId=item.id;
-    const url=new URL(location.href);url.searchParams.set('capture',item.id);history.replaceState(null,'',url);
-  }catch(error){if(loadedCaptureId)$('capture').value=loadedCaptureId;showError(error);}
-  finally{loading=false;$('capture').disabled=false;$('export').disabled=!dataset;}
+function packetOptions(item) {
+  return [{apid:1,title:'Beacon',name:'beacon',url:item.url,bytes:item.bytes},...(item.packets || []).toSorted((a,b)=>a.apid-b.apid)];
 }
+function updatePacketPicker(item, apid) {
+  const options=packetOptions(item);
+  $('packet-picker').hidden=false;
+  $('packet').replaceChildren(...options.map(p=>new Option(`APID ${p.apid} · ${p.name} — ${p.title}`,String(p.apid))));
+  $('packet').value=String(apid);
+  $('packet-detail').textContent=options.length===1?'This capture currently contains beacon data only.':`${options.length} available packet types`;
+}
+async function openCapture(item, apid=1) {
+  if(loading)return;
+  const selected=packetOptions(item).find(p=>p.apid===Number(apid)) || packetOptions(item)[0];
+  loading=true;$('capture').disabled=true;$('packet').disabled=true;$('export').disabled=true;
+  try{
+    message(`Loading ${item.title} · ${selected.title}…`);await getPlotly();
+    const loaded=await loadSnapshot(selected.url,status=>message(status));
+    if((loaded.packet?.apid ?? 1)!==selected.apid)throw new Error('Packet snapshot does not match the selected APID.');
+    await displayDataset(loaded,{name:`${item.title} · ${selected.title}`,size:loaded.byteSize || selected.bytes || 0});
+    loadedCaptureId=item.id;loadedApid=selected.apid;updatePacketPicker(item,loadedApid);
+    const url=new URL(location.href);url.searchParams.set('capture',item.id);url.searchParams.set('apid',String(loadedApid));history.replaceState(null,'',url);
+  }catch(error){
+    if(loadedCaptureId){$('capture').value=loadedCaptureId;updatePacketPicker(archive.find(i=>i.id===loadedCaptureId),loadedApid);}
+    showError(error);
+  }
+  finally{loading=false;$('capture').disabled=false;$('packet').disabled=false;$('export').disabled=!dataset;}
+}
+$('packet').onchange=()=>openCapture(archive.find(i=>i.id===$('capture').value),Number($('packet').value));
 async function loadCatalog(catalogURL) {
   const url=new URL(catalogURL,location.href);
   if(!['http:','https:'].includes(url.protocol))throw new Error('The catalog must use HTTP or HTTPS.');
@@ -452,14 +499,20 @@ async function loadCatalog(catalogURL) {
     if(!['http:','https:'].includes(snapshotURL.protocol))throw new Error('Capture URLs must use HTTP or HTTPS.');
     const date=(item.id.match(/\d{4}-\d{2}-\d{2}/)||snapshotURL.pathname.match(/\d{4}-\d{2}-\d{2}/))?.[0];
     const title=date?item.title.replace(/^(?:January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2}(?:,?\s+\d{4})?(?=\s*[·—–|:]|$)/i,date):item.title;
-    return {...item,title,url:snapshotURL.href};
+    const packets=(item.packets || []).map(p=>{
+      if(!p || !Number.isInteger(p.apid) || p.apid<2 || p.apid>2047 || typeof p.title!=='string' || typeof p.name!=='string' || typeof p.url!=='string')throw new Error('Invalid packet entry in capture catalog.');
+      const url=new URL(p.url,response.url);if(!['http:','https:'].includes(url.protocol))throw new Error('Packet URLs must use HTTP or HTTPS.');
+      return {...p,url:url.href};
+    });
+    if(packets.length>2047 || new Set(packets.map(p=>p.apid)).size!==packets.length)throw new Error('Duplicate or excessive packet entries.');
+    return {...item,title,url:snapshotURL.href,packets};
   });
   if(!archive.length){message('No captures have been published yet.');return;}
   $('archive-picker').hidden=false;$('capture').replaceChildren(...archive.map(item=>new Option(item.title,item.id)));
   const id=new URLSearchParams(location.search).get('capture');
   const chosen=archive.find(item=>item.id===id)||archive[0];$('capture').value=chosen.id;
   $('capture').onchange=()=>openCapture(archive.find(item=>item.id===$('capture').value));
-  await openCapture(chosen);
+  await openCapture(chosen,Number(new URLSearchParams(location.search).get('apid') || 1));
 }
 async function startup() {
   const response=await fetch('./site-config.json');

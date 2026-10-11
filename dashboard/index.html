@@ -16,10 +16,11 @@
     <div class="sidebar-bottom"><span class="local-dot"></span> Local analysis<small>Your selected file stays in this browser.</small><a href="https://github.com/suncet/suncet_plotting" target="_blank" rel="noreferrer">suncet / suncet_plotting ↗</a></div>
   </aside>
   <main>
-    <header class="topbar"><span>MISSION DATA <span class="slash">/</span> BEACON</span></header>
+    <header class="topbar"><span>MISSION DATA <span class="slash">/</span> <span id="packet-heading">BEACON</span></span></header>
     <div class="page-heading"><div><div class="eyebrow">SPACECRAFT TELEMETRY</div><h1 id="page-title">Beacon overview</h1><p id="page-description">Open a capture. Explore the spacecraft.</p></div><div class="heading-actions"><button id="export" class="secondary" disabled>↓ Export view CSV</button><button id="open-file" class="primary">＋ Open database</button><input id="file-input" type="file" accept=".duckdb,.db,.ddb" hidden></div></div>
     <div id="message" role="status" aria-live="polite" hidden></div>
     <div id="archive-picker" class="archive-picker" hidden><label for="capture">PUBLISHED CAPTURE</label><select id="capture"></select><span>Telemetry archive</span></div>
+    <div id="packet-picker" class="archive-picker" hidden><label for="packet">APID PACKET</label><select id="packet"></select><span id="packet-detail"></span></div>
     <section id="welcome" class="welcome">
       <div class="welcome-orbit" aria-hidden="true"><span>☀</span><i></i></div>
       <div class="eyebrow">YOUR CAPTURE, IN CONTEXT</div><h2>A closer look at every orbit.</h2>
