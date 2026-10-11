@@ -71,7 +71,7 @@ class TVACPreparationTests(unittest.TestCase):
 
     def test_new_raw_data_requires_processing_before_replacing_files(self):
         (self.folder/'xbandDemod_new.dat').write_bytes(b'new')
-        with self.assertRaisesRegex(ValueError,'not been processed'):
+        with self.assertRaisesRegex(ValueError,'no matching successful'):
             prep.prepare(self.folder,self.source,self.catalog)
         self.assertFalse((self.folder/'public_dashboard').exists())
 
@@ -91,6 +91,24 @@ class TVACPreparationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'UTC goes backwards'):
             prep.prepare(self.folder,self.source,self.catalog)
         self.assertFalse((self.folder/prep.OUTPUT_DB).exists())
+
+    def test_incremental_manifest_and_beacon_batches_are_combined(self):
+        raw = self.folder/'xbandDemod_new.dat'
+        raw.write_bytes(b'next downlink')
+        latest = self.manifest.with_name('processing_run_20261011.json')
+        latest.write_text(json.dumps({'status':'succeeded','data_root':str(self.folder),'inputs':[{
+            'path':raw.name,'relative_to_data_root':True,'size_bytes':raw.stat().st_size,
+            'modified_utc':datetime.fromtimestamp(raw.stat().st_mtime,timezone.utc).isoformat()}]}))
+        self.assertEqual(prep.latest_manifest(self.folder),latest.resolve())
+        with duckdb.connect(str(self.source)) as c:
+            c.execute("INSERT INTO _ingestions VALUES (?, 'new',2,1,'apid_0001')", [str(self.folder/'decoded_packets/decoded_apid_0001_beacon__xband_new.csv')])
+            c.execute("INSERT INTO apid_0001 VALUES (0,200,2,844672200,572,844672200,572,'new0','new',15.6),(1,201,2,844672201,572,844672201,572,'new1','new',15.7)")
+        report=prep.prepare(self.folder,self.source,self.catalog)
+        self.assertEqual(report['beacon_count'],7)
+        self.assertEqual(len(report['source_ingestions']),2)
+        with duckdb.connect(str(self.folder/prep.OUTPUT_DB),read_only=True) as c:
+            self.assertEqual(c.execute('SELECT count(DISTINCT packet_index) FROM apid_0001').fetchone()[0],7)
+            self.assertEqual(c.execute("SELECT original_packet_index FROM apid_0001 WHERE packet_hash='new0'").fetchone()[0],0)
 
     def test_counter_disagreement_is_not_silently_corrected(self):
         with self.assertRaisesRegex(ValueError,'disagree'):

@@ -8,6 +8,7 @@ import json
 from pathlib import Path
 
 import duckdb
+from capture_batches import capture_selection
 from export_snapshot import (_identifier, _json_bytes, _public_value, _created_utc,
                              _atomic_write, MAX_ROWS, MAX_EXPANDED_BYTES, MAX_COMPRESSED_BYTES)
 
@@ -21,16 +22,15 @@ def export_packets(database, capture_folder, output_dir, dataset_id):
     capture = Path(capture_folder).resolve()
     packets = []
     with duckdb.connect(str(database), read_only=True) as c:
-        ingestions = c.execute('SELECT apid,table_name,source_path,source_sha256,rows_ingested FROM _ingestions').fetchall()
         for definition in definitions:
             if definition['name'].lower().startswith('adcs_'):
                 continue
-            matches = [r for r in ingestions if r[0] == definition['apid'] and Path(r[2]).resolve().parent == capture / 'decoded_packets']
-            if not matches:
+            selection, matches = capture_selection(c, capture, definition['apid'])
+            if selection is None:
                 continue
-            if len(matches) != 1:
-                raise ValueError(f"Multiple ingestions for APID {definition['apid']}; inspect before publishing.")
-            apid, table, _, source_hash, row_count = matches[0]
+            apid = definition['apid']
+            table = matches[0][3]
+            row_count = sum(r[2] for r in matches)
             if not row_count:
                 continue
             if row_count > MAX_ROWS:
@@ -45,7 +45,7 @@ def export_packets(database, capture_folder, output_dir, dataset_id):
             if sec in fields and sub in fields:
                 selected += ['packet_time_sec', 'packet_time_sub']
                 expressions += [f'{_identifier(sec)} AS packet_time_sec', f'{_identifier(sub)} AS packet_time_sub']
-            records = c.execute(f'SELECT {", ".join(expressions)} FROM {_identifier(table)} WHERE _source_sha256=? ORDER BY packet_index LIMIT {MAX_ROWS+1}', [source_hash]).fetchall()
+            records = c.execute(f'SELECT {", ".join(expressions)} FROM ({selection}) ORDER BY packet_index LIMIT {MAX_ROWS+1}').fetchall()
             if len(records) != row_count:
                 raise ValueError(f'APID {apid} ingestion count does not match its table.')
             payload = {'format': 'suncet-packet-v1', 'packet': {k: definition[k] for k in ['apid','name','title']},

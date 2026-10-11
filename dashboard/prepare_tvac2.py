@@ -23,6 +23,7 @@ import duckdb
 
 from export_snapshot import export_snapshot, _identifier, MAX_ROWS
 from export_packets import export_packets
+from capture_batches import capture_selection
 
 DEFAULT_FOLDER = Path(__file__).resolve().parents[3] / 'data/test_data/2026-10-07_tvac2'
 CATALOG_URL = 'https://suncet-telemetry.jmason86.workers.dev/catalog.json'
@@ -88,6 +89,7 @@ def correction_plan(rows):
 
 
 def latest_manifest(folder):
+    folder = folder.resolve()
     paths = sorted((folder / 'processing_manifests').glob('processing_run_*.json'))
     require(bool(paths), 'No processing manifest found. Run the processing pipeline first.')
     path = paths[-1]
@@ -95,45 +97,47 @@ def latest_manifest(folder):
     require(manifest.get('status') == 'succeeded',
             f"Latest processing run is {manifest.get('status', 'unknown')}. Wait for a successful run before preparing uploads.")
     require(Path(manifest['data_root']).resolve() == folder, 'Manifest belongs to a different capture folder.')
-    inputs = {item['path']: item for item in manifest['inputs'] if item.get('relative_to_data_root')}
+    # Incremental runs list only their new input; earlier successful runs cover
+    # the existing downlinks. Failed/running manifests never count as coverage.
+    inputs = []
+    for previous in paths:
+        completed = json.loads(previous.read_text())
+        if completed.get('status') == 'succeeded' and Path(completed['data_root']).resolve() == folder:
+            inputs.extend(i for i in completed['inputs'] if i.get('relative_to_data_root'))
     raw_files = list(folder.glob('xbandDemod*.dat'))
     require(bool(raw_files), 'No TVAC2 X-band input files found.')
     for file in raw_files:
-        item = inputs.get(file.name)
-        if item is None:
-            # Renaming a completed downlink does not require decoding it again.
-            candidates = [i for i in inputs.values() if i['size_bytes'] == file.stat().st_size and i.get('sha256')]
-            if candidates and sha(file) in {i['sha256'] for i in candidates}:
-                continue
-        require(item is not None, f'{file.name} has not been processed. Run the processing pipeline first.')
         stat = file.stat()
-        modified = datetime.fromisoformat(item['modified_utc'].replace('Z', '+00:00')).timestamp()
-        require(stat.st_size == item['size_bytes'] and abs(stat.st_mtime - modified) < 0.01,
-                f'{file.name} changed since processing. Run the processing pipeline first.')
+        candidates = [i for i in inputs if i['size_bytes'] == stat.st_size]
+        exact = [i for i in candidates if i['path'] == file.name]
+        if any(abs(stat.st_mtime - datetime.fromisoformat(i['modified_utc'].replace('Z', '+00:00')).timestamp()) < 0.01 for i in exact):
+            continue
+        # Content hashes also recognize renamed files or metadata-only changes.
+        if candidates and sha(file) in {i.get('sha256') for i in candidates}:
+            continue
+        require(False, f'{file.name} has no matching successful processing run. Process this new or changed input first.')
     return path
 
 
 def build_database(source, folder, dest):
     """Select this capture's ingestion and validate a corrected beacon-only copy."""
     source_hash = sha(source)
-    expected_path = folder / 'decoded_packets/decoded_apid_0001_beacon.csv'
     with duckdb.connect(str(source), read_only=True) as c:
-        ingestions = c.execute('SELECT source_path, source_sha256, rows_ingested FROM _ingestions WHERE apid=1').fetchall()
-        matches = [r for r in ingestions if Path(r[0]).resolve() == expected_path]
-        require(len(matches) == 1, 'Expected one current TVAC2 beacon ingestion. Run the pipeline or inspect _ingestions.')
-        _, ingestion_hash, expected_rows = matches[0]
-        if expected_path.exists():
-            require(sha(expected_path) == ingestion_hash, 'Decoded beacon CSV differs from its database ingestion. Run the pipeline first.')
+        selection, batches = capture_selection(c, folder, 1)
+        require(selection is not None, 'No TVAC2 beacon ingestion found. Run the pipeline first.')
+        for path, digest, count, _ in batches:
+            csv = Path(path)
+            if csv.exists():
+                require(sha(csv) == digest, f'Decoded beacon CSV differs from its ingestion: {csv.name}')
         rows = c.execute('SELECT packet_index, beac_time_alive, '
                          'ccsdsSecHeader2_sec_beacon*1000+ccsdsSecHeader2_sub_beacon, beac_num_sc_resets '
-                         'FROM apid_0001 WHERE _source_sha256=? ORDER BY packet_index', [ingestion_hash]).fetchall()
-        require(len(rows) == expected_rows, 'Ingestion row count does not match the beacon table.')
-        bad = c.execute('SELECT count(*) FROM apid_0001 WHERE _source_sha256=? AND '
-                        '(ccsdsSecHeader2_sub_beacon IS NULL OR ccsdsSecHeader2_sub_beacon NOT BETWEEN 0 AND 999)', [ingestion_hash]).fetchone()[0]
+                         f'FROM ({selection}) ORDER BY packet_index').fetchall()
+        bad = c.execute(f'SELECT count(*) FROM ({selection}) WHERE '
+                        '(ccsdsSecHeader2_sub_beacon IS NULL OR ccsdsSecHeader2_sub_beacon NOT BETWEEN 0 AND 999)').fetchone()[0]
         require(not bad, 'Invalid header milliseconds need inspection.')
     corrections, unknown = correction_plan(rows)
     report = {'source_name': source.name, 'source_sha256': source_hash,
-              'source_ingestion_sha256': ingestion_hash, 'output_name': dest.name,
+              'source_ingestions': [{'path':p,'sha256':h,'rows':n} for p,h,n,_ in batches], 'output_name': dest.name,
               'generated_utc': datetime.now(timezone.utc).isoformat(),
               'method': 'Preserve all set clocks. Backfill only initial unset clocks from the first set clock in the same boot using time alive. Never compress offline calendar gaps or extrapolate across boots.',
               'limitation': 'Backfilled times inherit time-setting accuracy and whole-second time-alive precision. Unanchored boots keep their unset clocks and are omitted from UTC plots.',
@@ -141,7 +145,9 @@ def build_database(source, folder, dest):
               'corrections': corrections, 'unanchored_boots': unknown}
     with duckdb.connect(str(dest)) as c:
         c.execute("ATTACH '" + str(source).replace("'", "''") + "' AS original (READ_ONLY)")
-        c.execute('CREATE TABLE apid_0001 AS SELECT * FROM original.apid_0001 WHERE _source_sha256=?', [ingestion_hash])
+        original_selection, current_batches = capture_selection(c, folder, 1, schema='original')
+        require(current_batches == batches, 'Source ingestions changed during preparation.')
+        c.execute(f'CREATE TABLE apid_0001 AS {original_selection}')
         c.execute('CREATE TABLE _apid_catalog AS SELECT * FROM original._apid_catalog WHERE apid=1')
         c.execute('CREATE TABLE _database_metadata AS SELECT * FROM original._database_metadata')
         fields = {r[0]: r[1] for r in c.execute('DESCRIBE apid_0001').fetchall()}
@@ -156,7 +162,7 @@ def build_database(source, folder, dest):
         expr = '(original_ccsdsSecHeader2_sec_beacon*1000+original_ccsdsSecHeader2_sub_beacon+analysis_time_correction_ms)'
         c.execute(f'UPDATE apid_0001 SET ccsdsSecHeader2_sec_beacon={expr}//1000, ccsdsSecHeader2_sub_beacon={expr}%1000, combined_time_coarse={expr}//1000, combined_time_fine={expr}%1000 WHERE analysis_time_reconstructed')
         comparisons = [f'a.{_identifier("original_"+f if f in TIME_FIELDS else f)} IS DISTINCT FROM b.{_identifier(f)}' for f in fields]
-        changed = c.execute('SELECT count(*) FROM apid_0001 a FULL JOIN (SELECT * FROM original.apid_0001 WHERE _source_sha256=?) b USING(packet_index) WHERE a.packet_index IS NULL OR b.packet_index IS NULL OR ' + ' OR '.join(comparisons), [ingestion_hash]).fetchone()[0]
+        changed = c.execute(f'SELECT count(*) FROM apid_0001 a FULL JOIN ({original_selection}) b USING(packet_index) WHERE a.packet_index IS NULL OR b.packet_index IS NULL OR ' + ' OR '.join(comparisons)).fetchone()[0]
         require(not changed, 'Source-field preservation check failed.')
         preserved = ' OR '.join(f'{_identifier(f)} IS DISTINCT FROM {_identifier("original_"+f)}' for f in TIME_FIELDS)
         require(c.execute('SELECT count(*) FROM apid_0001 WHERE NOT analysis_time_reconstructed AND ('+preserved+')').fetchone()[0] == 0,
