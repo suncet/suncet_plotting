@@ -503,7 +503,7 @@ async function loadCatalog(catalogURL) {
       if(!p || !Number.isInteger(p.apid) || p.apid<2 || p.apid>2047 || typeof p.title!=='string' || typeof p.name!=='string' || typeof p.url!=='string')throw new Error('Invalid packet entry in capture catalog.');
       const url=new URL(p.url,response.url);if(!['http:','https:'].includes(url.protocol))throw new Error('Packet URLs must use HTTP or HTTPS.');
       return {...p,url:url.href};
-    });
+    }).filter(p=>!p.name.toLowerCase().startsWith('adcs_'));
     if(packets.length>2047 || new Set(packets.map(p=>p.apid)).size!==packets.length)throw new Error('Duplicate or excessive packet entries.');
     return {...item,title,url:snapshotURL.href,packets};
   });

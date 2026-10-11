@@ -35,6 +35,7 @@ class PacketExportTests(unittest.TestCase):
         definitions=json.loads(DEFINITIONS.read_text())
         self.assertFalse({5,7,12,42,524} & {d['apid'] for d in definitions})
         for d in definitions:
+            self.assertFalse(d['name'].lower().startswith('adcs_'))
             fields=[s['field'] for s in d['signals']]
             self.assertEqual(len(fields),len(set(fields)))
             for f in fields:

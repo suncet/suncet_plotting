@@ -23,6 +23,8 @@ def export_packets(database, capture_folder, output_dir, dataset_id):
     with duckdb.connect(str(database), read_only=True) as c:
         ingestions = c.execute('SELECT apid,table_name,source_path,source_sha256,rows_ingested FROM _ingestions').fetchall()
         for definition in definitions:
+            if definition['name'].lower().startswith('adcs_'):
+                continue
             matches = [r for r in ingestions if r[0] == definition['apid'] and Path(r[2]).resolve().parent == capture / 'decoded_packets']
             if not matches:
                 continue
