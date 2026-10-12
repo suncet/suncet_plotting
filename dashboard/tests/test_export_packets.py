@@ -70,3 +70,37 @@ class PacketExportTests(unittest.TestCase):
             self.assertNotIn('dsps_log_message_0',payloads[23]['columns'])
             param=dict(zip(payloads[25]['columns'],payloads[25]['rows'][0]))
             self.assertEqual(param['packet_time_sub'],573)
+
+    def test_csie_storage_is_separate_from_bus_and_preserves_its_own_header(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);folder=root/'capture';output=root/'out';output.mkdir()
+            db=root/'source.duckdb'
+            with duckdb.connect(str(db)) as c:
+                c.execute('CREATE TABLE _ingestions (apid INTEGER,table_name VARCHAR,source_path VARCHAR,source_sha256 VARCHAR,rows_ingested BIGINT)')
+                for apid in (21,533):
+                    c.execute('INSERT INTO _ingestions VALUES (?,?,?,?,1)',[apid,f'apid_{apid:04d}',str(folder/f'decoded_packets/decoded_apid_{apid:04d}_storage_hk.csv'),str(apid)])
+                    c.execute(f"CREATE TABLE apid_{apid:04d} AS SELECT 0 AS packet_index, '{apid}' AS _source_sha256, {apid} AS store_partition_write_sci, 1 AS store_write_state, 844672030 AS SHCOARSE, 572 AS SHFINE, 9 AS cmd_count, 10 AS storage_hk_fletcher32")
+            packets=export_packets(db,folder,output,'test')
+            self.assertEqual({p['apid'] for p in packets},{21,533})
+            csie=next(p for p in packets if p['apid']==533)
+            self.assertEqual(csie['name'],'storage_hk');self.assertEqual(csie['title'],'CSIE NAND storage')
+            data=json.loads(gzip.decompress((output/csie['url']).read_bytes()))
+            row=dict(zip(data['columns'],data['rows'][0]))
+            self.assertEqual(row['store_partition_write_sci'],533)
+            self.assertEqual((row['packet_time_sec'],row['packet_time_sub']),(844672030,572))
+            self.assertNotIn('cmd_count',row);self.assertNotIn('storage_hk_fletcher32',row)
+            state=next(s for s in data['signals'] if s['field']=='store_write_state')
+            self.assertEqual(state['enums'],{'0':'DIS','1':'ENA'})
+
+    def test_csie_definitions_include_engineering_packets_and_exclude_payloads(self):
+        definitions={d['apid']:d for d in json.loads(DEFINITIONS.read_text())}
+        expected={513,514,515,516,520,523,525,526,527,528,529,530,532,533,535,537,538,539,542,543}
+        self.assertTrue(expected <= definitions.keys())
+        self.assertFalse({518,519,521,524,536,540,541} & definitions.keys())
+        for apid in expected:
+            d=definitions[apid]
+            self.assertTrue(d['title'].startswith('CSIE '))
+            for s in d['signals']:
+                self.assertNotRegex(s['field'],r'cmd|opcode|arm_state|(?:^|_)(?:fp|seq)(?:_|$)|(?i:checksum|fletcher|cksm|crc)|^log_params_')
+        thermal={s['field'] for s in definitions[537]['signals']}
+        self.assertIn('csie_adc_thermistor_temp',thermal)

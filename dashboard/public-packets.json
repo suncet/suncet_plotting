@@ -17016,363 +17016,6 @@
     ]
   },
   {
-    "apid": 539,
-    "name": "des_time",
-    "title": "Task timing",
-    "signals": [
-      {
-        "field": "des_cpu_usage",
-        "label": "Percent CPU usage for last completed cycle",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_cpu_max",
-        "label": "Max CPU usage, percent",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_min_hk",
-        "label": "Min Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_max_hk",
-        "label": "Max Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_min_seq",
-        "label": "Min Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_max_seq",
-        "label": "Max Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_min_mem",
-        "label": "Min Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_max_mem",
-        "label": "Max Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_min_log",
-        "label": "Min Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_max_log",
-        "label": "Max Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_min_fp",
-        "label": "Min Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_max_fp",
-        "label": "Max Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_min_table",
-        "label": "Min Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_max_table",
-        "label": "Max Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_min_tlm_store",
-        "label": "Min Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_max_tlm_store",
-        "label": "Max Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_min_store_hk",
-        "label": "Min Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_max_store_hk",
-        "label": "Max Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_min_flash_hk",
-        "label": "Min Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_max_flash_hk",
-        "label": "Max Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_min_mode",
-        "label": "Min Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_max_mode",
-        "label": "Max Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_min_adcs",
-        "label": "Min Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_max_adcs",
-        "label": "Max Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_min_tlm_uhf",
-        "label": "Min Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_max_tlm_uhf",
-        "label": "Max Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_min_uhf_hk",
-        "label": "Min Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_max_uhf_hk",
-        "label": "Max Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_min_eps",
-        "label": "Min Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_max_eps",
-        "label": "Max Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_min_payload_hk",
-        "label": "Min Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_max_payload_hk",
-        "label": "Max Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_min_payload_time",
-        "label": "Min Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_max_payload_time",
-        "label": "Max Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_min_payload_tlm",
-        "label": "Min Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_max_payload_tlm",
-        "label": "Max Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_min_lasp_batt",
-        "label": "Min Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_max_lasp_batt",
-        "label": "Max Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_bck_min_store_read",
-        "label": "Min Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_bck_max_store_read",
-        "label": "Max Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_bck_min_flash_back",
-        "label": "Min Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_bck_max_flash_back",
-        "label": "Max Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_bck_min_uhf_back",
-        "label": "Min Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_bck_max_uhf_back",
-        "label": "Max Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_bck_min_xband_back",
-        "label": "Min Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_bck_max_xband_back",
-        "label": "Max Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_bck_min_cfi_back",
-        "label": "Min Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_bck_max_cfi_back",
-        "label": "Max Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_bck_min_nand_stream_back",
-        "label": "Min Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      },
-      {
-        "field": "des_time_bck_max_nand_stream_back",
-        "label": "Max Time",
-        "unit": "",
-        "kind": "number",
-        "group": "measurements"
-      }
-    ]
-  },
-  {
     "apid": 23,
     "name": "dsps_log",
     "title": "DSPS log event headers",
@@ -18021,6 +17664,6211 @@
         "kind": "number",
         "group": "measurements"
       }
+    ]
+  },
+  {
+    "apid": 513,
+    "name": "sw_stat",
+    "title": "CSIE Software status",
+    "signals": [
+      {
+        "field": "sw_stat_major_version",
+        "label": "Software major version",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_stat_minor_version",
+        "label": "Software minor version",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_stat_patch_version",
+        "label": "Software patch version",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_stat_image_id",
+        "label": "Software Image ID",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_tbl_load_state",
+        "label": "Table Manager Load State",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "IDLE",
+          "1": "IN_PROGRESS",
+          "2": "VERIFIED",
+          "3": "FAILED"
+        }
+      },
+      {
+        "field": "sw_csie_histogram_0",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_0",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_1",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_1",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_2",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_2",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_3",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_3",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_4",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_4",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_5",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_5",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_6",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_6",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_7",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_7",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_8",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_8",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_9",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_9",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_10",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_10",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_11",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_11",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_12",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_12",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_13",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_13",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_14",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_14",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_15",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_15",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_16",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_16",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_17",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_17",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_18",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_18",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_19",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_19",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_20",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_20",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_21",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_21",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_22",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_22",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_23",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_23",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_24",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_24",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_25",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_25",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_26",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_26",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_27",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_27",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_28",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_28",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_29",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_29",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_30",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_30",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_csie_histogram_31",
+        "label": "CSIE Histogram Data \u00b7 sw_csie_histogram_31",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      }
+    ],
+    "timeHeaderFields": [
+      "SHCOARSE",
+      "SHFINE"
+    ]
+  },
+  {
+    "apid": 514,
+    "name": "lib_hk",
+    "title": "CSIE Library health",
+    "signals": [
+      {
+        "field": "lib_reg_err_max",
+        "label": "Registration Errors due to packet number",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "lib_reg_err_size",
+        "label": "Registration Errors due to size",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "lib_reg_err_dup",
+        "label": "Registration Errors due to packet id",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "lib_id_err",
+        "label": "Bad access due to ID",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "lib_entry_num",
+        "label": "Number of registered entries",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "lib_entry_store",
+        "label": "Size of packet storage",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      }
+    ],
+    "timeHeaderFields": [
+      "SHCOARSE",
+      "SHFINE"
+    ]
+  },
+  {
+    "apid": 515,
+    "name": "mem_hk",
+    "title": "CSIE Memory health",
+    "signals": [
+      {
+        "field": "mem_op_type",
+        "label": "Operation Type",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "NONE",
+          "1": "DUMP",
+          "2": "LOAD",
+          "3": "XSUM",
+          "4": "COPY",
+          "5": "ERASE",
+          "6": "WAIT",
+          "7": "TEST"
+        }
+      },
+      {
+        "field": "mem_section",
+        "label": "Section Identifier",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "NONE",
+          "1": "PTR",
+          "2": "CUSTOM"
+        }
+      },
+      {
+        "field": "mem_fail_count",
+        "label": "Count of failed operations",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_start_offset",
+        "label": "Start offset for operation",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_curr_offset",
+        "label": "Current offset for operation",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_curr_bytes",
+        "label": "Running count of bytes processed in current operation",
+        "unit": "bytes",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_total_bytes",
+        "label": "Number of bytes in current operation",
+        "unit": "bytes",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_addr_mem_tbl",
+        "label": "Section start address \u00b7 mem_sn_addr_mem_tbl",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_size_mem_tbl",
+        "label": "Section total size (bytes) \u00b7 mem_sn_size_mem_tbl",
+        "unit": "bytes",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_st_mem_tbl",
+        "label": "Lock State \u00b7 mem_sn_st_mem_tbl",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "LOCK",
+          "1": "UNLOCK"
+        }
+      },
+      {
+        "field": "mem_sn_pr_mem_tbl",
+        "label": "Protected Status \u00b7 mem_sn_pr_mem_tbl",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_tst_mem_tbl",
+        "label": "Test Enabled Status \u00b7 mem_sn_tst_mem_tbl",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_er_mem_tbl",
+        "label": "Erase Enabled \u00b7 mem_sn_er_mem_tbl",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_xs_mem_tbl",
+        "label": "XSUM Enabled \u00b7 mem_sn_xs_mem_tbl",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_cp_mem_tbl",
+        "label": "Copy Enabled \u00b7 mem_sn_cp_mem_tbl",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_wr_mem_tbl",
+        "label": "Write Enabled \u00b7 mem_sn_wr_mem_tbl",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_rd_mem_tbl",
+        "label": "Read Enabled \u00b7 mem_sn_rd_mem_tbl",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_err_mem_tbl",
+        "label": "Write Error count \u00b7 mem_sn_err_mem_tbl",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_addr_nand",
+        "label": "Section start address \u00b7 mem_sn_addr_nand",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_size_nand",
+        "label": "Section total size (bytes) \u00b7 mem_sn_size_nand",
+        "unit": "bytes",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_st_nand",
+        "label": "Lock State \u00b7 mem_sn_st_nand",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "LOCK",
+          "1": "UNLOCK"
+        }
+      },
+      {
+        "field": "mem_sn_pr_nand",
+        "label": "Protected Status \u00b7 mem_sn_pr_nand",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_tst_nand",
+        "label": "Test Enabled Status \u00b7 mem_sn_tst_nand",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_er_nand",
+        "label": "Erase Enabled \u00b7 mem_sn_er_nand",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_xs_nand",
+        "label": "XSUM Enabled \u00b7 mem_sn_xs_nand",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_cp_nand",
+        "label": "Copy Enabled \u00b7 mem_sn_cp_nand",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_wr_nand",
+        "label": "Write Enabled \u00b7 mem_sn_wr_nand",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_rd_nand",
+        "label": "Read Enabled \u00b7 mem_sn_rd_nand",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_err_nand",
+        "label": "Write Error count \u00b7 mem_sn_err_nand",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_addr_bb",
+        "label": "Section start address \u00b7 mem_sn_addr_bb",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_size_bb",
+        "label": "Section total size (bytes) \u00b7 mem_sn_size_bb",
+        "unit": "bytes",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_st_bb",
+        "label": "Lock State \u00b7 mem_sn_st_bb",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "LOCK",
+          "1": "UNLOCK"
+        }
+      },
+      {
+        "field": "mem_sn_pr_bb",
+        "label": "Protected Status \u00b7 mem_sn_pr_bb",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_tst_bb",
+        "label": "Test Enabled Status \u00b7 mem_sn_tst_bb",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_er_bb",
+        "label": "Erase Enabled \u00b7 mem_sn_er_bb",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_xs_bb",
+        "label": "XSUM Enabled \u00b7 mem_sn_xs_bb",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_cp_bb",
+        "label": "Copy Enabled \u00b7 mem_sn_cp_bb",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_wr_bb",
+        "label": "Write Enabled \u00b7 mem_sn_wr_bb",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_rd_bb",
+        "label": "Read Enabled \u00b7 mem_sn_rd_bb",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_err_bb",
+        "label": "Write Error count \u00b7 mem_sn_err_bb",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_addr_nvm_storage",
+        "label": "Section start address \u00b7 mem_sn_addr_nvm_storage",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_size_nvm_storage",
+        "label": "Section total size (bytes) \u00b7 mem_sn_size_nvm_storage",
+        "unit": "bytes",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_st_nvm_storage",
+        "label": "Lock State \u00b7 mem_sn_st_nvm_storage",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "LOCK",
+          "1": "UNLOCK"
+        }
+      },
+      {
+        "field": "mem_sn_pr_nvm_storage",
+        "label": "Protected Status \u00b7 mem_sn_pr_nvm_storage",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_tst_nvm_storage",
+        "label": "Test Enabled Status \u00b7 mem_sn_tst_nvm_storage",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_er_nvm_storage",
+        "label": "Erase Enabled \u00b7 mem_sn_er_nvm_storage",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_xs_nvm_storage",
+        "label": "XSUM Enabled \u00b7 mem_sn_xs_nvm_storage",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_cp_nvm_storage",
+        "label": "Copy Enabled \u00b7 mem_sn_cp_nvm_storage",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_wr_nvm_storage",
+        "label": "Write Enabled \u00b7 mem_sn_wr_nvm_storage",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_rd_nvm_storage",
+        "label": "Read Enabled \u00b7 mem_sn_rd_nvm_storage",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_err_nvm_storage",
+        "label": "Write Error count \u00b7 mem_sn_err_nvm_storage",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_addr_nvm_bbmanager",
+        "label": "Section start address \u00b7 mem_sn_addr_nvm_bbmanager",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_size_nvm_bbmanager",
+        "label": "Section total size (bytes) \u00b7 mem_sn_size_nvm_bbmanager",
+        "unit": "bytes",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_st_nvm_bbmanager",
+        "label": "Lock State \u00b7 mem_sn_st_nvm_bbmanager",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "LOCK",
+          "1": "UNLOCK"
+        }
+      },
+      {
+        "field": "mem_sn_pr_nvm_bbmanager",
+        "label": "Protected Status \u00b7 mem_sn_pr_nvm_bbmanager",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_tst_nvm_bbmanager",
+        "label": "Test Enabled Status \u00b7 mem_sn_tst_nvm_bbmanager",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_er_nvm_bbmanager",
+        "label": "Erase Enabled \u00b7 mem_sn_er_nvm_bbmanager",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_xs_nvm_bbmanager",
+        "label": "XSUM Enabled \u00b7 mem_sn_xs_nvm_bbmanager",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_cp_nvm_bbmanager",
+        "label": "Copy Enabled \u00b7 mem_sn_cp_nvm_bbmanager",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_wr_nvm_bbmanager",
+        "label": "Write Enabled \u00b7 mem_sn_wr_nvm_bbmanager",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_rd_nvm_bbmanager",
+        "label": "Read Enabled \u00b7 mem_sn_rd_nvm_bbmanager",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_err_nvm_bbmanager",
+        "label": "Write Error count \u00b7 mem_sn_err_nvm_bbmanager",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_addr_nvm_nand_bb",
+        "label": "Section start address \u00b7 mem_sn_addr_nvm_nand_bb",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_size_nvm_nand_bb",
+        "label": "Section total size (bytes) \u00b7 mem_sn_size_nvm_nand_bb",
+        "unit": "bytes",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_st_nvm_nand_bb",
+        "label": "Lock State \u00b7 mem_sn_st_nvm_nand_bb",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "LOCK",
+          "1": "UNLOCK"
+        }
+      },
+      {
+        "field": "mem_sn_pr_nvm_nand_bb",
+        "label": "Protected Status \u00b7 mem_sn_pr_nvm_nand_bb",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_tst_nvm_nand_bb",
+        "label": "Test Enabled Status \u00b7 mem_sn_tst_nvm_nand_bb",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_er_nvm_nand_bb",
+        "label": "Erase Enabled \u00b7 mem_sn_er_nvm_nand_bb",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_xs_nvm_nand_bb",
+        "label": "XSUM Enabled \u00b7 mem_sn_xs_nvm_nand_bb",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_cp_nvm_nand_bb",
+        "label": "Copy Enabled \u00b7 mem_sn_cp_nvm_nand_bb",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_wr_nvm_nand_bb",
+        "label": "Write Enabled \u00b7 mem_sn_wr_nvm_nand_bb",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_rd_nvm_nand_bb",
+        "label": "Read Enabled \u00b7 mem_sn_rd_nvm_nand_bb",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_err_nvm_nand_bb",
+        "label": "Write Error count \u00b7 mem_sn_err_nvm_nand_bb",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_addr_nvm_nand_status",
+        "label": "Section start address \u00b7 mem_sn_addr_nvm_nand_status",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_size_nvm_nand_status",
+        "label": "Section total size (bytes) \u00b7 mem_sn_size_nvm_nand_status",
+        "unit": "bytes",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_st_nvm_nand_status",
+        "label": "Lock State \u00b7 mem_sn_st_nvm_nand_status",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "LOCK",
+          "1": "UNLOCK"
+        }
+      },
+      {
+        "field": "mem_sn_pr_nvm_nand_status",
+        "label": "Protected Status \u00b7 mem_sn_pr_nvm_nand_status",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_tst_nvm_nand_status",
+        "label": "Test Enabled Status \u00b7 mem_sn_tst_nvm_nand_status",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_er_nvm_nand_status",
+        "label": "Erase Enabled \u00b7 mem_sn_er_nvm_nand_status",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_xs_nvm_nand_status",
+        "label": "XSUM Enabled \u00b7 mem_sn_xs_nvm_nand_status",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_cp_nvm_nand_status",
+        "label": "Copy Enabled \u00b7 mem_sn_cp_nvm_nand_status",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_wr_nvm_nand_status",
+        "label": "Write Enabled \u00b7 mem_sn_wr_nvm_nand_status",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_rd_nvm_nand_status",
+        "label": "Read Enabled \u00b7 mem_sn_rd_nvm_nand_status",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_err_nvm_nand_status",
+        "label": "Write Error count \u00b7 mem_sn_err_nvm_nand_status",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_addr_gpio",
+        "label": "Section start address \u00b7 mem_sn_addr_gpio",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_size_gpio",
+        "label": "Section total size (bytes) \u00b7 mem_sn_size_gpio",
+        "unit": "bytes",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_st_gpio",
+        "label": "Lock State \u00b7 mem_sn_st_gpio",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "LOCK",
+          "1": "UNLOCK"
+        }
+      },
+      {
+        "field": "mem_sn_pr_gpio",
+        "label": "Protected Status \u00b7 mem_sn_pr_gpio",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_tst_gpio",
+        "label": "Test Enabled Status \u00b7 mem_sn_tst_gpio",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_er_gpio",
+        "label": "Erase Enabled \u00b7 mem_sn_er_gpio",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_xs_gpio",
+        "label": "XSUM Enabled \u00b7 mem_sn_xs_gpio",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_cp_gpio",
+        "label": "Copy Enabled \u00b7 mem_sn_cp_gpio",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_wr_gpio",
+        "label": "Write Enabled \u00b7 mem_sn_wr_gpio",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_rd_gpio",
+        "label": "Read Enabled \u00b7 mem_sn_rd_gpio",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_err_gpio",
+        "label": "Write Error count \u00b7 mem_sn_err_gpio",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_addr_hk",
+        "label": "Section start address \u00b7 mem_sn_addr_hk",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_size_hk",
+        "label": "Section total size (bytes) \u00b7 mem_sn_size_hk",
+        "unit": "bytes",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_st_hk",
+        "label": "Lock State \u00b7 mem_sn_st_hk",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "LOCK",
+          "1": "UNLOCK"
+        }
+      },
+      {
+        "field": "mem_sn_pr_hk",
+        "label": "Protected Status \u00b7 mem_sn_pr_hk",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_tst_hk",
+        "label": "Test Enabled Status \u00b7 mem_sn_tst_hk",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_er_hk",
+        "label": "Erase Enabled \u00b7 mem_sn_er_hk",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_xs_hk",
+        "label": "XSUM Enabled \u00b7 mem_sn_xs_hk",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_cp_hk",
+        "label": "Copy Enabled \u00b7 mem_sn_cp_hk",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_wr_hk",
+        "label": "Write Enabled \u00b7 mem_sn_wr_hk",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_rd_hk",
+        "label": "Read Enabled \u00b7 mem_sn_rd_hk",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_err_hk",
+        "label": "Write Error count \u00b7 mem_sn_err_hk",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_addr_mem_section_cfi",
+        "label": "Section start address \u00b7 mem_sn_addr_mem_section_cfi",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_size_mem_section_cfi",
+        "label": "Section total size (bytes) \u00b7 mem_sn_size_mem_section_cfi",
+        "unit": "bytes",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_st_mem_section_cfi",
+        "label": "Lock State \u00b7 mem_sn_st_mem_section_cfi",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "LOCK",
+          "1": "UNLOCK"
+        }
+      },
+      {
+        "field": "mem_sn_pr_mem_section_cfi",
+        "label": "Protected Status \u00b7 mem_sn_pr_mem_section_cfi",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_tst_mem_section_cfi",
+        "label": "Test Enabled Status \u00b7 mem_sn_tst_mem_section_cfi",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_er_mem_section_cfi",
+        "label": "Erase Enabled \u00b7 mem_sn_er_mem_section_cfi",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_xs_mem_section_cfi",
+        "label": "XSUM Enabled \u00b7 mem_sn_xs_mem_section_cfi",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_cp_mem_section_cfi",
+        "label": "Copy Enabled \u00b7 mem_sn_cp_mem_section_cfi",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_wr_mem_section_cfi",
+        "label": "Write Enabled \u00b7 mem_sn_wr_mem_section_cfi",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_rd_mem_section_cfi",
+        "label": "Read Enabled \u00b7 mem_sn_rd_mem_section_cfi",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_err_mem_section_cfi",
+        "label": "Write Error count \u00b7 mem_sn_err_mem_section_cfi",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_addr_csie",
+        "label": "Section start address \u00b7 mem_sn_addr_csie",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_size_csie",
+        "label": "Section total size (bytes) \u00b7 mem_sn_size_csie",
+        "unit": "bytes",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "mem_sn_st_csie",
+        "label": "Lock State \u00b7 mem_sn_st_csie",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "LOCK",
+          "1": "UNLOCK"
+        }
+      },
+      {
+        "field": "mem_sn_pr_csie",
+        "label": "Protected Status \u00b7 mem_sn_pr_csie",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_tst_csie",
+        "label": "Test Enabled Status \u00b7 mem_sn_tst_csie",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_er_csie",
+        "label": "Erase Enabled \u00b7 mem_sn_er_csie",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_xs_csie",
+        "label": "XSUM Enabled \u00b7 mem_sn_xs_csie",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_cp_csie",
+        "label": "Copy Enabled \u00b7 mem_sn_cp_csie",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_wr_csie",
+        "label": "Write Enabled \u00b7 mem_sn_wr_csie",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_rd_csie",
+        "label": "Read Enabled \u00b7 mem_sn_rd_csie",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "mem_sn_err_csie",
+        "label": "Write Error count \u00b7 mem_sn_err_csie",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      }
+    ],
+    "timeHeaderFields": [
+      "SHCOARSE",
+      "SHFINE"
+    ]
+  },
+  {
+    "apid": 516,
+    "name": "hw_stat",
+    "title": "CSIE Hardware status",
+    "signals": [
+      {
+        "field": "hw_volt_bus",
+        "label": "Bus Voltage",
+        "unit": "V",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "hw_volt_3p3",
+        "label": "3.3v Rail Voltage",
+        "unit": "V",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "hw_volt_2p5",
+        "label": "2.5v Rail Voltage",
+        "unit": "V",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "hw_volt_1p8",
+        "label": "1.8v Rail Voltage",
+        "unit": "V",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "hw_volt_1p5",
+        "label": "1.5v Rail Voltage",
+        "unit": "V",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "hw_volt_1p0",
+        "label": "1.0v Rail Voltage",
+        "unit": "V",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "hw_curr_3p3",
+        "label": "3.3v Rail Current",
+        "unit": "A",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "hw_curr_1p8",
+        "label": "1.8v Rail Current",
+        "unit": "A",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "hw_curr_1p0",
+        "label": "1.0v Rail Current",
+        "unit": "A",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "hw_fpga_therm",
+        "label": "FPGA Thermistor",
+        "unit": "\u00b0C",
+        "kind": "number",
+        "group": "temperatures"
+      },
+      {
+        "field": "hw_volt_det",
+        "label": "Detector Voltage",
+        "unit": "V",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "hw_volt_adc_buff",
+        "label": "ADC Buffer Voltage",
+        "unit": "V",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "hw_volt_adc_1p8",
+        "label": "ADC 1.8v Voltage",
+        "unit": "V",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "hw_volt_util",
+        "label": "Utility Rail Voltage",
+        "unit": "V",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "hw_volt_ffl",
+        "label": "FFL Voltage",
+        "unit": "V",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "hw_curr_inst",
+        "label": "Instrument Current",
+        "unit": "A",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "hw_curr_util",
+        "label": "Utility Rail Current",
+        "unit": "A",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "hw_curr_det",
+        "label": "Detector Current",
+        "unit": "A",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "hw_adc_thermistor_temp",
+        "label": "ADC Thermistor",
+        "unit": "\u00b0C",
+        "kind": "number",
+        "group": "temperatures"
+      },
+      {
+        "field": "hw_det0_therm",
+        "label": "Detector0 Thermistor",
+        "unit": "\u00b0C",
+        "kind": "number",
+        "group": "temperatures"
+      },
+      {
+        "field": "hw_det1_therm",
+        "label": "Detector1 Thermistor",
+        "unit": "\u00b0C",
+        "kind": "number",
+        "group": "temperatures"
+      },
+      {
+        "field": "hw_curr_peak_util",
+        "label": "Utility Rail Peak Current",
+        "unit": "A",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "hw_adc_core_temp",
+        "label": "ADC Core Temperature",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "temperatures"
+      },
+      {
+        "field": "tlm_sync_rx_drop_dbg",
+        "label": "Number of dropped sync bytes",
+        "unit": "bytes",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tlm_sync_len_err_dbg",
+        "label": "Number of length errors",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tlm_sync_time_err_dbg",
+        "label": "Number of timeout errors",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tlm_sync_tx_err_dbg",
+        "label": "Number of transmit errors",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tlm_rx_time_sync_dbg",
+        "label": "Last packet received time",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      }
+    ],
+    "timeHeaderFields": [
+      "SHCOARSE",
+      "SHFINE"
+    ]
+  },
+  {
+    "apid": 520,
+    "name": "tbl_hk",
+    "title": "CSIE Table health",
+    "signals": [
+      {
+        "field": "tbl_unreg_err_cnt",
+        "label": "Unregistered Table Error Count",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_inv_err_cnt",
+        "label": "Invalid Table Access Count",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_check_err_cnt",
+        "label": "Bad checksum calculation count",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_match_err_cnt",
+        "label": "Copy mismatch count",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_read_err_cnt",
+        "label": "Storage Read Error Count",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_load_state",
+        "label": "Table loading state",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "IDLE",
+          "1": "IN_PROGRESS",
+          "2": "VERIFIED",
+          "3": "FAILED"
+        }
+      },
+      {
+        "field": "tbl_size_table",
+        "label": "Size of table, in bytes \u00b7 tbl_size_table",
+        "unit": "bytes",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_up_tm_table",
+        "label": "Last table update time \u00b7 tbl_up_tm_table",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_query_table",
+        "label": "Last table query time \u00b7 tbl_query_table",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_pri_table",
+        "label": "Primary table location \u00b7 tbl_pri_table",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_bck_table",
+        "label": "Backup table location \u00b7 tbl_bck_table",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_pend_table",
+        "label": "Indicates an update is pending \u00b7 tbl_pend_table",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_size_stream_dbg",
+        "label": "Size of table, in bytes \u00b7 tbl_size_stream_dbg",
+        "unit": "bytes",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_up_tm_stream_dbg",
+        "label": "Last table update time \u00b7 tbl_up_tm_stream_dbg",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_query_stream_dbg",
+        "label": "Last table query time \u00b7 tbl_query_stream_dbg",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_pri_stream_dbg",
+        "label": "Primary table location \u00b7 tbl_pri_stream_dbg",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_bck_stream_dbg",
+        "label": "Backup table location \u00b7 tbl_bck_stream_dbg",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_pend_stream_dbg",
+        "label": "Indicates an update is pending \u00b7 tbl_pend_stream_dbg",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_size_stream_hssi",
+        "label": "Size of table, in bytes \u00b7 tbl_size_stream_hssi",
+        "unit": "bytes",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_up_tm_stream_hssi",
+        "label": "Last table update time \u00b7 tbl_up_tm_stream_hssi",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_query_stream_hssi",
+        "label": "Last table query time \u00b7 tbl_query_stream_hssi",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_pri_stream_hssi",
+        "label": "Primary table location \u00b7 tbl_pri_stream_hssi",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_bck_stream_hssi",
+        "label": "Backup table location \u00b7 tbl_bck_stream_hssi",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_pend_stream_hssi",
+        "label": "Indicates an update is pending \u00b7 tbl_pend_stream_hssi",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_size_storage_stream",
+        "label": "Size of table, in bytes \u00b7 tbl_size_storage_stream",
+        "unit": "bytes",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_up_tm_storage_stream",
+        "label": "Last table update time \u00b7 tbl_up_tm_storage_stream",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_query_storage_stream",
+        "label": "Last table query time \u00b7 tbl_query_storage_stream",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_pri_storage_stream",
+        "label": "Primary table location \u00b7 tbl_pri_storage_stream",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_bck_storage_stream",
+        "label": "Backup table location \u00b7 tbl_bck_storage_stream",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_pend_storage_stream",
+        "label": "Indicates an update is pending \u00b7 tbl_pend_storage_stream",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_size_sc_stream",
+        "label": "Size of table, in bytes \u00b7 tbl_size_sc_stream",
+        "unit": "bytes",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_up_tm_sc_stream",
+        "label": "Last table update time \u00b7 tbl_up_tm_sc_stream",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_query_sc_stream",
+        "label": "Last table query time \u00b7 tbl_query_sc_stream",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_pri_sc_stream",
+        "label": "Primary table location \u00b7 tbl_pri_sc_stream",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_bck_sc_stream",
+        "label": "Backup table location \u00b7 tbl_bck_sc_stream",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_pend_sc_stream",
+        "label": "Indicates an update is pending \u00b7 tbl_pend_sc_stream",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_size_storage",
+        "label": "Size of table, in bytes \u00b7 tbl_size_storage",
+        "unit": "bytes",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_up_tm_storage",
+        "label": "Last table update time \u00b7 tbl_up_tm_storage",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_query_storage",
+        "label": "Last table query time \u00b7 tbl_query_storage",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_pri_storage",
+        "label": "Primary table location \u00b7 tbl_pri_storage",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_bck_storage",
+        "label": "Backup table location \u00b7 tbl_bck_storage",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_pend_storage",
+        "label": "Indicates an update is pending \u00b7 tbl_pend_storage",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_size_csie_base",
+        "label": "Size of table, in bytes \u00b7 tbl_size_csie_base",
+        "unit": "bytes",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_up_tm_csie_base",
+        "label": "Last table update time \u00b7 tbl_up_tm_csie_base",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_query_csie_base",
+        "label": "Last table query time \u00b7 tbl_query_csie_base",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_pri_csie_base",
+        "label": "Primary table location \u00b7 tbl_pri_csie_base",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_bck_csie_base",
+        "label": "Backup table location \u00b7 tbl_bck_csie_base",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_pend_csie_base",
+        "label": "Indicates an update is pending \u00b7 tbl_pend_csie_base",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_size_csie_device",
+        "label": "Size of table, in bytes \u00b7 tbl_size_csie_device",
+        "unit": "bytes",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_up_tm_csie_device",
+        "label": "Last table update time \u00b7 tbl_up_tm_csie_device",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_query_csie_device",
+        "label": "Last table query time \u00b7 tbl_query_csie_device",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_pri_csie_device",
+        "label": "Primary table location \u00b7 tbl_pri_csie_device",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_bck_csie_device",
+        "label": "Backup table location \u00b7 tbl_bck_csie_device",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_pend_csie_device",
+        "label": "Indicates an update is pending \u00b7 tbl_pend_csie_device",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_size_pid",
+        "label": "Size of table, in bytes \u00b7 tbl_size_pid",
+        "unit": "bytes",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_up_tm_pid",
+        "label": "Last table update time \u00b7 tbl_up_tm_pid",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_query_pid",
+        "label": "Last table query time \u00b7 tbl_query_pid",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_pri_pid",
+        "label": "Primary table location \u00b7 tbl_pri_pid",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_bck_pid",
+        "label": "Backup table location \u00b7 tbl_bck_pid",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tbl_pend_pid",
+        "label": "Indicates an update is pending \u00b7 tbl_pend_pid",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      }
+    ],
+    "timeHeaderFields": [
+      "SHCOARSE",
+      "SHFINE"
+    ]
+  },
+  {
+    "apid": 523,
+    "name": "des_hk",
+    "title": "CSIE Task health",
+    "signals": [
+      {
+        "field": "des_cycle_count",
+        "label": "Number of schedule cycles",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_over_count",
+        "label": "Number of overrun tasks",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_isr_count",
+        "label": "System ISR count",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_last_overrun",
+        "label": "Last task ID to overrun its allocation",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "1": "TLM_DEBUG",
+          "2": "CMD_DEBUG",
+          "3": "HK",
+          "4": "MEM",
+          "5": "Log",
+          "6": "Table",
+          "7": "Seq",
+          "8": "Flash_HK",
+          "9": "Store_HK",
+          "10": "FP",
+          "11": "HSSI_Tlm",
+          "12": "TLM_SC",
+          "13": "CMD_SC",
+          "14": "MAX_TASKS",
+          "255": "Store_TLM"
+        }
+      },
+      {
+        "field": "des_back_count",
+        "label": "Background cycle count",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_back_hwm",
+        "label": "Background cycle count high watermark",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_sys_time_sec",
+        "label": "Current system VTC time",
+        "unit": "s",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_new_time_sec",
+        "label": "New time that will be set",
+        "unit": "s",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_eff_time_sec",
+        "label": "Time at which new time becomes effective",
+        "unit": "s",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_met_time_sec",
+        "label": "Current MET seconds",
+        "unit": "s",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_met_time_subsec",
+        "label": "Current MET subseconds",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_vtc_time_sec",
+        "label": "Current VTC seconds",
+        "unit": "s",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_vtc_time_subsec",
+        "label": "Current VTC subseconds",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_prev_vtc_set_time",
+        "label": "Last time VTC was set to",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_met_vtc_set_time",
+        "label": "Last MET time the VTC was set",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      }
+    ],
+    "timeHeaderFields": [
+      "SHCOARSE",
+      "SHFINE"
+    ]
+  },
+  {
+    "apid": 525,
+    "name": "flash_hk",
+    "title": "CSIE Flash storage",
+    "signals": [
+      {
+        "field": "nand_format_count",
+        "label": "Number of blocks remaining to erase",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "nand_bad_count",
+        "label": "Number of bad blocks detected",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "nand_timeout_count",
+        "label": "Number of timeout errors",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "nand_read_err_count",
+        "label": "Number of read errors",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "nand_write_err_count",
+        "label": "Number of write errors",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "nand_bb_state",
+        "label": "State of manager",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "ERROR",
+          "1": "OK"
+        }
+      },
+      {
+        "field": "nand_bb_free_count",
+        "label": "Number of free blocks remaining",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "nand_bb_free_blk",
+        "label": "Next free block",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "nand_bb_remap_count",
+        "label": "Number of Remaps",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "nand_bb_bad_read",
+        "label": "Number of Bad Reads",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      }
+    ],
+    "timeHeaderFields": [
+      "SHCOARSE",
+      "SHFINE"
+    ]
+  },
+  {
+    "apid": 526,
+    "name": "des_task",
+    "title": "CSIE Task diagnostics",
+    "signals": [
+      {
+        "field": "des_task_count",
+        "label": "Number of scheduled tasks",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_task_cycle",
+        "label": "Number of schedule cycles",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_task_exec_tlm_debug",
+        "label": "Execution count for each task tlm_debug",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_task_exec_hk",
+        "label": "Execution count for each task hk",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_task_exec_mem",
+        "label": "Execution count for each task mem",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_task_exec_log",
+        "label": "Execution count for each task log",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_task_exec_table",
+        "label": "Execution count for each task table",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_task_exec_flash_hk",
+        "label": "Execution count for each task flash_hk",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_task_exec_store_hk",
+        "label": "Execution count for each task store_hk",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_task_exec_hssi_tlm",
+        "label": "Execution count for each task hssi_tlm",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_task_exec_tlm_sc",
+        "label": "Execution count for each task tlm_sc",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_task_exec_max_tasks",
+        "label": "Execution count for each task max_tasks",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_task_over_tlm_debug",
+        "label": "Overrun count for each task tlm_debug",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_task_over_hk",
+        "label": "Overrun count for each task hk",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_task_over_mem",
+        "label": "Overrun count for each task mem",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_task_over_log",
+        "label": "Overrun count for each task log",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_task_over_table",
+        "label": "Overrun count for each task table",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_task_over_flash_hk",
+        "label": "Overrun count for each task flash_hk",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_task_over_store_hk",
+        "label": "Overrun count for each task store_hk",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_task_over_hssi_tlm",
+        "label": "Overrun count for each task hssi_tlm",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_task_over_tlm_sc",
+        "label": "Overrun count for each task tlm_sc",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_task_over_max_tasks",
+        "label": "Overrun count for each task max_tasks",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_task_back_store_read",
+        "label": "Execution count for each background task store_read",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_task_back_cfi_back",
+        "label": "Execution count for each background task cfi_back",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_task_back_flash_back",
+        "label": "Execution count for each background task flash_back",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_task_back_csie",
+        "label": "Execution count for each background task csie",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_task_back_pid",
+        "label": "Execution count for each background task pid",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      }
+    ],
+    "timeHeaderFields": [
+      "SHCOARSE",
+      "SHFINE"
+    ]
+  },
+  {
+    "apid": 527,
+    "name": "log_hk",
+    "title": "CSIE Log health",
+    "signals": [
+      {
+        "field": "log_reg_cnt",
+        "label": "Total number of register events",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "log_evt_cnt",
+        "label": "Count of log events received",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "log_unknown_cnt",
+        "label": "Count of unknown message ID errors",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "log_dup_id_cnt",
+        "label": "Count of duplicate message ID errors",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "log_unreg_id_cnt",
+        "label": "Count of unregistered message ID errors",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "log_err_cnt",
+        "label": "Count of logging errors",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "log_write_cnt_evt",
+        "label": "Log Write Count \u00b7 log_write_cnt_evt",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "log_size_evt",
+        "label": "Log Size \u00b7 log_size_evt",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "log_drop_cnt_evt",
+        "label": "Log Drop Count \u00b7 log_drop_cnt_evt",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "log_state_evt",
+        "label": "Log State \u00b7 log_state_evt",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "log_write_cnt_pm",
+        "label": "Log Write Count \u00b7 log_write_cnt_pm",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "log_size_pm",
+        "label": "Log Size \u00b7 log_size_pm",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "log_drop_cnt_pm",
+        "label": "Log Drop Count \u00b7 log_drop_cnt_pm",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "log_state_pm",
+        "label": "Log State \u00b7 log_state_pm",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "log_pub_state_pm",
+        "label": "Publish state for each log pm",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "log_pub_state_evt",
+        "label": "Publish state for each log evt",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      }
+    ],
+    "timeHeaderFields": [
+      "SHCOARSE",
+      "SHFINE"
+    ]
+  },
+  {
+    "apid": 528,
+    "name": "version",
+    "title": "CSIE Version",
+    "signals": [
+      {
+        "field": "sw_major_version",
+        "label": "FSW Major Version",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_minor_version",
+        "label": "FSW Minor Version",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_patch_version",
+        "label": "FSW Patch Version",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "sw_image_id",
+        "label": "FSW Image ID",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "fpga_fw_version",
+        "label": "FPGA version number",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      }
+    ],
+    "timeHeaderFields": [
+      "SHCOARSE",
+      "SHFINE"
+    ]
+  },
+  {
+    "apid": 529,
+    "name": "tlm_hk",
+    "title": "CSIE Telemetry health",
+    "signals": [
+      {
+        "field": "tlm_sent_cnt_dbg",
+        "label": "Number of sent packets \u00b7 tlm_sent_cnt_dbg",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tlm_err_cnt_dbg",
+        "label": "Number of errors \u00b7 tlm_err_cnt_dbg",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tlm_busy_cnt_dbg",
+        "label": "Number of stream busy errors \u00b7 tlm_busy_cnt_dbg",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tlm_len_cnt_dbg",
+        "label": "Number of packet length errors \u00b7 tlm_len_cnt_dbg",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tlm_len_apid_dbg",
+        "label": "ApID of last packet length error \u00b7 tlm_len_apid_dbg",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "513": "SW_STAT",
+          "514": "LIB_HK",
+          "515": "MEM_HK",
+          "516": "HW_STAT",
+          "518": "MEM",
+          "519": "SEQ",
+          "520": "TBL",
+          "521": "ECHO",
+          "522": "ANA",
+          "523": "DES_HK",
+          "524": "CMD_HK",
+          "525": "FLASH_HK",
+          "526": "DES_TASK",
+          "527": "LOG_HK",
+          "528": "VERSION",
+          "529": "TLM_HK",
+          "530": "TIME_HK",
+          "531": "DES_SCHED",
+          "532": "EVT_LOG",
+          "533": "STORE_HK",
+          "534": "STORE_PBK",
+          "535": "CFI_HK",
+          "536": "CSIE_DATA",
+          "537": "CSIE_HK",
+          "538": "CSIE_META",
+          "539": "DES_TIME",
+          "540": "FP_HK",
+          "541": "FP_TEST",
+          "542": "PID_HK",
+          "543": "NAND_STREAM_HK",
+          "583": "STORE_DUMP"
+        }
+      },
+      {
+        "field": "tlm_stream_st_dbg",
+        "label": "Stream state \u00b7 tlm_stream_st_dbg",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "tlm_apid_cnt_dbg",
+        "label": "Stream Number of ApIDs \u00b7 tlm_apid_cnt_dbg",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tlm_sent_cnt_store",
+        "label": "Number of sent packets \u00b7 tlm_sent_cnt_store",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tlm_err_cnt_store",
+        "label": "Number of errors \u00b7 tlm_err_cnt_store",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tlm_busy_cnt_store",
+        "label": "Number of stream busy errors \u00b7 tlm_busy_cnt_store",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tlm_len_cnt_store",
+        "label": "Number of packet length errors \u00b7 tlm_len_cnt_store",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tlm_len_apid_store",
+        "label": "ApID of last packet length error \u00b7 tlm_len_apid_store",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "513": "SW_STAT",
+          "514": "LIB_HK",
+          "515": "MEM_HK",
+          "516": "HW_STAT",
+          "518": "MEM",
+          "519": "SEQ",
+          "520": "TBL",
+          "521": "ECHO",
+          "522": "ANA",
+          "523": "DES_HK",
+          "524": "CMD_HK",
+          "525": "FLASH_HK",
+          "526": "DES_TASK",
+          "527": "LOG_HK",
+          "528": "VERSION",
+          "529": "TLM_HK",
+          "530": "TIME_HK",
+          "531": "DES_SCHED",
+          "532": "EVT_LOG",
+          "533": "STORE_HK",
+          "534": "STORE_PBK",
+          "535": "CFI_HK",
+          "536": "CSIE_DATA",
+          "537": "CSIE_HK",
+          "538": "CSIE_META",
+          "539": "DES_TIME",
+          "540": "FP_HK",
+          "541": "FP_TEST",
+          "542": "PID_HK",
+          "543": "NAND_STREAM_HK",
+          "583": "STORE_DUMP"
+        }
+      },
+      {
+        "field": "tlm_stream_st_store",
+        "label": "Stream state \u00b7 tlm_stream_st_store",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "tlm_apid_cnt_store",
+        "label": "Stream Number of ApIDs \u00b7 tlm_apid_cnt_store",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tlm_sent_cnt_hssi",
+        "label": "Number of sent packets \u00b7 tlm_sent_cnt_hssi",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tlm_err_cnt_hssi",
+        "label": "Number of errors \u00b7 tlm_err_cnt_hssi",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tlm_busy_cnt_hssi",
+        "label": "Number of stream busy errors \u00b7 tlm_busy_cnt_hssi",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tlm_len_cnt_hssi",
+        "label": "Number of packet length errors \u00b7 tlm_len_cnt_hssi",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tlm_len_apid_hssi",
+        "label": "ApID of last packet length error \u00b7 tlm_len_apid_hssi",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "513": "SW_STAT",
+          "514": "LIB_HK",
+          "515": "MEM_HK",
+          "516": "HW_STAT",
+          "518": "MEM",
+          "519": "SEQ",
+          "520": "TBL",
+          "521": "ECHO",
+          "522": "ANA",
+          "523": "DES_HK",
+          "524": "CMD_HK",
+          "525": "FLASH_HK",
+          "526": "DES_TASK",
+          "527": "LOG_HK",
+          "528": "VERSION",
+          "529": "TLM_HK",
+          "530": "TIME_HK",
+          "531": "DES_SCHED",
+          "532": "EVT_LOG",
+          "533": "STORE_HK",
+          "534": "STORE_PBK",
+          "535": "CFI_HK",
+          "536": "CSIE_DATA",
+          "537": "CSIE_HK",
+          "538": "CSIE_META",
+          "539": "DES_TIME",
+          "540": "FP_HK",
+          "541": "FP_TEST",
+          "542": "PID_HK",
+          "543": "NAND_STREAM_HK",
+          "583": "STORE_DUMP"
+        }
+      },
+      {
+        "field": "tlm_stream_st_hssi",
+        "label": "Stream state \u00b7 tlm_stream_st_hssi",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "tlm_apid_cnt_hssi",
+        "label": "Stream Number of ApIDs \u00b7 tlm_apid_cnt_hssi",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tlm_sent_cnt_sc",
+        "label": "Number of sent packets \u00b7 tlm_sent_cnt_sc",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tlm_err_cnt_sc",
+        "label": "Number of errors \u00b7 tlm_err_cnt_sc",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tlm_busy_cnt_sc",
+        "label": "Number of stream busy errors \u00b7 tlm_busy_cnt_sc",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tlm_len_cnt_sc",
+        "label": "Number of packet length errors \u00b7 tlm_len_cnt_sc",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tlm_len_apid_sc",
+        "label": "ApID of last packet length error \u00b7 tlm_len_apid_sc",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "513": "SW_STAT",
+          "514": "LIB_HK",
+          "515": "MEM_HK",
+          "516": "HW_STAT",
+          "518": "MEM",
+          "519": "SEQ",
+          "520": "TBL",
+          "521": "ECHO",
+          "522": "ANA",
+          "523": "DES_HK",
+          "524": "CMD_HK",
+          "525": "FLASH_HK",
+          "526": "DES_TASK",
+          "527": "LOG_HK",
+          "528": "VERSION",
+          "529": "TLM_HK",
+          "530": "TIME_HK",
+          "531": "DES_SCHED",
+          "532": "EVT_LOG",
+          "533": "STORE_HK",
+          "534": "STORE_PBK",
+          "535": "CFI_HK",
+          "536": "CSIE_DATA",
+          "537": "CSIE_HK",
+          "538": "CSIE_META",
+          "539": "DES_TIME",
+          "540": "FP_HK",
+          "541": "FP_TEST",
+          "542": "PID_HK",
+          "543": "NAND_STREAM_HK",
+          "583": "STORE_DUMP"
+        }
+      },
+      {
+        "field": "tlm_stream_st_sc",
+        "label": "Stream state \u00b7 tlm_stream_st_sc",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "tlm_apid_cnt_sc",
+        "label": "Stream Number of ApIDs \u00b7 tlm_apid_cnt_sc",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tlm_id_err_cnt",
+        "label": "Operation error count",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "tlm_stream_err_cnt",
+        "label": "Stream error count",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      }
+    ],
+    "timeHeaderFields": [
+      "SHCOARSE",
+      "SHFINE"
+    ]
+  },
+  {
+    "apid": 530,
+    "name": "time_hk",
+    "title": "CSIE Time synchronization",
+    "signals": [
+      {
+        "field": "msg_recv_count",
+        "label": "Number of received time messages",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "pulse_recv_count",
+        "label": "Number of received time pulses",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "msg_recv_sec",
+        "label": "Local time in seconds when the last time message was received",
+        "unit": "s",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "msg_recv_ms",
+        "label": "Local time in milliseconds when the last time message was received",
+        "unit": "ms",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "pulse_recv_sec",
+        "label": "Local time in seconds when the last time pulse was received",
+        "unit": "s",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "pulse_recv_ms",
+        "label": "Local time in milliseconds when the last time pulse was received",
+        "unit": "ms",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "time_update_cnt",
+        "label": "Number of time updates that have been performed",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "time_fmt_count",
+        "label": "Number of bad format messages",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "time_received",
+        "label": "Time received in latest message",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "time_offset_sec",
+        "label": "Time offset in seconds",
+        "unit": "s",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "time_offset_ms",
+        "label": "Time offset in milliseconds",
+        "unit": "ms",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "time_pps_sec",
+        "label": "PPS Time in seconds when the packet was built",
+        "unit": "s",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "time_pps_ms",
+        "label": "PPS Time in milliseconds when the packet was built",
+        "unit": "ms",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "time_local_sec",
+        "label": "Local Time in seconds when the packet was built",
+        "unit": "s",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "time_local_ms",
+        "label": "Local Time in milliseconds when the packet was built",
+        "unit": "ms",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "time_since_update",
+        "label": "Time in seconds since the last PPS update.",
+        "unit": "s",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "time_since_pps",
+        "label": "Time in seconds since the last pulse.",
+        "unit": "s",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "time_since_msg",
+        "label": "Time in seconds since the last message.",
+        "unit": "s",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "time_sync_state",
+        "label": "Indicates if time sync'ing is enabled",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "time_pps_state",
+        "label": "Indicates if pps capture is enabled",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      }
+    ],
+    "timeHeaderFields": [
+      "SHCOARSE",
+      "SHFINE"
+    ]
+  },
+  {
+    "apid": 532,
+    "name": "log_msg",
+    "title": "CSIE Log event headers",
+    "signals": [
+      {
+        "field": "log_time_sec_hdr",
+        "label": "Time message was written (in seconds)",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "log_time_sub_hdr",
+        "label": "Time message was written (in subseconds)",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "log_msgid_hdr",
+        "label": "ID of the message",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "768": "MSG_ERROR_DES_OVERRUN",
+          "769": "MSG_ERROR_DES_OVER_TIME",
+          "770": "MSG_ERROR_DES_CMD_NYI",
+          "771": "MSG_PM_DES_TASK_ENTRY",
+          "772": "MSG_PM_DES_TASK_EXIT",
+          "773": "MSG_ERROR_DES_BAD_SLICE",
+          "2816": "MSG_SEQ_STATE",
+          "2817": "MSG_SEQ_CALL",
+          "2818": "MSG_SEQ_RETURN",
+          "2819": "MSG_SEQ_START",
+          "2820": "MSG_SEQ_FIND",
+          "2821": "MSG_SEQ_INFO",
+          "2822": "MSG_SEQ_ERROR_NO_SEQ",
+          "2823": "MSG_SEQ_ERROR_BAD_STATE",
+          "2824": "MSG_SEQ_ERROR_STOP",
+          "2825": "MSG_SEQ_ERROR_NESTED",
+          "2826": "MSG_SEQ_ERR_FIND",
+          "2827": "MSG_SEQ_CMD",
+          "2828": "MSG_SEQ_INT_CMD",
+          "3072": "MSG_CFI_READ_SELECT",
+          "3073": "MSG_CFI_POWER_ERR",
+          "3074": "MSG_CFI_WRITE_SELECT",
+          "3075": "MSG_CFI_ERASE_SELECT",
+          "3076": "MSG_CFI_EXCEPTION",
+          "3077": "MSG_CFI_OP_TIMEOUT",
+          "3328": "MSG_CSIE_BAD_TABLE_ERROR",
+          "3329": "MSG_CSIE_CAP_FINISHED",
+          "3330": "MSG_CSIE_INVALID_STATE",
+          "3331": "MSG_CSIE_INVALID_PROTOCOL",
+          "3332": "MSG_CSIE_PROCESSING_FINISHED",
+          "3333": "MSG_CSIE_BAD_PARAM_VAL",
+          "3584": "MSG_FP_WATCH_FIRED",
+          "3585": "MSG_FP_WATCH_PASSIVE",
+          "3586": "MSG_ERROR_FP_BAD_VALIDATE",
+          "3587": "MSG_ERROR_FP_BAD_WATCH",
+          "3588": "MSG_FP_BAD_TABLE_ERR",
+          "1792": "MSG_NAND_BAD_BLOCK_ERROR",
+          "1793": "MSG_NAND_FLASH_NVM_ERROR",
+          "1794": "MSG_NAND_FLASH_TIMEOUT_ERROR",
+          "1795": "MSG_NAND_FLASH_BAD_READ_ERROR",
+          "1796": "MSG_NAND_FLASH_BAD_WRITE_ERROR",
+          "1797": "MSG_NAND_FLASH_FORMAT_START",
+          "1798": "MSG_NAND_FLASH_FORMAT_END",
+          "1892": "MSG_NAND_BB_NVM_ERROR",
+          "1893": "MSG_NAND_BB_FREE_ERROR",
+          "1895": "MSG_NAND_BB_REMAP1_ERROR",
+          "1896": "MSG_NAND_BB_REMAP2_ERROR",
+          "1536": "MSG_STORE_PKT_SIZE_ERROR",
+          "1537": "MSG_STORE_READ_ERR",
+          "1538": "MSG_STORE_READ_TIMEOUT_ERROR",
+          "1539": "MSG_STORE_BAD_TABLE",
+          "1540": "MSG_STORE_READ_BAD_LEN_ERR",
+          "1541": "MSG_STORE_BAD_WRITE_ERR",
+          "1542": "MSG_STORE_READ_START",
+          "1543": "MSG_STORE_READ_HALT",
+          "1544": "MSG_STORE_BAD_POINTERS",
+          "1545": "MSG_STORE_INIT_PARTITION",
+          "1546": "MSG_STORE_ASYNC_WRITE_START",
+          "1547": "MSG_STORE_ASYNC_WRITE_HALT",
+          "2304": "MSG_PPS_LARGE_OFFSET_CHANGE",
+          "2305": "MSG_PPS_FREEWHEELING",
+          "2306": "MSG_PPS_SYNCED",
+          "0": "MSG_CMD_RECEIVED",
+          "1": "MSG_CMD_REJECTED",
+          "2": "MSG_CMD_REJECTED_CODE",
+          "3": "MSG_CMD_UNKNOWN_APID",
+          "4": "MSG_CMD_BAD_APID",
+          "5": "MSG_CMD_BAD_TYPE",
+          "6": "MSG_CMD_BAD_LENGTH",
+          "7": "MSG_CMD_BAD_XSUM",
+          "8": "MSG_CMD_INVALID_LENGTH",
+          "9": "MSG_CMD_BAD_SOURCE",
+          "10": "MSG_CMD_BAD_FLETCH_EXP",
+          "11": "MSG_CMD_BAD_FLETCH_REC",
+          "12": "MSG_CMD_GET_VERSION",
+          "512": "MSG_MEM_BAD_SECTION",
+          "513": "MSG_MEM_STATE",
+          "514": "MSG_MEM_OP_FAIL",
+          "515": "MSG_MEM_DEFAULT_CASE",
+          "516": "MSG_MEM_WRITE_TO",
+          "1280": "MSG_PKT_BAD_APID",
+          "1281": "MSG_TLM_PKT_SEND_ERR",
+          "1283": "MSG_PKT_QUERY_RSEPONSE",
+          "1284": "MSG_PKT_ISSUE_UNAV",
+          "1285": "MSG_PKT_SYNC_RX_TIMEOUT",
+          "1024": "MSG_TBL_UPDATE_PENDING",
+          "1025": "MSG_TBL_UPDATE_COMPLETE",
+          "1026": "MSG_TBL_VERIFY_BAD_CHECK",
+          "1027": "MSG_TBL_VERIFY_BAD_VALID",
+          "1028": "MSG_TBL_COMMIT",
+          "1029": "MSG_TBL_LOAD_START",
+          "1030": "MSG_TBL_VERIFY_GOOD",
+          "1031": "MSG_TBL_COMMIT_NO_VERIFY",
+          "1032": "MSG_TBL_COMMIT_BAD_ID",
+          "1033": "MSG_TBL_BAD_REG_DATA",
+          "1034": "MSG_TBL_BAD_REG_TABLE",
+          "1035": "MSG_TBL_BAD_STORAGE",
+          "1036": "MSG_TBL_UPDATE_FAILED",
+          "2048": "MSG_INIT_MSG",
+          "2049": "MSG_INIT_GIT_MSG",
+          "2050": "MSG_INIT_TIME_MSG",
+          "2051": "MSG_INIT_SEQ_STAT",
+          "3840": "MSG_NAND_STREAM_START_TRANSFER_MSG",
+          "3841": "MSG_NAND_STREAM_STOP_TRANSFER_MSG",
+          "3842": "MSG_NAND_STREAM_TRANSFER_TIMEOUT_MSG"
+        }
+      },
+      {
+        "field": "log_slice_hdr",
+        "label": "Slice index when the event was logged",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "log_logid_hdr",
+        "label": "Indicates which log this originated from",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "EVT",
+          "1": "PM"
+        }
+      }
+    ],
+    "timeHeaderFields": [
+      "SHCOARSE",
+      "SHFINE"
+    ]
+  },
+  {
+    "apid": 533,
+    "name": "storage_hk",
+    "title": "CSIE NAND storage",
+    "signals": [
+      {
+        "field": "store_write_cnt",
+        "label": "Number of packets written",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "store_read_cnt",
+        "label": "Number of packets read",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "store_write_err_cnt",
+        "label": "Storage write error count",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "store_write_state",
+        "label": "State of write",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "store_sel",
+        "label": "Media selected",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "NAND"
+        }
+      },
+      {
+        "field": "store_read_state",
+        "label": "Storage Read State",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "store_read_stream",
+        "label": "Storage Read Stream",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DBG",
+          "1": "STORE",
+          "2": "HSSI",
+          "3": "SC",
+          "4": "ALL"
+        }
+      },
+      {
+        "field": "store_read_id",
+        "label": "Storage Read Partition ID",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "SCI"
+        }
+      },
+      {
+        "field": "store_read_end_time",
+        "label": "Storage Read End Time",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "store_partition_start_sci",
+        "label": "Start address",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "store_partition_size_sci",
+        "label": "Partition Size",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "store_partition_write_sci",
+        "label": "Partition write address",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "store_partition_read_sci",
+        "label": "Partition read address",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "store_partition_pbk_sci",
+        "label": "Partition playback address",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "store_partition_id_sci",
+        "label": "Partition ID",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "SCI"
+        }
+      },
+      {
+        "field": "store_map_apid0",
+        "label": "ApID of packet \u00b7 store_map_apid0",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "513": "SW_STAT",
+          "514": "LIB_HK",
+          "515": "MEM_HK",
+          "516": "HW_STAT",
+          "518": "MEM",
+          "519": "SEQ",
+          "520": "TBL",
+          "521": "ECHO",
+          "522": "ANA",
+          "523": "DES_HK",
+          "524": "CMD_HK",
+          "525": "FLASH_HK",
+          "526": "DES_TASK",
+          "527": "LOG_HK",
+          "528": "VERSION",
+          "529": "TLM_HK",
+          "530": "TIME_HK",
+          "531": "DES_SCHED",
+          "532": "EVT_LOG",
+          "533": "STORE_HK",
+          "534": "STORE_PBK",
+          "535": "CFI_HK",
+          "536": "CSIE_DATA",
+          "537": "CSIE_HK",
+          "538": "CSIE_META",
+          "539": "DES_TIME",
+          "540": "FP_HK",
+          "541": "FP_TEST",
+          "542": "PID_HK",
+          "543": "NAND_STREAM_HK",
+          "583": "STORE_DUMP"
+        }
+      },
+      {
+        "field": "store_map_partition0",
+        "label": "Partition assignment \u00b7 store_map_partition0",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "SCI"
+        }
+      },
+      {
+        "field": "store_map_apid1",
+        "label": "ApID of packet \u00b7 store_map_apid1",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "513": "SW_STAT",
+          "514": "LIB_HK",
+          "515": "MEM_HK",
+          "516": "HW_STAT",
+          "518": "MEM",
+          "519": "SEQ",
+          "520": "TBL",
+          "521": "ECHO",
+          "522": "ANA",
+          "523": "DES_HK",
+          "524": "CMD_HK",
+          "525": "FLASH_HK",
+          "526": "DES_TASK",
+          "527": "LOG_HK",
+          "528": "VERSION",
+          "529": "TLM_HK",
+          "530": "TIME_HK",
+          "531": "DES_SCHED",
+          "532": "EVT_LOG",
+          "533": "STORE_HK",
+          "534": "STORE_PBK",
+          "535": "CFI_HK",
+          "536": "CSIE_DATA",
+          "537": "CSIE_HK",
+          "538": "CSIE_META",
+          "539": "DES_TIME",
+          "540": "FP_HK",
+          "541": "FP_TEST",
+          "542": "PID_HK",
+          "543": "NAND_STREAM_HK",
+          "583": "STORE_DUMP"
+        }
+      },
+      {
+        "field": "store_map_partition1",
+        "label": "Partition assignment \u00b7 store_map_partition1",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "SCI"
+        }
+      },
+      {
+        "field": "store_map_apid2",
+        "label": "ApID of packet \u00b7 store_map_apid2",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "513": "SW_STAT",
+          "514": "LIB_HK",
+          "515": "MEM_HK",
+          "516": "HW_STAT",
+          "518": "MEM",
+          "519": "SEQ",
+          "520": "TBL",
+          "521": "ECHO",
+          "522": "ANA",
+          "523": "DES_HK",
+          "524": "CMD_HK",
+          "525": "FLASH_HK",
+          "526": "DES_TASK",
+          "527": "LOG_HK",
+          "528": "VERSION",
+          "529": "TLM_HK",
+          "530": "TIME_HK",
+          "531": "DES_SCHED",
+          "532": "EVT_LOG",
+          "533": "STORE_HK",
+          "534": "STORE_PBK",
+          "535": "CFI_HK",
+          "536": "CSIE_DATA",
+          "537": "CSIE_HK",
+          "538": "CSIE_META",
+          "539": "DES_TIME",
+          "540": "FP_HK",
+          "541": "FP_TEST",
+          "542": "PID_HK",
+          "543": "NAND_STREAM_HK",
+          "583": "STORE_DUMP"
+        }
+      },
+      {
+        "field": "store_map_partition2",
+        "label": "Partition assignment \u00b7 store_map_partition2",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "SCI"
+        }
+      },
+      {
+        "field": "store_map_apid3",
+        "label": "ApID of packet \u00b7 store_map_apid3",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "513": "SW_STAT",
+          "514": "LIB_HK",
+          "515": "MEM_HK",
+          "516": "HW_STAT",
+          "518": "MEM",
+          "519": "SEQ",
+          "520": "TBL",
+          "521": "ECHO",
+          "522": "ANA",
+          "523": "DES_HK",
+          "524": "CMD_HK",
+          "525": "FLASH_HK",
+          "526": "DES_TASK",
+          "527": "LOG_HK",
+          "528": "VERSION",
+          "529": "TLM_HK",
+          "530": "TIME_HK",
+          "531": "DES_SCHED",
+          "532": "EVT_LOG",
+          "533": "STORE_HK",
+          "534": "STORE_PBK",
+          "535": "CFI_HK",
+          "536": "CSIE_DATA",
+          "537": "CSIE_HK",
+          "538": "CSIE_META",
+          "539": "DES_TIME",
+          "540": "FP_HK",
+          "541": "FP_TEST",
+          "542": "PID_HK",
+          "543": "NAND_STREAM_HK",
+          "583": "STORE_DUMP"
+        }
+      },
+      {
+        "field": "store_map_partition3",
+        "label": "Partition assignment \u00b7 store_map_partition3",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "SCI"
+        }
+      },
+      {
+        "field": "store_map_apid4",
+        "label": "ApID of packet \u00b7 store_map_apid4",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "513": "SW_STAT",
+          "514": "LIB_HK",
+          "515": "MEM_HK",
+          "516": "HW_STAT",
+          "518": "MEM",
+          "519": "SEQ",
+          "520": "TBL",
+          "521": "ECHO",
+          "522": "ANA",
+          "523": "DES_HK",
+          "524": "CMD_HK",
+          "525": "FLASH_HK",
+          "526": "DES_TASK",
+          "527": "LOG_HK",
+          "528": "VERSION",
+          "529": "TLM_HK",
+          "530": "TIME_HK",
+          "531": "DES_SCHED",
+          "532": "EVT_LOG",
+          "533": "STORE_HK",
+          "534": "STORE_PBK",
+          "535": "CFI_HK",
+          "536": "CSIE_DATA",
+          "537": "CSIE_HK",
+          "538": "CSIE_META",
+          "539": "DES_TIME",
+          "540": "FP_HK",
+          "541": "FP_TEST",
+          "542": "PID_HK",
+          "543": "NAND_STREAM_HK",
+          "583": "STORE_DUMP"
+        }
+      },
+      {
+        "field": "store_map_partition4",
+        "label": "Partition assignment \u00b7 store_map_partition4",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "SCI"
+        }
+      },
+      {
+        "field": "store_map_apid5",
+        "label": "ApID of packet \u00b7 store_map_apid5",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "513": "SW_STAT",
+          "514": "LIB_HK",
+          "515": "MEM_HK",
+          "516": "HW_STAT",
+          "518": "MEM",
+          "519": "SEQ",
+          "520": "TBL",
+          "521": "ECHO",
+          "522": "ANA",
+          "523": "DES_HK",
+          "524": "CMD_HK",
+          "525": "FLASH_HK",
+          "526": "DES_TASK",
+          "527": "LOG_HK",
+          "528": "VERSION",
+          "529": "TLM_HK",
+          "530": "TIME_HK",
+          "531": "DES_SCHED",
+          "532": "EVT_LOG",
+          "533": "STORE_HK",
+          "534": "STORE_PBK",
+          "535": "CFI_HK",
+          "536": "CSIE_DATA",
+          "537": "CSIE_HK",
+          "538": "CSIE_META",
+          "539": "DES_TIME",
+          "540": "FP_HK",
+          "541": "FP_TEST",
+          "542": "PID_HK",
+          "543": "NAND_STREAM_HK",
+          "583": "STORE_DUMP"
+        }
+      },
+      {
+        "field": "store_map_partition5",
+        "label": "Partition assignment \u00b7 store_map_partition5",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "SCI"
+        }
+      },
+      {
+        "field": "store_map_apid6",
+        "label": "ApID of packet \u00b7 store_map_apid6",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "513": "SW_STAT",
+          "514": "LIB_HK",
+          "515": "MEM_HK",
+          "516": "HW_STAT",
+          "518": "MEM",
+          "519": "SEQ",
+          "520": "TBL",
+          "521": "ECHO",
+          "522": "ANA",
+          "523": "DES_HK",
+          "524": "CMD_HK",
+          "525": "FLASH_HK",
+          "526": "DES_TASK",
+          "527": "LOG_HK",
+          "528": "VERSION",
+          "529": "TLM_HK",
+          "530": "TIME_HK",
+          "531": "DES_SCHED",
+          "532": "EVT_LOG",
+          "533": "STORE_HK",
+          "534": "STORE_PBK",
+          "535": "CFI_HK",
+          "536": "CSIE_DATA",
+          "537": "CSIE_HK",
+          "538": "CSIE_META",
+          "539": "DES_TIME",
+          "540": "FP_HK",
+          "541": "FP_TEST",
+          "542": "PID_HK",
+          "543": "NAND_STREAM_HK",
+          "583": "STORE_DUMP"
+        }
+      },
+      {
+        "field": "store_map_partition6",
+        "label": "Partition assignment \u00b7 store_map_partition6",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "SCI"
+        }
+      },
+      {
+        "field": "store_map_apid7",
+        "label": "ApID of packet \u00b7 store_map_apid7",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "513": "SW_STAT",
+          "514": "LIB_HK",
+          "515": "MEM_HK",
+          "516": "HW_STAT",
+          "518": "MEM",
+          "519": "SEQ",
+          "520": "TBL",
+          "521": "ECHO",
+          "522": "ANA",
+          "523": "DES_HK",
+          "524": "CMD_HK",
+          "525": "FLASH_HK",
+          "526": "DES_TASK",
+          "527": "LOG_HK",
+          "528": "VERSION",
+          "529": "TLM_HK",
+          "530": "TIME_HK",
+          "531": "DES_SCHED",
+          "532": "EVT_LOG",
+          "533": "STORE_HK",
+          "534": "STORE_PBK",
+          "535": "CFI_HK",
+          "536": "CSIE_DATA",
+          "537": "CSIE_HK",
+          "538": "CSIE_META",
+          "539": "DES_TIME",
+          "540": "FP_HK",
+          "541": "FP_TEST",
+          "542": "PID_HK",
+          "543": "NAND_STREAM_HK",
+          "583": "STORE_DUMP"
+        }
+      },
+      {
+        "field": "store_map_partition7",
+        "label": "Partition assignment \u00b7 store_map_partition7",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "SCI"
+        }
+      },
+      {
+        "field": "store_map_apid8",
+        "label": "ApID of packet \u00b7 store_map_apid8",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "513": "SW_STAT",
+          "514": "LIB_HK",
+          "515": "MEM_HK",
+          "516": "HW_STAT",
+          "518": "MEM",
+          "519": "SEQ",
+          "520": "TBL",
+          "521": "ECHO",
+          "522": "ANA",
+          "523": "DES_HK",
+          "524": "CMD_HK",
+          "525": "FLASH_HK",
+          "526": "DES_TASK",
+          "527": "LOG_HK",
+          "528": "VERSION",
+          "529": "TLM_HK",
+          "530": "TIME_HK",
+          "531": "DES_SCHED",
+          "532": "EVT_LOG",
+          "533": "STORE_HK",
+          "534": "STORE_PBK",
+          "535": "CFI_HK",
+          "536": "CSIE_DATA",
+          "537": "CSIE_HK",
+          "538": "CSIE_META",
+          "539": "DES_TIME",
+          "540": "FP_HK",
+          "541": "FP_TEST",
+          "542": "PID_HK",
+          "543": "NAND_STREAM_HK",
+          "583": "STORE_DUMP"
+        }
+      },
+      {
+        "field": "store_map_partition8",
+        "label": "Partition assignment \u00b7 store_map_partition8",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "SCI"
+        }
+      },
+      {
+        "field": "store_map_apid9",
+        "label": "ApID of packet \u00b7 store_map_apid9",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "513": "SW_STAT",
+          "514": "LIB_HK",
+          "515": "MEM_HK",
+          "516": "HW_STAT",
+          "518": "MEM",
+          "519": "SEQ",
+          "520": "TBL",
+          "521": "ECHO",
+          "522": "ANA",
+          "523": "DES_HK",
+          "524": "CMD_HK",
+          "525": "FLASH_HK",
+          "526": "DES_TASK",
+          "527": "LOG_HK",
+          "528": "VERSION",
+          "529": "TLM_HK",
+          "530": "TIME_HK",
+          "531": "DES_SCHED",
+          "532": "EVT_LOG",
+          "533": "STORE_HK",
+          "534": "STORE_PBK",
+          "535": "CFI_HK",
+          "536": "CSIE_DATA",
+          "537": "CSIE_HK",
+          "538": "CSIE_META",
+          "539": "DES_TIME",
+          "540": "FP_HK",
+          "541": "FP_TEST",
+          "542": "PID_HK",
+          "543": "NAND_STREAM_HK",
+          "583": "STORE_DUMP"
+        }
+      },
+      {
+        "field": "store_map_partition9",
+        "label": "Partition assignment \u00b7 store_map_partition9",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "SCI"
+        }
+      },
+      {
+        "field": "store_read_to_count",
+        "label": "Storage Read Timeouts",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "store_read_err_count",
+        "label": "Storage Read Media Error",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "store_read_len_count",
+        "label": "Storage Read Length Error",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "store_read_tx_count",
+        "label": "Storage Read Tx Error",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      }
+    ],
+    "timeHeaderFields": [
+      "SHCOARSE",
+      "SHFINE"
+    ]
+  },
+  {
+    "apid": 535,
+    "name": "cfi_hk",
+    "title": "CSIE CFI health",
+    "signals": [
+      {
+        "field": "cfi_pwr_state_cfi",
+        "label": "CFI Power State",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "OFF",
+          "1": "ON"
+        }
+      },
+      {
+        "field": "cfi_state_cfi",
+        "label": "CFI Status",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "cfi_dev_sel_cfi",
+        "label": "CFI Device selected",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "cfi_rx_bit_delay_cfi",
+        "label": "CFI Rx Bit Delay",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "cfi_xfer_cfi",
+        "label": "CFI Xfer Bytes",
+        "unit": "bytes",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "cfi_triple_state_cfi",
+        "label": "CFI Triple Write State",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "SINGLE",
+          "1": "TRIPLE"
+        }
+      },
+      {
+        "field": "cfi_sw_state_cfi",
+        "label": "CFI Software Status",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "OFF",
+          "1": "GOOD",
+          "2": "XFER_TO",
+          "3": "DONE_TO",
+          "4": "BUSY_TO"
+        }
+      },
+      {
+        "field": "cfi_image_size_cfi_0",
+        "label": "Image sizes for crc \u00b7 cfi_image_size_cfi_0",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "cfi_image_size_cfi_1",
+        "label": "Image sizes for crc \u00b7 cfi_image_size_cfi_1",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "cfi_image_size_cfi_2",
+        "label": "Image sizes for crc \u00b7 cfi_image_size_cfi_2",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "cfi_image_size_cfi_3",
+        "label": "Image sizes for crc \u00b7 cfi_image_size_cfi_3",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "cfi_back_count_cfi",
+        "label": "CFI Background Task Run Count",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      }
+    ],
+    "timeHeaderFields": [
+      "SHCOARSE",
+      "SHFINE"
+    ]
+  },
+  {
+    "apid": 537,
+    "name": "csie_hk",
+    "title": "CSIE Instrument health",
+    "signals": [
+      {
+        "field": "csie_hk_intg_ms",
+        "label": "Integration TIme",
+        "unit": "ms",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_hk_timeout",
+        "label": "Capture Timeout",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_hk_num_frame_cap",
+        "label": "Number of frames to capture",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_hk_cap_start_index",
+        "label": "Start block in SDRAM for capture",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_hk_blocks_per_Frame",
+        "label": "SDRAM blocks per frame",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_hk_num_frame_proc",
+        "label": "Number of frames to process",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_hk_proc_start_index_0",
+        "label": "Start block in SDRAM for processing \u00b7 csie_hk_proc_start_index_0",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_hk_proc_start_index_1",
+        "label": "Start block in SDRAM for processing \u00b7 csie_hk_proc_start_index_1",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_hk_test_mode",
+        "label": "Test mode",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_hk_auto_process",
+        "label": "Whether or not the configuration should be submitted to the processing queue on completion",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_hk_hist_offset",
+        "label": "Histogram offset",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_hk_hist_width",
+        "label": "Histogram bin width in bits",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_hk_proc_ind_skip",
+        "label": "Number of processing indicies to skip in the current config",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_dfsu_samp",
+        "label": "DFSU Samples Per Pixel",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_dfsu_start",
+        "label": "DFSU Start Row",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_dfsu_end",
+        "label": "DFSU End Row",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_row_bytes",
+        "label": "Row Byte Allocation RPM && FPM",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_fpm_num_frame_sum_0",
+        "label": "FPM Number Of Frames to Sum \u00b7 csie_115_hk_fpm_num_frame_sum_0",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_fpm_num_frame_sum_1",
+        "label": "FPM Number Of Frames to Sum \u00b7 csie_115_hk_fpm_num_frame_sum_1",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "fpm_proc_cfg_dark_negate_0",
+        "label": "Enable Dark Negation \u00b7 fpm_proc_cfg_dark_negate_0",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "fpm_proc_cfg_pix_clean_0",
+        "label": "Enable Pixel Cleaning \u00b7 fpm_proc_cfg_pix_clean_0",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "fpm_proc_cfg_right_shift_0",
+        "label": "Right Shift \u00b7 fpm_proc_cfg_right_shift_0",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "fpm_proc_cfg_col_bin_0",
+        "label": "Column Bin \u00b7 fpm_proc_cfg_col_bin_0",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "fpm_proc_cfg_row_bin_0",
+        "label": "Row Bin \u00b7 fpm_proc_cfg_row_bin_0",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "fpm_proc_cfg_dark_negate_1",
+        "label": "Enable Dark Negation \u00b7 fpm_proc_cfg_dark_negate_1",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "fpm_proc_cfg_pix_clean_1",
+        "label": "Enable Pixel Cleaning \u00b7 fpm_proc_cfg_pix_clean_1",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "fpm_proc_cfg_right_shift_1",
+        "label": "Right Shift \u00b7 fpm_proc_cfg_right_shift_1",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "fpm_proc_cfg_col_bin_1",
+        "label": "Column Bin \u00b7 fpm_proc_cfg_col_bin_1",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "fpm_proc_cfg_row_bin_1",
+        "label": "Row Bin \u00b7 fpm_proc_cfg_row_bin_1",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_fpm_dark_start_ind_0",
+        "label": "FPM Dark Start Index \u00b7 csie_115_hk_fpm_dark_start_ind_0",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_fpm_dark_start_ind_1",
+        "label": "FPM Dark Start Index \u00b7 csie_115_hk_fpm_dark_start_ind_1",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_fpm_pix_per_row_0",
+        "label": "FPM Pix Per Row \u00b7 csie_115_hk_fpm_pix_per_row_0",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_fpm_pix_per_row_1",
+        "label": "FPM Pix Per Row \u00b7 csie_115_hk_fpm_pix_per_row_1",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_fpm_row_per_frame_0",
+        "label": "FPM Row Per Frame \u00b7 csie_115_hk_fpm_row_per_frame_0",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_fpm_row_per_frame_1",
+        "label": "FPM Row Per Frame \u00b7 csie_115_hk_fpm_row_per_frame_1",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_fpm_col_pix_offset_0",
+        "label": "FPM Col Pix Offset \u00b7 csie_115_hk_fpm_col_pix_offset_0",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_fpm_col_pix_offset_1",
+        "label": "FPM Col Pix Offset \u00b7 csie_115_hk_fpm_col_pix_offset_1",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_fpm_col_chan_offset_0",
+        "label": "FPM Col Chan Offset \u00b7 csie_115_hk_fpm_col_chan_offset_0",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_fpm_col_chan_offset_1",
+        "label": "FPM Col Chan Offset \u00b7 csie_115_hk_fpm_col_chan_offset_1",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_fpm_row_ptr_offset_0",
+        "label": "FPM Row Ptr Offset \u00b7 csie_115_hk_fpm_row_ptr_offset_0",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_fpm_row_ptr_offset_1",
+        "label": "FPM Row Ptr Offset \u00b7 csie_115_hk_fpm_row_ptr_offset_1",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "icm_proc_cfg_posi_select_full",
+        "label": "Position Field \u00b7 icm_proc_cfg_posi_select_full",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "OFF",
+          "1": "FPM0_INSIDE",
+          "2": "FPM0_OUTSIDE",
+          "3": "FPM0_INSIDE_FPM1_OUTSIDE"
+        }
+      },
+      {
+        "field": "icm_proc_cfg_pix_threshold_full",
+        "label": "Position Field \u00b7 icm_proc_cfg_pix_threshold_full",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "OFF",
+          "1": "LOW_SATURATION_CTRL",
+          "2": "HIGH_SATURATION_CTRL",
+          "3": "BELOW_FPM0_ABOVE_FPM1"
+        }
+      },
+      {
+        "field": "icm_proc_cfg_encoding_full",
+        "label": "Position Field \u00b7 icm_proc_cfg_encoding_full",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "SIXTEEN_BIT",
+          "1": "EIGHT_BIT",
+          "2": "TWELVE_BIT",
+          "3": "JPEG_LS"
+        }
+      },
+      {
+        "field": "icm_proc_cfg_posi_select_lite",
+        "label": "Position Field \u00b7 icm_proc_cfg_posi_select_lite",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "OFF",
+          "1": "FPM0_INSIDE",
+          "2": "FPM0_OUTSIDE",
+          "3": "FPM0_INSIDE_FPM1_OUTSIDE"
+        }
+      },
+      {
+        "field": "icm_proc_cfg_pix_threshold_lite",
+        "label": "Position Field \u00b7 icm_proc_cfg_pix_threshold_lite",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "OFF",
+          "1": "LOW_SATURATION_CTRL",
+          "2": "HIGH_SATURATION_CTRL",
+          "3": "BELOW_FPM0_ABOVE_FPM1"
+        }
+      },
+      {
+        "field": "icm_proc_cfg_encoding_lite",
+        "label": "Position Field \u00b7 icm_proc_cfg_encoding_lite",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "SIXTEEN_BIT",
+          "1": "EIGHT_BIT",
+          "2": "TWELVE_BIT",
+          "3": "JPEG_LS"
+        }
+      },
+      {
+        "field": "csie_115_hk_icm_pix_thresh",
+        "label": "ICM Pixel Selection Threshold",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_icm_rad_sqr",
+        "label": "ICM Circle Radius Squared",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_icm_cent_col",
+        "label": "ICM Circle Center Column",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_icm_cent_row",
+        "label": "ICM Circle Center Row",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_icm_fpm1_offset",
+        "label": "ICM FPM1 Offset in FPM0 Frame",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_icm_lin_min",
+        "label": "ICM Linear Min",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_icm_lin_max",
+        "label": "ICM Linear Max",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_icm_lin_div",
+        "label": "ICM Linear Div",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_icm_sqrt_div",
+        "label": "ICM Sqrt Div",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_hk_sdram_ind_limit",
+        "label": "sdram index limit",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_cap_count",
+        "label": "Capture Count",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_proc_count",
+        "label": "Processing Count",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_volt_bus",
+        "label": "Bus Voltage",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_volt_3p3",
+        "label": "3.3v Rail Voltage",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_volt_2p5",
+        "label": "2.5v Rail Voltage",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_volt_1p8",
+        "label": "1.8v Rail Voltage",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_volt_1p5",
+        "label": "1.5v Rail Voltage",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_volt_1p0",
+        "label": "1.0v Rail Voltage",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_curr_3p3",
+        "label": "3.3v Rail Current",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_curr_1p8",
+        "label": "1.8v Rail Current",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_curr_1p0",
+        "label": "1.0v Rail Current",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_fpga_therm",
+        "label": "FPGA Thermistor",
+        "unit": "\u00b0C",
+        "kind": "number",
+        "group": "temperatures"
+      },
+      {
+        "field": "csie_volt_det",
+        "label": "Detector Voltage",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_volt_adc_buff",
+        "label": "ADC Buffer Voltage",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_volt_adc_1p8",
+        "label": "ADC 1.8v Voltage",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_volt_util",
+        "label": "Utility Rail Voltage",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_volt_ffl",
+        "label": "FFL Voltage",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_curr_inst",
+        "label": "Instrument Current",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_curr_util",
+        "label": "Utility Rail Current",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_curr_det",
+        "label": "Detector Current",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_adc_thermistor_temp",
+        "label": "ADC Thermistor",
+        "unit": "\u00b0C",
+        "kind": "number",
+        "group": "temperatures"
+      },
+      {
+        "field": "csie_detBackside_therm",
+        "label": "Detector0 Thermistor",
+        "unit": "\u00b0C",
+        "kind": "number",
+        "group": "temperatures"
+      },
+      {
+        "field": "csie_detBoard_therm",
+        "label": "Detector1 Thermistor",
+        "unit": "\u00b0C",
+        "kind": "number",
+        "group": "temperatures"
+      },
+      {
+        "field": "csie_curr_peak_util",
+        "label": "Utility Rail Peak Current",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_adc_core_temp",
+        "label": "ADC Core Temperature",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "temperatures"
+      },
+      {
+        "field": "csie_sci_write_ptr",
+        "label": "Science write pointer",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_sci_read_ptr",
+        "label": "Science read pointer",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_cap_state",
+        "label": "Capture State",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_proc_state",
+        "label": "Processing State",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_active_protocol",
+        "label": "Active Protocol",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_count_cad",
+        "label": "Counter Write Cadence",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_serial_flow",
+        "label": "Serial Flow Control Enabled",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "1": "DIS",
+          "0": "ENA"
+        }
+      },
+      {
+        "field": "csie_115_hk_autostart",
+        "label": "autostart flag",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "csie_115_hk_capq_active",
+        "label": "Status of capture queue",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_procq_active",
+        "label": "Status of processing queue",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_hk_queue_fill",
+        "label": "Fill Level of the queue",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_hk_loop_queue",
+        "label": "Number of times to loop the queue",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_0",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_0",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_1",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_1",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_2",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_2",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_3",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_3",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_4",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_4",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_5",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_5",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_6",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_6",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_7",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_7",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_8",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_8",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_9",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_9",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_10",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_10",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_11",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_11",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_12",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_12",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_13",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_13",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_14",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_14",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_15",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_15",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_16",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_16",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_17",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_17",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_18",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_18",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_19",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_19",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_20",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_20",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_21",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_21",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_22",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_22",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_23",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_23",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_24",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_24",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_25",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_25",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_26",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_26",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_27",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_27",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_28",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_28",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_29",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_29",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_30",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_30",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_115_hk_histogram_31",
+        "label": "Histogram of last capture \u00b7 csie_115_hk_histogram_31",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      }
+    ],
+    "timeHeaderFields": [
+      "SHCOARSE",
+      "SHFINE"
+    ]
+  },
+  {
+    "apid": 538,
+    "name": "csie_meta",
+    "title": "CSIE Image metadata",
+    "signals": [
+      {
+        "field": "csie_meta_meta_src",
+        "label": "state machine that generated this packet",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_img_id",
+        "label": "Image ID for this packet",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_capture_id",
+        "label": "Capture ID for this packet",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_intg_ms",
+        "label": "Integration TIme",
+        "unit": "ms",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_dfsu_start",
+        "label": "DFSU Start Row",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_dfsu_end",
+        "label": "DFSU End Row",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_test_mode",
+        "label": "Test mode",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_proc_start_index",
+        "label": "Start index in SDRAM for processing",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "fpm_proc_cfg_dark_negate_meta",
+        "label": "Enable Dark Negation",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "fpm_proc_cfg_pix_clean_meta",
+        "label": "Enable Pixel Cleaning",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "DIS",
+          "1": "ENA"
+        }
+      },
+      {
+        "field": "fpm_proc_cfg_right_shift_meta",
+        "label": "Right Shift",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "fpm_proc_cfg_col_bin_meta",
+        "label": "Column Bin",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "fpm_proc_cfg_row_bin_meta",
+        "label": "Row Bin",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_fpm_pix_per_row",
+        "label": "FPM Pix Per Row",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_fpm_row_per_frame",
+        "label": "FPM Row Per Frame",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_fpm_col_pix_offset",
+        "label": "FPM Col Pix Offset",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_fpm_col_chan_offset",
+        "label": "FPM Col Chan Offset",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_fpm_row_ptr_offset",
+        "label": "FPM Row Ptr Offset",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "icm_proc_cfg_posi_select_meta",
+        "label": "Position Field \u00b7 icm_proc_cfg_posi_select_meta",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "OFF",
+          "1": "FPM0_INSIDE",
+          "2": "FPM0_OUTSIDE",
+          "3": "FPM0_INSIDE_FPM1_OUTSIDE"
+        }
+      },
+      {
+        "field": "icm_proc_cfg_pix_threshold_meta",
+        "label": "Position Field \u00b7 icm_proc_cfg_pix_threshold_meta",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "OFF",
+          "1": "LOW_SATURATION_CTRL",
+          "2": "HIGH_SATURATION_CTRL",
+          "3": "BELOW_FPM0_ABOVE_FPM1"
+        }
+      },
+      {
+        "field": "icm_proc_cfg_encoding_meta",
+        "label": "Position Field \u00b7 icm_proc_cfg_encoding_meta",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "SIXTEEN_BIT",
+          "1": "EIGHT_BIT",
+          "2": "TWELVE_BIT",
+          "3": "JPEG_LS"
+        }
+      },
+      {
+        "field": "csie_meta_icm_pix_thresh",
+        "label": "ICM Pixel Selection Threshold",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_bus_volt",
+        "label": "Bus Voltage",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_3v3",
+        "label": "3v3 Voltage",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_2v5",
+        "label": "2v5 Voltage",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_1v8",
+        "label": "1v8 Voltage \u00b7 csie_meta_1v8",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_1v5",
+        "label": "1v5 Voltage",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_1v0",
+        "label": "1v0 Voltage",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_3i3",
+        "label": "3i3 Current",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_1i8",
+        "label": "1i8 Current",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_1i0",
+        "label": "1i0 Current",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_fpga_temp",
+        "label": "FPGA Temperature",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "temperatures"
+      },
+      {
+        "field": "csie_meta_det_volt",
+        "label": "Detector Voltage",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_adc_buff_volt",
+        "label": "ADC Voltage",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_1v8_adc",
+        "label": "1v8 Voltage \u00b7 csie_meta_1v8_adc",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_util_volt",
+        "label": "Util Voltage",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_ffl_volt",
+        "label": "FFL Voltage",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_inst_curr",
+        "label": "Instrument Current",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_util_curr",
+        "label": "Util Current",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_det_curr",
+        "label": "Detector Current",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "csie_meta_adc_thermistor_temp",
+        "label": "ADC Thermistor",
+        "unit": "\u00b0C",
+        "kind": "number",
+        "group": "temperatures"
+      },
+      {
+        "field": "csie_meta_detBackside_temp",
+        "label": "Detector0 Temperature",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "temperatures"
+      },
+      {
+        "field": "csie_meta_detBoard_temp",
+        "label": "Detector1 Temperature",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "temperatures"
+      },
+      {
+        "field": "csie_meta_stim_lamp_stat",
+        "label": "Stim Lamp Status",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      }
+    ],
+    "timeHeaderFields": [
+      "SHCOARSE",
+      "SHFINE"
+    ]
+  },
+  {
+    "apid": 539,
+    "name": "des_time",
+    "title": "CSIE Task timing",
+    "signals": [
+      {
+        "field": "des_cpu_usage",
+        "label": "Percent CPU usage for last completed cycle",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_cpu_max",
+        "label": "Max CPU usage, percent",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_min_tlm_debug",
+        "label": "Min Time \u00b7 des_time_min_tlm_debug",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_max_tlm_debug",
+        "label": "Max Time \u00b7 des_time_max_tlm_debug",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_min_hk",
+        "label": "Min Time \u00b7 des_time_min_hk",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_max_hk",
+        "label": "Max Time \u00b7 des_time_max_hk",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_min_mem",
+        "label": "Min Time \u00b7 des_time_min_mem",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_max_mem",
+        "label": "Max Time \u00b7 des_time_max_mem",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_min_log",
+        "label": "Min Time \u00b7 des_time_min_log",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_max_log",
+        "label": "Max Time \u00b7 des_time_max_log",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_min_table",
+        "label": "Min Time \u00b7 des_time_min_table",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_max_table",
+        "label": "Max Time \u00b7 des_time_max_table",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_min_flash_hk",
+        "label": "Min Time \u00b7 des_time_min_flash_hk",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_max_flash_hk",
+        "label": "Max Time \u00b7 des_time_max_flash_hk",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_min_store_hk",
+        "label": "Min Time \u00b7 des_time_min_store_hk",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_max_store_hk",
+        "label": "Max Time \u00b7 des_time_max_store_hk",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_min_hssi_tlm",
+        "label": "Min Time \u00b7 des_time_min_hssi_tlm",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_max_hssi_tlm",
+        "label": "Max Time \u00b7 des_time_max_hssi_tlm",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_min_tlm_sc",
+        "label": "Min Time \u00b7 des_time_min_tlm_sc",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_max_tlm_sc",
+        "label": "Max Time \u00b7 des_time_max_tlm_sc",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_min_max_tasks",
+        "label": "Min Time \u00b7 des_time_min_max_tasks",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_max_max_tasks",
+        "label": "Max Time \u00b7 des_time_max_max_tasks",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_bck_min_store_read",
+        "label": "Min Time \u00b7 des_time_bck_min_store_read",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_bck_max_store_read",
+        "label": "Max Time \u00b7 des_time_bck_max_store_read",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_bck_min_cfi_back",
+        "label": "Min Time \u00b7 des_time_bck_min_cfi_back",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_bck_max_cfi_back",
+        "label": "Max Time \u00b7 des_time_bck_max_cfi_back",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_bck_min_flash_back",
+        "label": "Min Time \u00b7 des_time_bck_min_flash_back",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_bck_max_flash_back",
+        "label": "Max Time \u00b7 des_time_bck_max_flash_back",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_bck_min_csie",
+        "label": "Min Time \u00b7 des_time_bck_min_csie",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_bck_max_csie",
+        "label": "Max Time \u00b7 des_time_bck_max_csie",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_bck_min_pid",
+        "label": "Min Time \u00b7 des_time_bck_min_pid",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_bck_max_pid",
+        "label": "Max Time \u00b7 des_time_bck_max_pid",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_min_tlm_store",
+        "label": "Min Time",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_max_tlm_store",
+        "label": "Max Time",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_min_mode",
+        "label": "Min Time",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_max_mode",
+        "label": "Max Time",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_min_adcs",
+        "label": "Min Time",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_max_adcs",
+        "label": "Max Time",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_min_tlm_uhf",
+        "label": "Min Time",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_max_tlm_uhf",
+        "label": "Max Time",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_min_uhf_hk",
+        "label": "Min Time",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_max_uhf_hk",
+        "label": "Max Time",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_min_eps",
+        "label": "Min Time",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_max_eps",
+        "label": "Max Time",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_min_payload_hk",
+        "label": "Min Time",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_max_payload_hk",
+        "label": "Max Time",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_min_payload_time",
+        "label": "Min Time",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_max_payload_time",
+        "label": "Max Time",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_min_payload_tlm",
+        "label": "Min Time",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_max_payload_tlm",
+        "label": "Max Time",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_min_lasp_batt",
+        "label": "Min Time",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_max_lasp_batt",
+        "label": "Max Time",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_bck_min_uhf_back",
+        "label": "Min Time",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_bck_max_uhf_back",
+        "label": "Max Time",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_bck_min_xband_back",
+        "label": "Min Time",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_bck_max_xband_back",
+        "label": "Max Time",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_bck_min_nand_stream_back",
+        "label": "Min Time",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "des_time_bck_max_nand_stream_back",
+        "label": "Max Time",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      }
+    ],
+    "timeHeaderFields": [
+      "SHCOARSE",
+      "SHFINE"
+    ]
+  },
+  {
+    "apid": 542,
+    "name": "pid_hk",
+    "title": "CSIE Heater PID control",
+    "signals": [
+      {
+        "field": "pid_hk_min_clamp_count_heater",
+        "label": "Min Clamp Count",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "pid_hk_max_clamp_count_heater",
+        "label": "Max Clamp Count",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "pid_hk_last_integral_heater",
+        "label": "Last Integral Term",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "pid_hk_last_smooth_sample_heater",
+        "label": "Last Smoothed Sample",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "pid_hk_last_error_heater",
+        "label": "Last Error Term",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "pid_hk_setpoint_heater",
+        "label": "Setpoint to control to",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "pid_hk_last_control_heater",
+        "label": "Last Control Value",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "pid_hk_prop_coef_heater",
+        "label": "Coefficient of proportional gain",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "pid_hk_int_coef_heater",
+        "label": "Coefficient of integral gain",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "pid_hk_deriv_coef_heater",
+        "label": "Coefficient of derivative gain",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "pid_hk_exp_avg_heater",
+        "label": "IIR exponential weighted average factor",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "pid_hk_min_clamp_heater",
+        "label": "Minimum clamp value",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "pid_hk_max_clamp_heater",
+        "label": "Maximum clamp value",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "pid_hk_int_decay_heater",
+        "label": "Integral decay term",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "pid_hk_running_heater",
+        "label": "PID controller flag.",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      }
+    ],
+    "timeHeaderFields": [
+      "SHCOARSE",
+      "SHFINE"
+    ]
+  },
+  {
+    "apid": 543,
+    "name": "nand_stream_hk_pkt",
+    "title": "CSIE NAND streaming",
+    "signals": [
+      {
+        "field": "nand_stream_hk_latest_page",
+        "label": "ID of the page latest accessed by the streaming module",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "nand_stream_hk_total_words",
+        "label": "Number of 32-bit Words streamed by nand stream in this science pass",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "nand_stream_hk_transaction_start",
+        "label": "Start block of current/latest transaction",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "nand_stream_hk_transaction_size",
+        "label": "Size of current/latest transaction",
+        "unit": "",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "nand_stream_hk_mode",
+        "label": "Stream Mode",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "0": "WRITE",
+          "1": "READ"
+        }
+      },
+      {
+        "field": "nand_stream_hk_stream_enable",
+        "label": "Stream Enabled",
+        "unit": "",
+        "kind": "state",
+        "group": "modes",
+        "enums": {
+          "1": "ENABLED",
+          "0": "DISABLED"
+        }
+      }
+    ],
+    "timeHeaderFields": [
+      "SHCOARSE",
+      "SHFINE"
     ]
   }
 ]

@@ -45,6 +45,10 @@ def export_packets(database, capture_folder, output_dir, dataset_id):
             time_fields = next(((f'ccsdsSecHeader2_sec_{name}', f'ccsdsSecHeader2_sub_{name}')
                                 for name in time_names
                                 if {f'ccsdsSecHeader2_sec_{name}', f'ccsdsSecHeader2_sub_{name}'} <= fields), None)
+            # CSIE codegen keeps the secondary header as SHCOARSE/SHFINE.
+            explicit_time_fields = definition.get('timeHeaderFields')
+            if time_fields is None and explicit_time_fields and set(explicit_time_fields) <= fields:
+                time_fields = explicit_time_fields
             selected = list(dict.fromkeys([f for f in CONTEXT if f in fields] + [s['field'] for s in signals]))
             expressions = [_identifier(f) for f in selected]
             if time_fields:

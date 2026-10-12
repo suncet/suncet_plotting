@@ -168,3 +168,9 @@ node --test tests/*.test.mjs
 ```
 
 The Python tests use temporary fixtures to check asset routing, local/public configuration separation, response sizes, byte ranges, route restrictions, snapshot exports, and catalog updates. The Node tests check missing values, state labels, identifier quoting, plot grouping and scale policies, downsampling fidelity, and Worker routing, CORS, caching, and compressed snapshot loading. Worker tests use a simulated R2 binding; verify the deployed catalog URL after setup. These tests do not open or modify mission telemetry.
+
+### CSIE engineering packets
+
+The public exporter also includes CSIE 1.1.8 engineering telemetry, with `CSIE` in each selector title to distinguish packets that share names with the bus. This includes APID **533 · storage_hk**, **525 · flash_hk**, **543 · nand_stream_hk_pkt**, hardware/software/library/memory health, task health and diagnostics, time synchronization, telemetry/table/log health, version, CFI, heater PID, instrument housekeeping, and image metadata. Command (521/524), sequence (519), and fault-protection (540/541) APIDs and related telemetry fields remain excluded. Image payload (536), memory dumps (518), spare fields, checksums, and log parameter bytes are not exported as trend plots.
+
+Only APIDs with ingested rows in the selected capture appear. `prepare_tvac2.py` includes these automatically; upload the snapshots before updating the catalog. Both the CSIE `SHCOARSE`/`SHFINE` secondary header and older named secondary-header columns are supported, without substituting bus/beacon times. Temperatures without a supplied engineering conversion retain decoded units. ADC thermistors use the pipeline's renamed fields rather than their obsolete spare names.
