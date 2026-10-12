@@ -189,6 +189,15 @@ async function numericPanel(grid,title,signals,view,version,{wide=false,subtitle
 }
 
 function stateColor(state,signal) {
+  if(['beac_mode_system_mode','mode_system_mode'].includes(signal.field)){
+    if(state==='SCIENCE')return '#36b879';
+    if(state==='SAFE')return '#E6C84F';
+    if(state==='PHOENIX')return '#ee6262';
+  }
+  if(signal.field==='beac_adcs_mode'){
+    if(state==='SUN_POINT')return '#E6C84F';
+    if(state==='FINE_REF_POINT')return '#36b879';
+  }
   if(signal.group==='heaters'){
     if(state==='NO')return '#36b879';
     if(state==='YES')return '#ee6262';
