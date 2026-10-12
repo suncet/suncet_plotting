@@ -3,7 +3,7 @@ from pathlib import Path
 from export_snapshot import _identifier
 
 
-def capture_selection(connection, folder, apid, schema=None):
+def capture_selection(connection, folder, apid, schema=None, *, beacon_timeline=False):
     prefix = f'{_identifier(schema)}.' if schema else ''
     ingestion_table = prefix + '_ingestions'
     fields = {r[0] for r in connection.execute(f'DESCRIBE {ingestion_table}').fetchall()}
@@ -25,7 +25,22 @@ def capture_selection(connection, folder, apid, schema=None):
     # Packet indices restart for each input. Preserve them and give the combined
     # capture a unique display index; no onboard timestamps are changed here.
     rank = 'CASE _source_sha256 ' + ' '.join(f'WHEN {literal(r[1])} THEN {i}' for i,r in enumerate(matches)) + ' END'
-    query = (f'SELECT row_number() OVER (ORDER BY {rank},packet_index)-1 AS packet_index, '
+    timeline_order = ''
+    if beacon_timeline:
+        if apid != 1:
+            raise ValueError('Time-alive ordering is only available for beacons.')
+        # A later playback can fill an earlier gap. Check each original batch
+        # before merging by lifetime counter, so sorting cannot hide a reboot
+        # counter regression within an input. UTC validation still runs later.
+        backwards = connection.execute(
+            f'SELECT count(*) FROM (SELECT beac_time_alive, '
+            f'lag(beac_time_alive) OVER (PARTITION BY _source_sha256 ORDER BY packet_index) AS previous_alive '
+            f'FROM {table} WHERE _source_sha256 IN ({hashes})) WHERE beac_time_alive < previous_alive'
+        ).fetchone()[0]
+        if backwards:
+            raise ValueError('Time alive goes backwards within a playback batch; inspect the ingestion before publishing.')
+        timeline_order = 'beac_time_alive, '
+    query = (f'SELECT row_number() OVER (ORDER BY {timeline_order}{rank},packet_index)-1 AS packet_index, '
              f'packet_index AS original_packet_index, * EXCLUDE(packet_index) '
              f'FROM {table} WHERE _source_sha256 IN ({hashes})')
     return query, matches

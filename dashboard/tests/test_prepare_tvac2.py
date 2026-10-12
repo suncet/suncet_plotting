@@ -114,6 +114,27 @@ class TVACPreparationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'disagree'):
             prep.correction_plan([(0,100,1000,1),(1,101,9000,1),(2,102,844672030572,1)])
 
+    def test_late_playback_fills_gap_and_preserves_overlap_and_onboard_times(self):
+        prep.prepare(self.folder,self.source,self.catalog)
+        with duckdb.connect(str(self.source)) as c:
+            c.execute("INSERT INTO _ingestions VALUES (?, 'late',2,1,'apid_0001')",[str(self.folder/'decoded_packets/decoded_apid_0001_beacon__late.csv')])
+            c.execute("INSERT INTO apid_0001 SELECT 0,beac_time_alive,beac_num_sc_resets,ccsdsSecHeader2_sec_beacon,ccsdsSecHeader2_sub_beacon,combined_time_coarse,combined_time_fine,packet_hash,'late',beac_ana_eps_bus_v FROM apid_0001 WHERE packet_hash='3'")
+            c.execute("INSERT INTO apid_0001 VALUES (1,105,2,844672061,572,844672061,572,'late1','late',15.7)")
+        before=prep.sha(self.source)
+        report=prep.prepare(self.folder,self.source,self.catalog)
+        self.assertEqual(report['beacon_count'],7)
+        self.assertEqual(prep.sha(self.source),before)
+        with duckdb.connect(str(self.folder/prep.OUTPUT_DB),read_only=True) as c:
+            self.assertEqual(c.execute('SELECT beac_time_alive FROM apid_0001 ORDER BY packet_index').fetchnumpy()['beac_time_alive'].tolist(),[100,101,102,103,103,104,105])
+            self.assertEqual(c.execute("SELECT count(*) FROM apid_0001 WHERE packet_hash='3' AND ccsdsSecHeader2_sec_beacon=844672030").fetchone()[0],2)
+            self.assertEqual(c.execute("SELECT original_packet_index FROM apid_0001 WHERE packet_hash='late1'").fetchone()[0],1)
+
+    def test_backwards_counter_inside_original_batch_still_stops(self):
+        with duckdb.connect(str(self.source)) as c:
+            c.execute("UPDATE apid_0001 SET beac_time_alive=99 WHERE packet_hash='4'")
+        with self.assertRaisesRegex(ValueError,'backwards within a playback batch'):
+            prep.prepare(self.folder,self.source,self.catalog)
+
 
 if __name__ == '__main__':
     unittest.main()

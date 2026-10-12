@@ -123,7 +123,7 @@ def build_database(source, folder, dest):
     """Select this capture's ingestion and validate a corrected beacon-only copy."""
     source_hash = sha(source)
     with duckdb.connect(str(source), read_only=True) as c:
-        selection, batches = capture_selection(c, folder, 1)
+        selection, batches = capture_selection(c, folder, 1, beacon_timeline=True)
         require(selection is not None, 'No TVAC2 beacon ingestion found. Run the pipeline first.')
         for path, digest, count, _ in batches:
             csv = Path(path)
@@ -139,13 +139,13 @@ def build_database(source, folder, dest):
     report = {'source_name': source.name, 'source_sha256': source_hash,
               'source_ingestions': [{'path':p,'sha256':h,'rows':n} for p,h,n,_ in batches], 'output_name': dest.name,
               'generated_utc': datetime.now(timezone.utc).isoformat(),
-              'method': 'Preserve all set clocks. Backfill only initial unset clocks from the first set clock in the same boot using time alive. Never compress offline calendar gaps or extrapolate across boots.',
+              'method': 'Merge beacon playbacks by time alive, retaining original packet indices and overlapping records. Preserve all set clocks. Backfill only initial unset clocks from the first set clock in the same boot using time alive. Never compress offline calendar gaps or extrapolate across boots.',
               'limitation': 'Backfilled times inherit time-setting accuracy and whole-second time-alive precision. Unanchored boots keep their unset clocks and are omitted from UTC plots.',
               'utc_convention': 'Midnight 2000-01-01 plus five post-J2000 leap seconds, matching dashboard/data.mjs.',
               'corrections': corrections, 'unanchored_boots': unknown}
     with duckdb.connect(str(dest)) as c:
         c.execute("ATTACH '" + str(source).replace("'", "''") + "' AS original (READ_ONLY)")
-        original_selection, current_batches = capture_selection(c, folder, 1, schema='original')
+        original_selection, current_batches = capture_selection(c, folder, 1, schema='original', beacon_timeline=True)
         require(current_batches == batches, 'Source ingestions changed during preparation.')
         c.execute(f'CREATE TABLE apid_0001 AS {original_selection}')
         c.execute('CREATE TABLE _apid_catalog AS SELECT * FROM original._apid_catalog WHERE apid=1')
