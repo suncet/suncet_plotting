@@ -17371,5 +17371,656 @@
         "group": "measurements"
       }
     ]
+  },
+  {
+    "apid": 23,
+    "name": "dsps_log",
+    "title": "DSPS log event headers",
+    "timeHeaderNames": [
+      "dsps_log"
+    ],
+    "signals": [
+      {
+        "field": "sequence_count",
+        "label": "DSPS log sequence count",
+        "unit": "count",
+        "kind": "number",
+        "group": "measurements"
+      }
+    ]
+  },
+  {
+    "apid": 25,
+    "name": "dsps_param",
+    "title": "DSPS parameters",
+    "timeHeaderNames": [
+      "dsps_param",
+      "dsps_parameter_pkt"
+    ],
+    "signals": [
+      {
+        "field": "dsps_param_0_gps_write_time",
+        "label": "Param 0 gps write time",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_1_reboot_flag",
+        "label": "Param 1 reboot flag",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_2_leap_seconds",
+        "label": "Param 2 leap seconds",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_3_integration_period",
+        "label": "Param 3 integration period",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_4_time_packet_cadence",
+        "label": "Param 4 time packet cadence",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_5_background_diode_1",
+        "label": "Param 5 background diode 1",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_6_background_diode_2",
+        "label": "Param 6 background diode 2",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_7_background_diode_3",
+        "label": "Param 7 background diode 3",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_8_background_diode_4",
+        "label": "Param 8 background diode 4",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_9_background_diode_5",
+        "label": "Param 9 background diode 5",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_10_background_diode_6",
+        "label": "Param 10 background diode 6",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_11_background_diode_7",
+        "label": "Param 11 background diode 7",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_12_background_diode_8",
+        "label": "Param 12 background diode 8",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_13_sps_1_x_fov_neg",
+        "label": "Param 13 sps 1 x fov neg",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_14_sps_1_y_fov_neg",
+        "label": "Param 14 sps 1 y fov neg",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_15_sps_2_x_fov_neg",
+        "label": "Param 15 sps 2 x fov neg",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_16_sps_2_Y_fov_neg",
+        "label": "Param 16 sps 2 Y fov neg",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_17_sps_1_x_fov_POS",
+        "label": "Param 17 sps 1 x fov POS",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_18_sps_1_y_fov_POS",
+        "label": "Param 18 sps 1 y fov POS",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_19_sps_2_x_fov_POS",
+        "label": "Param 19 sps 2 x fov POS",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_20_sps_2_y_fov_POS",
+        "label": "Param 20 sps 2 y fov POS",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_21_sps_1_x_offset",
+        "label": "Param 21 sps 1 x offset",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_22_sps_1_y_offset",
+        "label": "Param 22 sps 1 y offset",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_23_sps_2_x_offset",
+        "label": "Param 23 sps 2 x offset",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_24_sps_2_y_offset",
+        "label": "Param 24 sps 2 y offset",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_25_sps_1_x_config",
+        "label": "Param 25 sps 1 x config",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_26_sps_1_y_config",
+        "label": "Param 26 sps 1 y config",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_27_sps_2_x_config",
+        "label": "Param 27 sps 2 x config",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_28_sps_2_y_config",
+        "label": "Param 28 sps 2 y config",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_29_sps_1_threshold",
+        "label": "Param 29 sps 1 threshold",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_30_sps_2_threshold",
+        "label": "Param 30 sps 2 threshold",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_32_debug_mode",
+        "label": "Param 32 debug mode",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_33_rtc_reset_period",
+        "label": "Param 33 rtc reset period",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_34_flare_channel",
+        "label": "Param 34 flare channel",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_38_flare_time",
+        "label": "Param 38 flare time",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_40_gps_write_time",
+        "label": "Param 40 gps write time",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_table_id",
+        "label": "Param table id",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_31_adc_glitch",
+        "label": "Param 31 adc glitch",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_35_goes_const",
+        "label": "Param 35 goes const",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_36_goes_slope",
+        "label": "Param 36 goes slope",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_37_flare_slope",
+        "label": "Param 37 flare slope",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_39_flare_level",
+        "label": "Param 39 flare level",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_param_41_reboot_flag",
+        "label": "Param 41 reboot flag",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      }
+    ]
+  },
+  {
+    "apid": 29,
+    "name": "dsps_time",
+    "title": "DSPS timing",
+    "timeHeaderNames": [
+      "dsps_time"
+    ],
+    "signals": [
+      {
+        "field": "dsps_millisec_since_turn_on",
+        "label": "Time since turn-on",
+        "unit": "ms",
+        "kind": "number",
+        "group": "measurements"
+      }
+    ]
+  },
+  {
+    "apid": 35,
+    "name": "dsps_data",
+    "title": "DSPS science & health",
+    "timeHeaderNames": [
+      "dsps_data",
+      "dsps_pass"
+    ],
+    "signals": [
+      {
+        "field": "dsps_sw_ver_major",
+        "label": "Sw ver major",
+        "unit": "count",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_sw_ver_minor",
+        "label": "Sw ver minor",
+        "unit": "count",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_cdh_mode_flags",
+        "label": "Cdh mode flags",
+        "unit": "",
+        "kind": "state",
+        "group": "modes"
+      },
+      {
+        "field": "dsps_inst_mode_flags",
+        "label": "Inst mode flags",
+        "unit": "",
+        "kind": "state",
+        "group": "modes"
+      },
+      {
+        "field": "dsps_power_3P3V_mv",
+        "label": "Power 3P3V voltage",
+        "unit": "mV",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "dsps_power_3P3V_I_mA",
+        "label": "Power 3P3V current",
+        "unit": "mA",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "dsps_power_5V_mV",
+        "label": "Power 5V voltage",
+        "unit": "mV",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "dsps_power_5V_I_mA",
+        "label": "Power 5V current",
+        "unit": "mA",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "dsps_power_Vbat_mV",
+        "label": "Power Vbat voltage",
+        "unit": "mV",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "dsps_power_Vbat_I_mA",
+        "label": "Power Vbat current",
+        "unit": "mA",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "dsps_cdh_dac_1",
+        "label": "Cdh dac 1 (decoded)",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "dsps_power_5V_mon",
+        "label": "Power 5V mon (decoded)",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "dsps_power_3P3V_mon",
+        "label": "Power 3P3V mon (decoded)",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "dsps_power_2P5V_mon",
+        "label": "Power 2P5V mon (decoded)",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "dsps_power_1P8V_mon",
+        "label": "Power 1P8V mon (decoded)",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "dsps_arm_proc_temp_V",
+        "label": "Arm proc temp (decoded)",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "temperatures"
+      },
+      {
+        "field": "dsps_ana_Vbat_mon",
+        "label": "Ana Vbat mon (decoded)",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "electrical"
+      },
+      {
+        "field": "dsps_adc_temp_V",
+        "label": "Adc temp (decoded)",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "temperatures"
+      },
+      {
+        "field": "dsps_sensor_diode_1_temp_C",
+        "label": "Sensor diode 1 temp (decoded)",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "temperatures"
+      },
+      {
+        "field": "dsps_sensor_diode_2_temp_C",
+        "label": "Sensor diode 2 temp (decoded)",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "temperatures"
+      },
+      {
+        "field": "dsps_sensor_board_temp_C",
+        "label": "Sensor board temp (decoded)",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "temperatures"
+      },
+      {
+        "field": "dsps_flare_magnitude_phase",
+        "label": "Flare magnitude phase",
+        "unit": "",
+        "kind": "state",
+        "group": "modes"
+      },
+      {
+        "field": "dsps_flare_magnitude",
+        "label": "Flare magnitude",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_visible_sps_loop_count",
+        "label": "Visible sps loop count",
+        "unit": "count",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_visible_sps_err_count",
+        "label": "Visible sps err count",
+        "unit": "count",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_visible_sps_diodes_0",
+        "label": "Visible sps diodes 0",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_visible_sps_diodes_1",
+        "label": "Visible sps diodes 1",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_visible_sps_diodes_2",
+        "label": "Visible sps diodes 2",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_visible_sps_diodes_3",
+        "label": "Visible sps diodes 3",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_visible_sps_sum",
+        "label": "Visible sps sum",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_visible_sps_x_pos",
+        "label": "Visible sps x pos",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_visible_sps_y_pos",
+        "label": "Visible sps y pos",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_x_ray_sps_loop_count",
+        "label": "X ray sps loop count",
+        "unit": "count",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_x_ray_sps_err_count",
+        "label": "X ray sps err count",
+        "unit": "count",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_x_ray_sps_diodes_0",
+        "label": "X ray sps diodes 0",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_x_ray_sps_diodes_1",
+        "label": "X ray sps diodes 1",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_x_ray_sps_diodes_2",
+        "label": "X ray sps diodes 2",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_x_ray_sps_diodes_3",
+        "label": "X ray sps diodes 3",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_x_ray_sps_sum",
+        "label": "X ray sps sum",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_x_ray_sps_x_pos",
+        "label": "X ray sps x pos",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_x_ray_sps_y_pos",
+        "label": "X ray sps y pos",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      },
+      {
+        "field": "dsps_tlm_integ_time",
+        "label": "Tlm integ time",
+        "unit": "decoded units",
+        "kind": "number",
+        "group": "measurements"
+      }
+    ]
   }
 ]

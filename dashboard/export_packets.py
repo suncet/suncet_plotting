@@ -39,10 +39,16 @@ def export_packets(database, capture_folder, output_dir, dataset_id):
             signals = [s for s in definition['signals'] if s['field'] in fields]
             if not signals:
                 continue
-            sec, sub = f"ccsdsSecHeader2_sec_{definition['name']}", f"ccsdsSecHeader2_sub_{definition['name']}"
-            selected = [f for f in CONTEXT if f in fields] + [s['field'] for s in signals]
+            # APID 35 is named dsps_data by processing, but its generated
+            # decoder uses dsps_pass; parameters have a similar alias.
+            time_names = definition.get('timeHeaderNames', [definition['name']])
+            time_fields = next(((f'ccsdsSecHeader2_sec_{name}', f'ccsdsSecHeader2_sub_{name}')
+                                for name in time_names
+                                if {f'ccsdsSecHeader2_sec_{name}', f'ccsdsSecHeader2_sub_{name}'} <= fields), None)
+            selected = list(dict.fromkeys([f for f in CONTEXT if f in fields] + [s['field'] for s in signals]))
             expressions = [_identifier(f) for f in selected]
-            if sec in fields and sub in fields:
+            if time_fields:
+                sec, sub = time_fields
                 selected += ['packet_time_sec', 'packet_time_sub']
                 expressions += [f'{_identifier(sec)} AS packet_time_sec', f'{_identifier(sub)} AS packet_time_sub']
             records = c.execute(f'SELECT {", ".join(expressions)} FROM ({selection}) ORDER BY packet_index LIMIT {MAX_ROWS+1}').fetchall()
