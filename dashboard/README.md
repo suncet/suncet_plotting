@@ -54,7 +54,7 @@ DSPS definitions use the 6.09 generated decoder: **APID 35 · dsps_data** (scien
 
 APID 35 currently uses the pipeline's provisional `DSPS_PASS` prefix decoder. Its checksum and unknown tail are excluded. Several temperature and analog-monitor fields have engineering-sounding names but no supplied DSPS conversion functions; these are labeled **decoded units**, preserved unchanged, and do not receive degree-Celsius display limits. Explicit millivolt and milliamp fields retain those units. Header aliases (`dsps_pass`, `dsps_parameter_pkt`) preserve the packet's own time without borrowing a beacon timestamp. Invalid or unset times remain accessible on Packet order.
 
-Published snapshots also have limits of 100 MiB compressed and 400 MiB expanded JSON; the exporter checks both before writing files. Split large captures by reset when needed.
+Published snapshots also have limits of 100 MiB compressed and 512 MiB expanded JSON; the exporter checks both before writing files. The expanded limit accommodates the complete TVAC2 playback. Split larger captures by reset when needed.
 
 ## Refresh TVAC2 upload files
 

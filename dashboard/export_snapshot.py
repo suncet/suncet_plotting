@@ -26,7 +26,7 @@ import duckdb
 MAX_ROWS = 500_000
 # Keep these in sync with the browser snapshot loader in data.mjs.
 MAX_COMPRESSED_BYTES = 100 * 1024 * 1024
-MAX_EXPANDED_BYTES = 400 * 1024 * 1024
+MAX_EXPANDED_BYTES = 512 * 1024 * 1024
 SNAPSHOT_FORMAT = "suncet-beacon-v1"
 CATALOG_FORMAT = "suncet-catalog-v1"
 ALLOWLIST_PATH = Path(__file__).with_name("public-fields.json")

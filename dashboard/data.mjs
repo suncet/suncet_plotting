@@ -4,7 +4,7 @@ import { SIGNALS } from './signals.mjs';
 const DUCKDB_PACKAGE = 'https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.33.1-dev57.0';
 const MAX_ROWS = 500_000;
 const MAX_COMPRESSED_BYTES = 100 * 1024 * 1024;
-const MAX_EXPANDED_BYTES = 400 * 1024 * 1024;
+const MAX_EXPANDED_BYTES = 512 * 1024 * 1024;
 const CONTEXT_FIELDS = [
   'packet_index', 'source_packet_index', 'sequence_count',
   'beac_num_sc_resets', 'beac_time_since_boot',
@@ -303,7 +303,7 @@ async function readSnapshotText(response, onProgress) {
       if (result.done) break;
       expanded += result.value.byteLength;
       if (expanded > MAX_EXPANDED_BYTES) {
-        throw new Error('Snapshot expands beyond the 400 MB limit. Publish a smaller time range.');
+        throw new Error(`Snapshot expands beyond the ${MAX_EXPANDED_BYTES / 1024 / 1024} MiB limit. Publish a smaller time range.`);
       }
       text.push(textDecoder.decode(result.value, { stream: true }));
     }
